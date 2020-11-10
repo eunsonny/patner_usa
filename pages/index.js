@@ -1,20 +1,11 @@
 import { Fragment } from 'react';
-import callApi from '../helpers/callApi';
+import Job from '../api/Job';
 
 export default function Home() {
-  
-  const apiTest = async () => {
-    const response = await callApi({
-      url: '/jobs.json',
-      method: 'get',
-    });
-    console.log(response);
-  }
-
   return (
     <Fragment>
-      <button onClick={apiTest}>
-        API TEST BUTTON
+      <button onClick={Job.getJobs}>
+        API TEST GET JOB BUTTON
       </button>
     </Fragment>
   )
