@@ -16,5 +16,5 @@ export default async (req, res) => {
   const result = await findUser(name)
 
   res.statusCode = 200
-  res.json(result);
+  res.json({ userInfo: result });
 }

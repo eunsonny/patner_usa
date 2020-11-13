@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 
 class Input extends Component {
+  
   render() {
     return (
       <Fragment>
