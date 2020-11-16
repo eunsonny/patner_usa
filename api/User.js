@@ -1,4 +1,4 @@
-import callApi from '../helpers/callApi';
+import callApi from '../utils/callApi';
 
 export default {
   getUserInfo(data) {
