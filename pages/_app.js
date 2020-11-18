@@ -1,8 +1,9 @@
-import { Fragment } from "react";
-import "../styles/globals.scss";
-import App from "next/app";
-import { Provider } from "mobx-react";
-import Router, { withRouter } from "next/router";
+import { Fragment } from 'react';
+import '../styles/globals.scss';
+import '../styles/common.scss';
+import App from 'next/app';
+import { Provider } from 'mobx-react';
+import Router, { withRouter } from 'next/router';
 
 import initializeStore from "../stores";
 

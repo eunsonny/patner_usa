@@ -1,0 +1,47 @@
+.Term {
+  display: flex;
+  margin-bottom: 22px;
+  padding: 0 14px;
+  font-family: "Noto Sans KR", "Noto Sans", sans-serif;
+  font-size: 14px;
+  line-height: 1.71;
+  text-align: left;
+  // color: #595959;
+
+  input[type="checkbox"] {
+    border: 1px solid purple;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    opacity: 0;
+  }
+
+  input[type="checkbox"] + label {
+    display: inline-block;
+    // position: relative;
+    background-image: url("/images/ic_check_terms.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 24px;
+    height: 24px;
+    margin: 0 10px 0 0;
+    // padding: 8.1px 7px 7.9px;
+    border-radius: 50%;
+    background-color: #bdbdbd;
+    cursor: pointer;
+  }
+
+  input[type="checkbox"]:checked + label{
+    background-color: #1877fc;
+  }
+
+  span {
+    width: 240px;
+  }
+
+  button {
+    margin-left: 20px;
+    background-color: white;
+    border: none;
+  }
+}

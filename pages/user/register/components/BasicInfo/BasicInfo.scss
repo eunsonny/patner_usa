@@ -1,0 +1,10 @@
+@import "../../../../../styles/common.scss";
+
+.BasicInfo {
+  @include registerSection;
+
+  .timer {
+    color: #ff2929;
+    font-size: 14px;
+  }
+}

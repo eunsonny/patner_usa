@@ -1,12 +1,111 @@
 :root {
-  --main-color: #1877f2;
-  --dark-gray-color: #bdbdbd;
-  --gray-color: #e5e5e5;
-  --light-gray-color: #f6f6f6;
-  --paleblue-color: #f1f4f6;
-  --success-color: #01b856;
-  --error-color: #ff2929;
-  --notice-color: #ff6328;
-  --chat-color: #ecf4ff;
-  --dark-color: #282828;
+  --main-color: #1877F2;
+  --dark-gray-color: #BDBDBD;
+  --gray-color: #E5E5E5;
+  --light-gray-color: #F6F6F6;
+  --paleblue-color: #F1F4F6;
+  --success-color: #01B856;
+  --error-color: #FF2929;
+  --notice-color: #FF6328;
+  --chat-color: #ECF4FF;
+}
+
+@mixin inputCon {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 15px;
+  border-bottom: 1px solid #f6f6f6;
+
+  input {
+    width: 340px;
+    height: 28px;
+    border: none;
+    padding-left: 5px;
+    font-size: 14px;
+    font-weight: 400;
+
+    &::placeholder {
+      font-size: 13px;
+      line-height: 1.85;
+      text-align: left;
+      color: #bdbdbd;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+@mixin registerSection {
+  margin: 10px 0;
+
+  .title {
+    display: inline-block;
+    width: 200px;
+    height: 29px;
+    margin: 10px 90px 20px 15px;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 2.2;
+    text-align: left;
+    color: #000000;
+  }
+
+  .mainInputCon {
+    padding: 10px 0;
+
+    .basicInput {
+      @include inputCon;
+    }
+
+    .inputWithBtn {
+      @include inputCon;
+
+      input {
+        width: 170px;
+      }
+
+      button {
+        height: 28px;
+        margin: 0px 15px 5px 10px;
+        padding: 0 10px;
+        border-radius: 14px;
+        border: none;
+        background-color: #bdbdbd;
+        font-size: 13px;
+        line-height: 28px;
+        color: #ffffff;
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      .active {
+        background-color: #1877fc;
+      }
+    }
+
+    .active {
+      border-bottom: 1px solid #1877fc;
+    }
+
+    .valid {
+      border-bottom: 1px solid #01b856;
+      color: #01b856;
+    }
+
+    .inValid {
+      border-bottom: 1px solid #ff2929;
+      color: #ff2929;
+    }
+
+    .message {
+      margin: 0 20px;
+      font-size: 12px;
+      line-height: 2;
+      border: none;
+    }
+  }
 }
