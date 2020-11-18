@@ -11,12 +11,23 @@ const BasicInfo = ({ values, results, clicked, handleChange, handleClick }) => {
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
   const [btnValue, setBtnValue] = useState("인증요청");
+  const [certifiNum, setCertifiNum] = useState("");
 
   useEffect(() => {
-    if (clicked === "인증요청") {
+    const userNumRegex = /^\d{3}-\d{3,4}-\d{4}$/;
+    if (
+      (clicked === "인증요청" || "재요청") &&
+      userNumRegex.test(values.userNumber)
+    ) {
       setBtnValue("재요청");
       setMinutes(3);
       setSeconds(0);
+    }
+
+    if (clicked === "인증번호확인") {
+      setMinutes(0);
+      setSeconds(0);
+      setCertifiNum("");
     }
   }, [clicked]);
 
@@ -38,11 +49,15 @@ const BasicInfo = ({ values, results, clicked, handleChange, handleClick }) => {
     return () => clearInterval(countDown);
   }, [minutes, seconds]);
 
+  const handleCertifiNum = (e) => {
+    setCertifiNum(e.target.value);
+  };
+
   const showCertifiNumMessage = () => {
-    if (clicked === "인증요청") {
+    if (clicked === "인증요청" || "재요청") {
       return (
         <span className={cx("message", { valid: values.userNumber })}>
-          {results.certifiRequest}
+          {results.certifiNum}
         </span>
       );
     } else if (clicked === "인증번호확인") {
@@ -91,18 +106,22 @@ const BasicInfo = ({ values, results, clicked, handleChange, handleClick }) => {
             {btnValue}
           </button>
         </div>
-        {results.certifiRequest?.includes("성공") && (
-          <ValidationMessage valid="성공" message={results.certifiRequest} />
+        {results.userNumber && (
+          <ValidationMessage
+            message={results.userNumber}
+            valid="성공"
+            inValid="않는"
+          />
         )}
       </div>
-      {results.certifiRequest?.includes("발송") && (
+      {results.certifiNum?.includes("발송") && (
         <div className={cx("mainInputCon")}>
           <div className={cx("inputWithBtn")}>
             <Input
               name="certifiNum"
-              value={values.certifiNum}
+              value={certifiNum}
               placeholder="인증번호를 입력해주세요"
-              onChange={handleChange}
+              onChange={handleCertifiNum}
             />
             <div>
               <span className={cx("timer")}>
@@ -113,7 +132,7 @@ const BasicInfo = ({ values, results, clicked, handleChange, handleClick }) => {
                 onClick={handleClick}
                 value="인증번호확인"
                 className={cx({
-                  active: String(values.certifiNum).length === 6,
+                  active: String(certifiNum).length >= 6,
                 })}
               >
                 확인
@@ -144,6 +163,9 @@ const BasicInfo = ({ values, results, clicked, handleChange, handleClick }) => {
             onChange={handleChange}
           />
         </div>
+        {results.email && (
+          <ValidationMessage message={results.email} inValid="않는" />
+        )}
       </div>
     </section>
   );

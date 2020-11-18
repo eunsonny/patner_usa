@@ -6,13 +6,16 @@ import useStore from "../../../../stores/useStore";
 import styles from "./address.scss";
 
 import InputWrapper from "../../../../components/molecules/inputWrapper/inputWrapper";
-import useForm from "../components/useForm";
 
 const cx = classNames.bind(styles);
 
 const Address = () => {
-  const { getAddress } = useForm();
   const { companyStore } = useStore();
+
+  const getAddress = (e) => {
+    const { name, value } = e.target;
+    companyStore.getAddress(name, value);
+  }
 
   return useObserver (() => (
     <div className={cx("companyAddress")}>

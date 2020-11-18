@@ -46,7 +46,7 @@
       padding: 11px 148px 11px 150px;
       border-radius: 8px;
       border: none;
-      background-color: var(--main-color);
+      background-color: var(--dark-gray-color);
       color: white;
       font-weight: 300;
   
@@ -55,8 +55,8 @@
       }
     }
   
-    // .active {
-    //   background-color: #1877fc;
-    // }
+    .active {
+      background-color: var(--main-color)
+    }
   }
 }

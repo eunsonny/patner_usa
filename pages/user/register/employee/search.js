@@ -3,18 +3,17 @@ import Router from "next/router";
 import classNames from "classnames/bind";
 import useStore from "../../../../stores/useStore";
 import styles from "./search.scss";
-import SearchResultLi from "../components/SearchResultLi";
+import SearchedCompany from "../components/SearchedCompany/SearchedCompany";
+import { API } from "../../../../config";
 
 import InputWrapper from "../../../../components/molecules/inputWrapper/inputWrapper";
 
 const cx = classNames.bind(styles);
-const API = "http://wecode-dev.rencar.co.kr";
 
 const Search = () => {
   const [searchValue, setSearchValue] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [isVisible, setIsVisible] = useState(true);
-  const [searchedCompanyId, setSearchedCompanyId] = useState("");
 
   const { employeeStore } = useStore();
 
@@ -71,7 +70,7 @@ const Search = () => {
           />
           <ul className={cx("searchResultCon", { visibility : isVisible })}>
             {searchResult.map((result, idx) => (
-              <SearchResultLi
+              <SearchedCompany
                 key={idx}
                 onClick={getTarget}
                 id={result.id}
