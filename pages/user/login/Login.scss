@@ -1,0 +1,103 @@
+.login {
+  width: 375px;
+  height: 667px;
+  background-image: url("/images/loginBackground.png");
+
+  .title {
+    padding: 127px 233px 45px 25px;
+    color: white;
+
+    p {
+      padding-bottom: 10px;
+      font-size: 23px;
+      font-weight: lighter;
+    }
+    span {
+      font-size: 34px;
+      font-weight: bold;
+
+      &:last-child {
+        color: #1877f2;
+      }
+    }
+  }
+
+  .inputArea {
+    input {
+      display: block;
+      width: 345px;
+      margin: 0 auto;
+      padding-bottom: 8px;
+      background-color: transparent;
+      outline: none;
+      color: white;
+      border-top: 0px;
+      font-size: 13px;
+      border-right: 0px;
+      border-bottom: 1px solid rgba(246, 246, 246, 0.3);
+      border-left: 0px;
+      &:last-child {
+        margin-top: 33px;
+      }
+
+      &::placeholder {
+        color: white;
+        font-size: 13px;
+      }
+
+      &:focus {
+        color: white;
+      }
+    }
+  }
+
+  .search {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px 25px 0 203px;
+
+    a {
+      color: white;
+      font-size: 12px;
+    }
+
+    img {
+      width: 16px;
+      height: 10.6px;
+      margin-left: 8px;
+    }
+  }
+
+  .LoginAndCreate {
+    margin-top: 98px;
+
+    button {
+      display: block;
+      width: 325px;
+      height: 48px;
+      margin: 0 auto;
+      color: white;
+      border-radius: 8px;
+      line-height: 48px;
+      &:first-child {
+        margin-bottom: 14px;
+        outline: none;
+        border: 0;
+      }
+
+      &:last-child {
+        background-color: transparent;
+        border: 1px solid #bdbdbd;
+      }
+    }
+
+    .on {
+      background-color: #1877f2;
+    }
+
+    .off {
+      background-color: #bdbdbd;
+    }
+  }
+}
