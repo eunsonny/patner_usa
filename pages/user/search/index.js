@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { useRouter } from "next/router";
+import { useRouter, withRouter } from "next/router";
 import classNames from "classNames/bind";
 
 import styles from "./search.scss";
@@ -21,7 +21,7 @@ import MenuTab from "./menuTab";
 import Button from "../../../compnents/button";
 
 const cx = classNames.bind(styles);
-const validation = /^(?=.*\d)(?=.*[A-Za-z])[A-Za-z0-9]\w{7,}$/;
+const validation = /^(?=.*\d)(?=.*[A-Za-z])[A-Za-z\d]{8,}$/;
 
 const Search = (props) => {
   const router = useRouter();
@@ -43,7 +43,7 @@ const Search = (props) => {
     if (counter === 0 && verifyCheck === false) {
       setVerifyText(VERIFY_RE_QUEST);
     }
-  }, [counter]);
+  }, [counter, value]);
 
   const handleCheckTap = (e) => {
     setValue({});
@@ -159,7 +159,7 @@ const Search = (props) => {
               pwdCheck={pwdCheck}
             />
             <Button
-              content={GO_TO_LOGIN}
+              content={"재등록"}
               name="searchPwd"
               activeBtn={pwdCheck}
               onClickNextBtn={goToLogin}

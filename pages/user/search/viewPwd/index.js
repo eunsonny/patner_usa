@@ -7,30 +7,40 @@ import { Input } from "../../../../compnents/Input";
 
 const cx = classNames.bind(styles);
 
-const ViewPwd = ({ value, onChangeInput, firstCondition, pwdCheck }) => {
+const ViewPwd = ({
+  value: { firstPwd, secondPwd },
+  onChangeInput,
+  firstCondition,
+  pwdCheck,
+}) => {
   return (
     <section className={cx("viewPwd")}>
       <div
         className={cx("container", {
-          errorOn: value.firstPwd && !firstCondition,
+          errorOn: firstPwd && !firstCondition,
         })}
       >
         <Input
           id={"firstPwd"}
-          value={value.firstPwd}
+          value={firstPwd}
           onChange={onChangeInput}
           placeholder={"8자 이상의 영문,숫자 조합의 비밀번호"}
         />
-        {value.firstPwd && !firstCondition && (
+        {firstPwd && !firstCondition && (
           <span className={cx("message", "error")}>
             유효하지 않은 비밀번호 입니다.
+          </span>
+        )}
+        {firstPwd && firstCondition && (
+          <span className={cx("message", "success")}>
+            유효한 비밀번호입니다.
           </span>
         )}
       </div>
       <div className={cx("container")}>
         <Input
           id={"secondPwd"}
-          value={value.secondPwd}
+          value={secondPwd}
           onChange={onChangeInput}
           placeholder={"비밀번호 확인"}
         />
