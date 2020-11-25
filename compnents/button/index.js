@@ -6,13 +6,13 @@ import styles from "./Button.scss";
 
 const cx = classNames.bind(styles);
 
-const Button = ({ content, verifyCheck, onClickNextBtn, name }) => {
+const Button = ({ content, activeBtn, onClickNextBtn, name }) => {
   return (
     <button
-      className={cx({ on: verifyCheck }, { off: !verifyCheck })}
+      className={cx({ on: activeBtn }, { off: !activeBtn })}
       data-name={name || null}
       onClick={(e) => onClickNextBtn(e) || null}
-      disabled={!verifyCheck}
+      disabled={!activeBtn}
     >
       {content}
     </button>
