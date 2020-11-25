@@ -1,0 +1,44 @@
+.SearchPwd {
+  span {
+    display: block;
+    margin: 6px 0 0 15px;
+    font-size: 12px;
+  }
+
+  span.success {
+    color: var(--success-color);
+  }
+
+  span.fail {
+    color: var(--error-color);
+  }
+
+  .verifyCheckBox {
+    position: relative;
+    div {
+      width: 345px;
+      margin-bottom: 0;
+      padding-bottom: 8px;
+    }
+
+    .timeLimit {
+      position: absolute;
+      top: 2px;
+      right: 78px;
+      color: var(--error-color);
+      font-size: 14px;
+    }
+  }
+
+  div.success {
+    width: 345px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--success-color);
+  }
+
+  div.fail {
+    width: 345px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--error-color);
+  }
+}

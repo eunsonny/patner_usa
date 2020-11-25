@@ -1,0 +1,42 @@
+.inputWrap {
+  width: 345px;
+  margin: 0 auto 30px auto;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--light-gray-color);
+  display: flex;
+  justify-content: space-between;
+
+  input {
+    border: none;
+    width: 100%;
+    outline: none;
+
+    &::placeholder {
+      font-size: 13px;
+      color: var(--dark-gray-color);
+    }
+  }
+
+  button {
+    width: 78px;
+    height: 28px;
+    color: white;
+    background-color: var(--main-color);
+    border-radius: 14px;
+    line-height: 28px;
+    outline: none;
+    border: none;
+    font-size: 13px;
+  }
+  .off {
+    background-color: var(--dark-gray-color);
+  }
+
+  .on {
+    background-color: var(--main-color);
+  }
+
+  .none {
+    display: none;
+  }
+}
