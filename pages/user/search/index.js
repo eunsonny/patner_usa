@@ -9,6 +9,7 @@ import {
   VERIFY_RE_QUEST,
   VERIFY_TEXT_FAIL,
   VERIFY_TEXT_SUCCESS,
+  GO_TO_LOGIN,
 } from "../../../constants/Label";
 
 import SearchId from "./searchId";
@@ -49,9 +50,13 @@ const Search = (props) => {
     setVerifyCheck(false);
     setRequest(null);
     setVerifyText("");
-    const tapInit = {};
     const tapName = e.target.dataset.name;
-    setTap({ ...tapInit, [tapName]: true });
+    setTap({ [tapName]: true });
+  };
+
+  const handleClickNext = (e) => {
+    const tapName = e.target.dataset.name;
+    setTap({ [tapName]: true });
   };
 
   const onChangeInput = (e) => {
@@ -76,8 +81,16 @@ const Search = (props) => {
   };
 
   const goToLogin = () => {
-    // 1. 비밀번호인 경우 tab.searchPwd && Api 통신하고 이동 (patch)
-    // 2. 아이디 찾기의 경우 그냥 이동
+    // tab.searchPwd &&
+    //   fetch("API", {
+    //     method: "PATCH",
+    //     body: JSON.stringify({
+    //       password: value.secondPwd,
+    //     }),
+    //   })
+    //     .then((response) => response.json())
+    //     .then(() => alert("비밀번호가 변경되었습니다."))
+    //     .then((result) => console.log("결과 =>", result.message));
     router.push("/user/login");
   };
 
@@ -110,8 +123,8 @@ const Search = (props) => {
             <Button
               content="Search"
               name="searchId"
-              verifyCheck={verifyCheck}
-              onClickNextBtn={handleCheckTap}
+              activeBtn={verifyCheck}
+              onClickNextBtn={handleClickNext}
             />
           </>
         )}
@@ -121,8 +134,8 @@ const Search = (props) => {
             <Button
               content="Next"
               name="searchPwd"
-              verifyCheck={verifyCheck}
-              onClickNextBtn={handleCheckTap}
+              activeBtn={verifyCheck}
+              onClickNextBtn={handleClickNext}
             />
           </>
         )}
@@ -130,9 +143,9 @@ const Search = (props) => {
           <>
             <ViewId value={value} />
             <Button
-              content="로그인 화면으로 이동하기"
+              content={GO_TO_LOGIN}
               name="searchId"
-              verifyCheck={verifyCheck}
+              activeBtn={tab.searchId}
               onClickNextBtn={goToLogin}
             />
           </>
@@ -146,9 +159,9 @@ const Search = (props) => {
               pwdCheck={pwdCheck}
             />
             <Button
-              content="로그인 화면으로 이동하기"
+              content={GO_TO_LOGIN}
               name="searchPwd"
-              verifyCheck={pwdCheck || verifyCheck}
+              activeBtn={pwdCheck}
               onClickNextBtn={goToLogin}
             />
           </>

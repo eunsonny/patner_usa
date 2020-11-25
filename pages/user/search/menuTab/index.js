@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useReducer } from "react";
 
 import classNames from "classNames/bind";
 
 import styles from "./menuTap.scss";
+import { useRouter } from "next/router";
 
 const cx = classNames.bind(styles);
 
 const MenuTab = ({ tab, handleCheckTap }) => {
+  const router = useRouter();
+
   return (
     <section className={cx("MenuTab")}>
       <div className={cx("top")}></div>
-      <div>
+      <div onClick={() => router.back()}>
         <img
           src="/images/backArrow.png"
           alt="backArrow"
