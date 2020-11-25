@@ -1,0 +1,29 @@
+.viewPwd {
+  position: relative;
+  .container {
+    margin: 0 auto;
+    padding-bottom: 34px;
+    div {
+      margin: 0 auto;
+      padding-bottom: 8px;
+    }
+  }
+
+  .message {
+    display: block;
+    padding-top: 8px;
+    margin: 0 auto;
+    width: 345px;
+    font-size: 12px;
+  }
+
+  .error {
+    border-top: 1px solid var(--error-color);
+    color: var(--error-color);
+  }
+
+  .success {
+    border-top: 1px solid var(--success-color);
+    color: var(--success-color);
+  }
+}

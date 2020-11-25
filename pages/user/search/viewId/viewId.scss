@@ -1,0 +1,17 @@
+.viewId {
+  span {
+    display: block;
+    padding-left: 15px;
+    color: var(--dark-color);
+    font-size: 14px;
+  }
+  div {
+    width: 345px;
+    height: 98px;
+    text-align: center;
+    line-height: 98px;
+    border-radius: 15px;
+    margin: 10px auto 0 auto;
+    background-color: var(--light-gray-color);
+  }
+}
