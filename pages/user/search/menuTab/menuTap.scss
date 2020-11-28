@@ -6,6 +6,9 @@
 
   .backArrow {
     padding: 20px;
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   .searchContainer {

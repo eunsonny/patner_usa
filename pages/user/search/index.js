@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { useRouter, withRouter } from "next/router";
+import { useRouter } from "next/router";
 import classNames from "classNames/bind";
 
 import styles from "./search.scss";
@@ -19,6 +19,7 @@ import ViewPwd from "./viewPwd";
 import MenuTab from "./menuTab";
 
 import Button from "../../../compnents/button";
+import { REQUEST_NUMBER } from "../../api/searchUserInfo";
 
 const cx = classNames.bind(styles);
 const validation = /^(?=.*\d)(?=.*[A-Za-z])[A-Za-z\d]{8,}$/;
@@ -64,10 +65,14 @@ const Search = (props) => {
   };
 
   const onClickRequest = () => {
-    // 이름, 핸드폰 번호를 포함한 api 통신 (post)
-    // 1. 아이디 찾기인 경우 2. 비밀번호(id추가) 재등록의 경우
-    setRequest(true);
-    setCounter(180);
+    if (REQUEST_NUMBER(value)) {
+      setRequest(true);
+      setCounter(180);
+    } else {
+      setRequest(false);
+      setCounter(0);
+      alert("올바를 정보를 입력해주세요.");
+    }
   };
 
   const onClickVerify = () => {
@@ -82,15 +87,7 @@ const Search = (props) => {
 
   const goToLogin = () => {
     // tab.searchPwd &&
-    //   fetch("API", {
-    //     method: "PATCH",
-    //     body: JSON.stringify({
-    //       password: value.secondPwd,
-    //     }),
-    //   })
-    //     .then((response) => response.json())
-    //     .then(() => alert("비밀번호가 변경되었습니다."))
-    //     .then((result) => console.log("결과 =>", result.message));
+    //   SEARCH_USER_PASSWORD(value).then((res) => alert(res.message));
     router.push("/user/login");
   };
 

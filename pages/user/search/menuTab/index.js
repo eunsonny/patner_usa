@@ -13,11 +13,12 @@ const MenuTab = ({ tab, handleCheckTap }) => {
   return (
     <section className={cx("MenuTab")}>
       <div className={cx("top")}></div>
-      <div onClick={() => router.back()}>
+      <div>
         <img
           src="/images/backArrow.png"
           alt="backArrow"
           className={cx("backArrow")}
+          onClick={() => router.back()}
         />
       </div>
       <div className={cx("searchContainer")}>
