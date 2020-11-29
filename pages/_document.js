@@ -8,10 +8,8 @@ export default class MyDocument extends Document {
         <Head>
           <Fragment>
             <title>PARTNER-USA</title>
-            <meta
-              name="viewport"
-              content="width=device-width, initial-scale=1.0"
-            />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            
           </Fragment>
         </Head>
         <body>

@@ -1,0 +1,44 @@
+.inputWithBtn {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 15px 0;
+  border-bottom: 1px solid #f6f6f6;
+
+  input {
+    width: 170px;
+    height: 28px;
+    border: none;
+    padding-left: 5px;
+
+    &::placeholder {
+      font-size: 13px;
+      line-height: 1.85;
+      text-align: left;
+      color: #bdbdbd;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  button {
+    height: 28px;
+    margin: 0px 15px 5px 62px;
+    padding: 0 10px;
+    border-radius: 14px;
+    border: none;
+    background-color: #bdbdbd;
+    font-size: 13px;
+    line-height: 28px;
+    color: #ffffff;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .active {
+    background-color: #1877fc;
+  }
+}

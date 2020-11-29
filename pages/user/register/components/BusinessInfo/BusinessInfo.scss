@@ -1,0 +1,34 @@
+@import "../../../../../styles/common.scss";
+
+.BusinessInfo {
+  margin: 10px 0 15px;
+  font-family: "Noto Sans KR", "Noto Sans", sans-serif;
+
+  .title {
+    display: inline-block;
+    width: 171px;
+    height: 29px;
+    margin: 16px 90px 20px 15px;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 2.2;
+    text-align: left;
+    color: #000000;
+  }
+
+  .mainInputCon {
+    padding: 10px 0;
+
+    .basicInput {
+      @include inputCon;
+    }
+
+    .inputWithBtn {
+      @include inputCon;
+
+      input{
+        width: 170px;
+      }
+    }
+  }
+}

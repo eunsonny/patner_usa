@@ -1,59 +1,71 @@
-import React, { Component, Fragment } from 'react';
-import Input from '../../../compnents/Input';
-import { NAME, TEL } from '../../../constants/Label';
-import Head from 'next/head';
-import { APP_NAME } from '../../../constants/App';
-import { REGISTER_USER } from '../../../constants/PageTitle';
-import styles from './RegisterUser.scss';
+import React, { Component, Fragment, useState, useRef, useEffect } from "react";
+import Head from "next/head";
+import { APP_NAME } from "../../../constants/App";
+import { REGISTER_USER } from "../../../constants/PageTitle";
+import classNames from "classnames/bind";
 
-class RegisterUser extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: null,
-      tel: null,
-    }
-  }
+import CreateAccount from "./components/CreateAccount/CreateAccount";
+import BusinessInfo from "./components/BusinessInfo/BusinessInfo";
+import BasicInfo from "./components/BasicInfo/BasicInfo";
+import Terms from "./components/Terms/Terms";
+import styles from "./RegisterUser.scss";
+import useForm from "./components/useForm";
 
-  submit = () => {
-    const { name, tel } = this.state;
-    const result = { name, tel };
+const cx = classNames.bind(styles);
 
-    console.log(result);
-  }
+const RegisterUser = (props) => {
+  const [createBtnIsActive, setIsActive] = useState(true);
+  const info = useRef({});
+  const {
+    values,
+    results,
+    errors,
+    handleChange,
+    handleSubmit,
+    handleClick,
+    clicked,
+  } = useForm(
+    // formLogin,
+    info
+  );
 
-  render() {
-    return (
-      <Fragment>
-        <Head>
-          <title>{ APP_NAME } - {REGISTER_USER} </title>
-        </Head>
-        <div className={styles.register_user_container}>
-          <div className={styles.title_area}>
-            <h1>{REGISTER_USER}</h1>
-          </div>
-          <div className={styles.input_wrap}>
-            <Input
-              id="name"
-              label={NAME}
-              onChange={value => this.setState({ name: value ? value : null })}
-              value={this.state.name}
-            />
-            <Input
-              id="tel"
-              label={TEL}
-              type="tel"
-              onChange={value => this.setState({ tel: value ? value : null })}
-              value={this.state.tel}
-            />
-          </div>
-          <button onClick={this.submit}>
-            저장
+  return (
+    <div className={cx("RegisterUser")}>
+      <div className={cx("header")}>
+        <div></div>
+        <button>
+          <img src="/images/blue_arrow_left.svg" className={cx("arrow")} />
+        </button>
+      </div>
+      <div className={cx("container")}>
+        <form onSubmit={(e) => handleSubmit(e)} ref={info}>
+          <CreateAccount
+            values={values}
+            handleChange={handleChange}
+            handleClick={handleClick}
+            results={results}
+            errors={errors}
+          />
+          <BasicInfo
+            values={values}
+            handleChange={handleChange}
+            handleClick={handleClick}
+            errors={errors}
+            results={results}
+            clicked={clicked}
+          />
+          <BusinessInfo values={values} handleChange={handleChange} />
+          <Terms setIsActive={setIsActive} />
+          <button
+            diabled={createBtnIsActive.toString()}
+            className={cx("createBtn", { active: createBtnIsActive })}
+          >
+            Create
           </button>
-        </div>
-      </Fragment>
-    )
-  }
-}
+        </form>
+      </div>
+    </div>
+  );
+};
 
-export default RegisterUser
+export default RegisterUser;
