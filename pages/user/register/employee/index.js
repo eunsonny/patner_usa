@@ -4,6 +4,7 @@ import classNames from "classnames/bind";
 import { useObserver } from "mobx-react";
 import useStore from "../../../../stores/useStore";
 import validate from "../components/validate";
+import { API } from "../../../../config";
 
 import CreateAccount from "../components/CreateAccount/CreateAccount";
 import BasicInfo from "../components/BasicInfo/BasicInfo";
@@ -11,10 +12,9 @@ import Input from "../../../../components/atoms/Input";
 import styles from "./employee.scss";
 
 const cx = classNames.bind(styles);
-const API = "http://wecode-dev.rencar.co.kr";
 
 const Employee = () => {
-  const [createBtnIsActive, setIsActive] = useState(false);
+  const [createBtnIsActive, setIsActive] = useState(true);
   const [clicked, setClicked] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isIdAvailable, setIsIdAvailable] = useState(false);
@@ -22,7 +22,7 @@ const Employee = () => {
   const { employeeStore } = useStore();
 
   useEffect (() => {
-    if(isSubmitting) {
+    if(isSubmitting && validate(employeeStore.registerInfo).isNoError) {
       formEmployeeRegister();
     }
   }, [isSubmitting]);
@@ -38,27 +38,47 @@ const Employee = () => {
   const getEmployeeInfo = (e) => {
     const { name, value } = e.target;
     employeeStore.addInfo(name, value);
-
-    if(name === "checkPassword") {
-      employeeStore.addResult(validate(employeeStore.registerInfo, null))
-    }
+    employeeStore.addResult(validate(employeeStore.registerInfo, name).totalResults);
   }
 
+  // 어떤 버튼이 클릭 됐는지 확인하는 함수
   const handleClick = (e) => {
     setClicked(e.target.value);
   }
 
   const handleSubmit = (e) => {
     if(e) e.preventDefault();
-    employeeStore.addResult(validate(employeeStore.registerInfo, clicked));
 
     if(clicked === "createEmployee") {
-      setIsSubmitting(true);
+      return setIsSubmitting(true);
     }
 
     if(clicked === "ID중복체크") {
-      setIsIdAvailable(true);
+      return setIsIdAvailable(true);
     }
+
+    if(clicked === "인증요청" || "재요청"){
+      const userNumRegex = /^\d{3}-\d{3,4}-\d{4}$/;
+      userNumRegex.test(employeeStore.registerInfo.userNumber) 
+      ? employeeStore.addResult({ certifiNum : "인증번호를 발송하였습니다." })
+      : employeeStore.addResult({ userNumber : "형식에 맞지 않는 번호입니다." })
+    }
+
+    if(clicked === "인증번호확인"){
+      checkCertifiNum();
+    }
+  }
+
+  const checkCertifiNum = () => {
+    fetch(`/data/certifiNum.json`)
+    .then(res => res.json())
+    .then(res => {
+      if(res.message === "ok"){
+        employeeStore.addResult({ userNumber : "인증에 성공하였습니다.", certifiNum : null })
+      } else {
+        employeeStore.addResult({ certifiNum : "인증번호가 불일치합니다." })
+      }
+    })
   }
 
   const checkIdIsAvailable = () => {
@@ -140,7 +160,6 @@ const Employee = () => {
               <button
                 onClick={handleClick}
                 value="createEmployee"
-                diabled={String(createBtnIsActive)}
                 className={cx("createBtn", { active: createBtnIsActive })}
               >
                 Create

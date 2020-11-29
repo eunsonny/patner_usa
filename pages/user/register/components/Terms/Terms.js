@@ -4,20 +4,17 @@ import styles from "./Terms.scss";
 
 import Term from "../Term/Term";
 import TERM_LISTS from "./termLists";
-import useForm from "../../components/useForm";
 
 const cx = classNames.bind(styles);
 
-const Terms = ({ setIsActive }) => {
+const Terms = ({ setIsTermAllChecked }) => {
   const [checkItems, setCheckItems] = useState([false, false, false]);
   const [allCheck, setAllCheck] = useState(false);
-
-  useForm(allCheck);
 
   useEffect(() => {
     const checkStatus = checkItems.every((item) => item);
     setAllCheck(checkStatus);
-    setIsActive(allCheck);
+    setIsTermAllChecked(allCheck);
   }, [checkItems, allCheck]);
 
   const handleAllCheck = () => {
