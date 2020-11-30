@@ -1,0 +1,83 @@
+.userRegister {
+  width: 375px;
+  height: 667px;
+  background-image: url("/images/loginBackground.png");
+
+  .sentence {
+    padding: 83px 157px 20px 25px;
+    color: white;
+    font-size: 22px;
+  }
+
+  .selectStatus {
+    label {
+      position: relative;
+      display: block;
+      width: 335px;
+      height: 108px;
+      margin: 0 auto;
+      background-color: rgba(229, 229, 229, 0.1);
+      color: rgba(255, 255, 255, 0.7);
+      border-radius: 8px;
+      text-align: center;
+      line-height: 108px;
+      font-size: 18px;
+
+      &:last-child {
+        margin-top: 12px;
+      }
+
+      .checkmark {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        width: 25px;
+        height: 25px;
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        &::after {
+          position: absolute;
+          top: 5px;
+          left: 9px;
+          width: 5px;
+          height: 10px;
+          border: solid white;
+          content: "";
+          border-width: 0 1px 1px 0;
+          transform: rotate(45deg);
+        }
+      }
+    }
+
+    .on {
+      border: 1px solid #1877f2;
+    }
+
+    .checkBox {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      &:checked ~ span {
+        background-color: #1877f2;
+      }
+    }
+  }
+
+  .nextButton {
+    button {
+      display: block;
+      width: 335px;
+      height: 48px;
+      margin: 225px auto 0 auto;
+      background-color: #bdbdbd;
+      outline: none;
+      color: white;
+      border: 0;
+      border-radius: 8px;
+    }
+
+    .on {
+      background-color: #1877f2;
+    }
+  }
+}

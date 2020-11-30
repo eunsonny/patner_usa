@@ -2,8 +2,7 @@ import React, { useState } from "react";
 
 import classNames from "classNames/bind";
 import styles from "./searchPwd.scss";
-
-import { Input } from "../../../../compnents/Input";
+import { SearchInput } from "../../../../components/atoms/SearchInput/Index";
 
 const cx = classNames.bind(styles);
 
@@ -32,19 +31,19 @@ const SearchPwd = ({
 
   return (
     <section className={cx("SearchPwd")}>
-      <Input
+      <SearchInput
         id={"userName"}
         placeholder={"User Name"}
         value={value.userName}
         onChange={handleChangeInput}
       />
-      <Input
+      <SearchInput
         id={"userId"}
         placeholder={"User ID"}
         value={value.userId}
         onChange={handleChangeInput}
       />
-      <Input
+      <SearchInput
         id={"phone"}
         placeholder={"User Number"}
         value={value.phone}
@@ -61,7 +60,7 @@ const SearchPwd = ({
             { fail: !verifyCheck }
           )}
         >
-          <Input
+          <SearchInput
             id={"verify"}
             placeholder={"인증번호를 입력해주세요"}
             value={value.verify}

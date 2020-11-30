@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import classNames from "classnames/bind";
 
-import Input from "../../../../../components/atoms/Input";
+import Input from "../../../../../components/atoms/Input/Input";
 import ValidationMessage from "../../../../../components/atoms/ValidationMessage/ValidationMessage";
 import styles from "./BasicInfo.scss";
 

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import classNames from "classNames/bind";
 
 import styles from "./viewPwd.scss";
-import { Input } from "../../../../compnents/Input";
+import { SearchInput } from "../../../../components/atoms/SearchInput/Index";
 
 const cx = classNames.bind(styles);
 
@@ -20,7 +20,7 @@ const ViewPwd = ({
           errorOn: firstPwd && !firstCondition,
         })}
       >
-        <Input
+        <SearchInput
           id={"firstPwd"}
           value={firstPwd}
           onChange={onChangeInput}
@@ -38,7 +38,7 @@ const ViewPwd = ({
         )}
       </div>
       <div className={cx("container")}>
-        <Input
+        <SearchInput
           id={"secondPwd"}
           value={secondPwd}
           onChange={onChangeInput}

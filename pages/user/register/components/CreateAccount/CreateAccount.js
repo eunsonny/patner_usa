@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames/bind";
 import styles from "./createAccount.scss";
 
-import Input from "../../../../../components/atoms/Input";
+import Input from "../../../../../components/atoms/Input/Input";
 import ValidationMessage from "../../../../../components/atoms/ValidationMessage/ValidationMessage";
 
 const cx = classNames.bind(styles);

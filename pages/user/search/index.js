@@ -18,7 +18,7 @@ import ViewId from "./viewId";
 import ViewPwd from "./viewPwd";
 import MenuTab from "./menuTab";
 
-import Button from "../../../compnents/button";
+import SearchButton from "../../../components/atoms/searchButton/index";
 import { REQUEST_NUMBER } from "../../api/searchUserInfo";
 
 const cx = classNames.bind(styles);
@@ -117,7 +117,7 @@ const Search = (props) => {
         {tab.userId && (
           <>
             <SearchId searchInfo={searchInfo} />
-            <Button
+            <SearchButton
               content="Search"
               name="searchId"
               activeBtn={verifyCheck}
@@ -128,7 +128,7 @@ const Search = (props) => {
         {tab.password && (
           <>
             <SearchPwd searchInfo={searchInfo} />
-            <Button
+            <SearchButton
               content="Next"
               name="searchPwd"
               activeBtn={verifyCheck}
@@ -139,7 +139,7 @@ const Search = (props) => {
         {tab.searchId && (
           <>
             <ViewId value={value} />
-            <Button
+            <SearchButton
               content={GO_TO_LOGIN}
               name="searchId"
               activeBtn={tab.searchId}
@@ -155,7 +155,7 @@ const Search = (props) => {
               firstCondition={firstCondition}
               pwdCheck={pwdCheck}
             />
-            <Button
+            <SearchButton
               content={"재등록"}
               name="searchPwd"
               activeBtn={pwdCheck}
