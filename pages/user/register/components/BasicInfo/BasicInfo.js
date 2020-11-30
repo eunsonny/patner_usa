@@ -91,7 +91,7 @@ const BasicInfo = ({ values, results, clicked, handleChange, handleClick }) => {
           <Input
             name="userNumber"
             value={values.userNumber}
-            placeholder="User number *"
+            placeholder="User number * (010-1234-5678)"
             onChange={handleChange}
           />
           <button
