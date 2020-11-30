@@ -26,8 +26,8 @@ const Company = () => {
 
   useEffect(() => {
     validate(companyStore.registerInfo).isNoError && isTermAllChecked
-    ? setIsActive(true)
-    : setIsActive(false);
+      ? setIsActive(true)
+      : setIsActive(false);
 
     if (
       isSubmitting &&
@@ -53,7 +53,9 @@ const Company = () => {
     const { name, value } = e.target;
 
     companyStore.addInfo(name, value);
-    companyStore.addResult(validate(companyStore.registerInfo, name).totalResults);
+    companyStore.addResult(
+      validate(companyStore.registerInfo, name).totalResults
+    );
   };
 
   // 어떤 버튼이 클릭 됐는지 확인하는 함수
@@ -146,13 +148,9 @@ const Company = () => {
     <div className={cx("company")}>
       <div className={cx("header")}>
         <div></div>
-        <Link href="/user/register">
-          <a>
-            <button>
-              <img src="/images/blue_arrow_left.svg" className={cx("arrow")} />
-            </button>
-          </a>
-        </Link>
+        <button onClick={()=> Router.push("/user/register")}>
+          <img src="/images/blue_arrow_left.svg" className={cx("arrow")} />
+        </button>
       </div>
       <div className={cx("container")}>
         <form name="company" onSubmit={(e) => handleSubmit(e)}>
