@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 
 import useStore from "../../../stores/useStore";
+import { USER_LOGIN } from "../../api/login";
 
 import styles from "./Login.scss";
 
@@ -20,7 +21,7 @@ const login = (props) => {
 
   const [cookies, setCookie, removeCookie] = useCookies(["TOKEN"]);
 
-  const [user, setUser] = useState({ login_id: "", password: "" });
+  const [user, setUser] = useState({ loginId: "", password: "" });
 
   const handleUserData = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -36,24 +37,22 @@ const login = (props) => {
   };
 
   const handleLogin = () => {
-    fetch("http://wecode-dev.rencar.co.kr/api/v1/users/login", {
-      method: "POST",
-      body: JSON.stringify({ login_id: "hello", password: "asdfasdf" }),
-    })
-      .then((response) => response.json())
-      .then((result) => {
+    USER_LOGIN(user).then((result) => {
+      if (result.message === "SUCCESS") {
         tokenStore["userToken"] = result.Authorization;
         setCookie("TOKEN", tokenStore["userToken"], {
           path: "/",
           maxAge: 1000000,
-        });
-      })
-      .then(() => router.push("/main"));
+        }).then(() => router.push("/main"));
+      } else {
+        alert("ID, PASSWORD를 다시 확인해주세요.");
+      }
+    });
   };
 
-  const loginBtnCondition = user.login_id && user.password.length >= 4;
+  const loginBtnCondition = user.loginId && user.password.length >= 4;
 
-  cookies.TOKEN && goToMain();
+  cookies.TOKEN && cookies.TOKEN !== "undefined" && goToMain();
 
   return useObserver(() => (
     <section className={cx("login")}>
@@ -66,8 +65,8 @@ const login = (props) => {
         <input
           placeholder="User ID"
           type="text"
-          name="login_id"
-          value={user.login_id}
+          name="loginId"
+          value={user.loginId}
           onChange={handleUserData}
         />
         <input
