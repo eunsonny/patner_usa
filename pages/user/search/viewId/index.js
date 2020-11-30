@@ -4,16 +4,21 @@ import classNames from "classNames/bind";
 
 import styles from "./viewId.scss";
 
+import { SEARCH_USER_ID } from "../../../api/searchUserInfo";
+
 const cx = classNames.bind(styles);
 
-const ViewId = ({ value }) => {
+const ViewId = () => {
   const [ID, setID] = useState("");
 
-  // useEffect(fetch("API", { method: "POST", body: {} }));
+  useEffect(() => {
+    SEARCH_USER_ID().then((res) => setID(res.name));
+  }, []);
+
   return (
     <section className={cx("viewId")}>
       <span>조회하신 아이디입니다.</span>
-      <div>john2323</div>
+      <div>{ID}</div>
     </section>
   );
 };
