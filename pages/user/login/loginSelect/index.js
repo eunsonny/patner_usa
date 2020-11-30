@@ -1,13 +1,20 @@
 import React, { useState } from "react";
-import Link from "next/link";
+import { useRouter } from "next/router";
 
 import styles from "./LoginSelect.scss";
 
 const login = (props) => {
+  const router = useRouter();
+
   const [status, setStatus] = useState({
     company: false,
     employee: false,
   });
+
+  const handleSignUp = () => {
+    status.company && router.push("/user/register/company");
+    status.employee && router.push("/user/register/employee");
+  };
 
   const handleCheckStatus = (e) => {
     let checkStatus = { company: false, employee: false };
@@ -60,6 +67,7 @@ const login = (props) => {
         <button
           className={buttonStatus ? styles.on : ""}
           disabled={!buttonStatus}
+          onClick={handleSignUp}
         >
           Next
         </button>

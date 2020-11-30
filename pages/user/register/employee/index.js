@@ -8,7 +8,7 @@ import { API } from "../../../../config";
 
 import CreateAccount from "../components/CreateAccount/CreateAccount";
 import BasicInfo from "../components/BasicInfo/BasicInfo";
-import Input from "../../../../components/atoms/Input";
+import Input from "../../../../components/atoms/Input/Input";
 import styles from "./employee.scss";
 
 const cx = classNames.bind(styles);

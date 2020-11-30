@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames/bind";
-import Input from "../../atoms/Input";
+import Input from "../../atoms/Input/Input";
 import styles from "./inputWrapper.scss";
 
 const cx = classNames.bind(styles);

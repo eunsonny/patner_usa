@@ -6,7 +6,7 @@ import styles from "./Button.scss";
 
 const cx = classNames.bind(styles);
 
-const Button = ({ content, activeBtn, onClickNextBtn, name }) => {
+const SearchButton = ({ content, activeBtn, onClickNextBtn, name }) => {
   return (
     <button
       className={cx({ on: activeBtn }, { off: !activeBtn })}
@@ -18,4 +18,5 @@ const Button = ({ content, activeBtn, onClickNextBtn, name }) => {
     </button>
   );
 };
-export default Button;
+
+export default SearchButton;
