@@ -15,7 +15,7 @@ class UserSearch {
         contact: value.phone,
       },
     });
-    return response.result;
+    return response.data.result[0];
   }
 
   async SEARCH_USER_PASSWORD(value) {
@@ -25,7 +25,7 @@ class UserSearch {
       contact: value.phone,
       password: value.secondPwd,
     });
-    return response.message;
+    return response.data.message;
   }
 }
 

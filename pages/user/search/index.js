@@ -35,6 +35,7 @@ const Search = (props) => {
   const [verifyCheck, setVerifyCheck] = useState(false);
   const [verifyText, setVerifyText] = useState("");
   const [counter, setCounter] = useState(0);
+  const [searchId, setSearchId] = useState({});
 
   useEffect(() => {
     if (counter !== 0 && verifyCheck === false) {
@@ -59,7 +60,19 @@ const Search = (props) => {
 
   const handleClickNext = (e) => {
     const tapName = e.target.dataset.name;
-    setTap({ [tapName]: true });
+
+    if (tab.userId) {
+      const response = new UserSearch();
+      response
+        .SEARCH_USER_ID(value) //
+        .then((res) => setSearchId(res))
+        .catch((err) => {
+          alert("회원 정보가 존재하지 않습니다.");
+          setTap({ userId: true });
+        });
+    }
+
+    tab.password && setTap({ [tapName]: true });
   };
 
   const onChangeInput = (e) => {
@@ -92,8 +105,8 @@ const Search = (props) => {
     const response = new UserSearch();
     tab.searchPwd &&
       response
-        .SEARCH_USER_PASSWORD(value)
-        .then((res) => console.log("결과 =>", res));
+        .SEARCH_USER_PASSWORD(value) //
+        .then((res) => alert(`${res}`));
     router.push("/user/login");
   };
 
@@ -144,7 +157,7 @@ const Search = (props) => {
         )}
         {tab.searchId && (
           <>
-            <ViewId value={value} />
+            <ViewId searchId={searchId} />
             <SearchButton
               content={GO_TO_LOGIN}
               name="searchId"
