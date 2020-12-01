@@ -3,16 +3,18 @@ import React, { useEffect, useState } from "react";
 import classNames from "classNames/bind";
 
 import styles from "./viewId.scss";
-
-import { SEARCH_USER_ID } from "../../../api/searchUserInfo";
+import UserSearch from "../../../api/searchUserInfo";
 
 const cx = classNames.bind(styles);
 
-const ViewId = () => {
+const ViewId = ({ value }) => {
   const [ID, setID] = useState("");
 
   useEffect(() => {
-    SEARCH_USER_ID().then((res) => setID(res.name));
+    const response = new UserSearch();
+    response
+      .SEARCH_USER_ID(value) //
+      .then((res) => console.log("결과 =>", res));
   }, []);
 
   return (

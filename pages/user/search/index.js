@@ -19,7 +19,9 @@ import ViewPwd from "./viewPwd";
 import MenuTab from "./menuTab";
 
 import SearchButton from "../../../components/atoms/searchButton/index";
-import { REQUEST_NUMBER } from "../../api/searchUserInfo";
+import { REQUEST_NUMBER } from "./validation";
+
+import UserSearch from "../../api/searchUserInfo";
 
 const cx = classNames.bind(styles);
 const validation = /^(?=.*\d)(?=.*[A-Za-z])[A-Za-z\d]{8,}$/;
@@ -65,6 +67,7 @@ const Search = (props) => {
   };
 
   const onClickRequest = () => {
+    console.log(value);
     if (REQUEST_NUMBER(value)) {
       setRequest(true);
       setCounter(180);
@@ -86,8 +89,11 @@ const Search = (props) => {
   };
 
   const goToLogin = () => {
-    // tab.searchPwd &&
-    //   SEARCH_USER_PASSWORD(value).then((res) => alert(res.message));
+    const response = new UserSearch();
+    tab.searchPwd &&
+      response
+        .SEARCH_USER_PASSWORD(value)
+        .then((res) => console.log("결과 =>", res));
     router.push("/user/login");
   };
 
