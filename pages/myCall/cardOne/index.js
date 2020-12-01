@@ -2,6 +2,7 @@ import React from "react";
 
 import classNames from "classNames/bind";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 import styles from "./cardOne.scss";
 
@@ -14,7 +15,8 @@ const CardOne = ({ info, menuNum, id }) => {
   const YMD = timeArr[0];
   const T = timeArr[1].split(".")[0];
 
-  console.log(info);
+  const router = useRouter();
+
   return (
     <Link href="/details" as={`myCall/details?pageTab=${menuNum}&id=${id}`}>
       <div className={cx("cardOne")}>

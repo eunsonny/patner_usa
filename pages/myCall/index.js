@@ -9,12 +9,12 @@ import classNames from "classNames/bind";
 import GetMyCallLists from "../../api/getMyCallLists";
 
 import Top from "../../components/atoms/top";
-import Logo from "./logo";
 import MenuTab from "./menuTab";
 import CardOne from "./cardOne";
 import CardTwo from "./cardTwo";
 
 import Bottom from "../../components/atoms/bottom";
+import Logo from "../../components/atoms/logo";
 
 const cx = classNames.bind(styles);
 

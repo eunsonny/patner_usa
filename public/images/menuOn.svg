@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+    <defs>
+        <style>
+            .cls-2,.cls-3{fill:none}.cls-3{stroke:#1877f2;stroke-linecap:round;stroke-width:1.3px}
+        </style>
+    </defs>
+    <g id="그룹_1350" transform="translate(-283 -594)">
+        <rect id="사각형_1621" width="64" height="64" fill="#1877f2" opacity="0.08" rx="15" transform="translate(283 594)"/>
+        <path id="사각형_1226" d="M0 0H60V60H0z" class="cls-2" transform="translate(285 596)"/>
+        <g id="그룹_920" transform="translate(-22 -159.7)">
+            <path id="사각형_1218" d="M0 0H24V24H0z" class="cls-2" transform="translate(325 767.7)"/>
+            <g id="그룹_784" transform="translate(328.555 773.925)">
+                <path id="패스_193" d="M0 0h16.59" class="cls-3" transform="rotate(180 8.295 5.925)"/>
+                <path id="패스_194" d="M0 0h16.59" class="cls-3" transform="rotate(180 8.295 0)"/>
+                <path id="패스_195" d="M0 0h16.59" class="cls-3" transform="rotate(180 8.295 2.963)"/>
+            </g>
+        </g>
+        <text id="More" fill="#1877f2" font-family="NotoSansCJKkr-Medium, Noto Sans CJK KR" font-size="10px" font-weight="500" transform="translate(303 645)">
+            <tspan x="0" y="0">More</tspan>
+        </text>
+    </g>
+</svg>

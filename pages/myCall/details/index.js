@@ -15,7 +15,6 @@ const Details = () => {
     "http://wecode-dev.rencar.co.kr/myCall/details?pageTab=0&id=23987";
 
   useEffect(() => {
-    // const queryString = location.pathname;
     setPageTab(Number(stringToQuery(queryString).pageTab));
   });
 
