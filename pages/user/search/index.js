@@ -20,7 +20,6 @@ import MenuTab from "./menuTab";
 
 import SearchButton from "../../../components/atoms/searchButton/index";
 import { REQUEST_NUMBER } from "./validation";
-
 import UserSearch from "../../api/searchUserInfo";
 
 const cx = classNames.bind(styles);
