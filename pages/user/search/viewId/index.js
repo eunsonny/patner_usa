@@ -4,21 +4,14 @@ import classNames from "classNames/bind";
 
 import styles from "./viewId.scss";
 
-import { SEARCH_USER_ID } from "../../../api/searchUserInfo";
-
 const cx = classNames.bind(styles);
 
-const ViewId = () => {
-  const [ID, setID] = useState("");
-
-  useEffect(() => {
-    SEARCH_USER_ID().then((res) => setID(res.name));
-  }, []);
-
+const ViewId = ({ searchId }) => {
+  console.log(searchId);
   return (
     <section className={cx("viewId")}>
       <span>조회하신 아이디입니다.</span>
-      <div>{ID}</div>
+      <div>{searchId.login_id}</div>
     </section>
   );
 };
