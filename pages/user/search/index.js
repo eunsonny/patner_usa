@@ -20,7 +20,6 @@ import MenuTab from "./menuTab";
 
 import SearchButton from "../../../components/atoms/searchButton/index";
 import { REQUEST_NUMBER } from "./validation";
-
 import UserSearch from "../../api/searchUserInfo";
 
 const cx = classNames.bind(styles);
@@ -62,10 +61,14 @@ const Search = (props) => {
     const tapName = e.target.dataset.name;
 
     if (tab.userId) {
+      console.log("클릭");
       const response = new UserSearch();
       response
         .SEARCH_USER_ID(value) //
-        .then((res) => setSearchId(res))
+        .then((res) => {
+          setSearchId(res);
+          setTap({ [tapName]: true });
+        })
         .catch((err) => {
           alert("회원 정보가 존재하지 않습니다.");
           setTap({ userId: true });
@@ -80,7 +83,6 @@ const Search = (props) => {
   };
 
   const onClickRequest = () => {
-    console.log(value);
     if (REQUEST_NUMBER(value)) {
       setRequest(true);
       setCounter(180);

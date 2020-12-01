@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useObserver } from "mobx-react";
 import { useCookies } from "react-cookie";
@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 
 import useStore from "../../../stores/useStore";
-import { USER_LOGIN } from "../../api/login";
+import UserLogin from "../../api/login";
 
 import styles from "./Login.scss";
 
@@ -37,22 +37,29 @@ const login = (props) => {
   };
 
   const handleLogin = () => {
-    USER_LOGIN(user).then((result) => {
-      if (result.message === "SUCCESS") {
-        tokenStore["userToken"] = result.Authorization;
-        setCookie("TOKEN", tokenStore["userToken"], {
-          path: "/",
-          maxAge: 1000000,
-        }).then(() => router.push("/main"));
-      } else {
-        alert("ID, PASSWORD를 다시 확인해주세요.");
-      }
-    });
+    const response = new UserLogin();
+    response
+      .USER_LOGIN(user) //
+      .then((data) => {
+        if ((data.message = "login success")) {
+          tokenStore["userToken"] = data.Authorization;
+          setCookie("TOKEN", tokenStore["userToken"], {
+            path: "/",
+            maxAge: 1000000,
+          });
+          alert("로그인이 완료되었습니다.");
+          router.push("/");
+        }
+      })
+      .catch((err) => alert("아이디 비밀번호를 다시 확인해주세요"));
   };
 
-  const loginBtnCondition = user.loginId && user.password.length >= 4;
+  useEffect(
+    () => cookies.TOKEN && cookies.TOKEN !== "undefined" && goToMain(),
+    []
+  );
 
-  cookies.TOKEN && cookies.TOKEN !== "undefined" && goToMain();
+  const loginBtnCondition = user.loginId && user.password.length >= 4;
 
   return useObserver(() => (
     <section className={cx("login")}>
