@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import Router from  "next/router";
+import Router from "next/router";
 import classNames from "classnames/bind";
 import { useObserver } from "mobx-react";
 import useStore from "../../../../stores/useStore";
@@ -21,14 +21,14 @@ const Employee = () => {
 
   const { employeeStore } = useStore();
 
-  useEffect (() => {
-    if(isSubmitting && validate(employeeStore.registerInfo).isNoError) {
+  useEffect(() => {
+    if (isSubmitting && validate(employeeStore.registerInfo).isNoError) {
       formEmployeeRegister();
     }
   }, [isSubmitting]);
 
-  useEffect (() => {
-    if(isIdAvailable){
+  useEffect(() => {
+    if (isIdAvailable) {
       checkIdIsAvailable();
     }
     return setIsIdAvailable(false);
@@ -38,62 +38,71 @@ const Employee = () => {
   const getEmployeeInfo = (e) => {
     const { name, value } = e.target;
     employeeStore.addInfo(name, value);
-    employeeStore.addResult(validate(employeeStore.registerInfo, name).totalResults);
-  }
+    employeeStore.addResult(
+      validate(employeeStore.registerInfo, name).totalResults
+    );
+  };
 
   // 어떤 버튼이 클릭 됐는지 확인하는 함수
   const handleClick = (e) => {
     setClicked(e.target.value);
-  }
+  };
 
   const handleSubmit = (e) => {
-    if(e) e.preventDefault();
+    if (e) e.preventDefault();
 
-    if(clicked === "createEmployee") {
+    if (clicked === "createEmployee") {
       return setIsSubmitting(true);
     }
 
-    if(clicked === "ID중복체크") {
+    if (clicked === "ID중복체크") {
       return setIsIdAvailable(true);
     }
 
-    if(clicked === "인증요청" || "재요청"){
+    if (clicked === "인증요청" || "재요청") {
       const userNumRegex = /^\d{3}-\d{3,4}-\d{4}$/;
-      userNumRegex.test(employeeStore.registerInfo.userNumber) 
-      ? employeeStore.addResult({ certifiNum : "인증번호를 발송하였습니다." })
-      : employeeStore.addResult({ userNumber : "형식에 맞지 않는 번호입니다." })
+      userNumRegex.test(employeeStore.registerInfo.userNumber)
+        ? employeeStore.addResult({ certifiNum: "인증번호를 발송하였습니다." })
+        : employeeStore.addResult({
+            userNumber: "형식에 맞지 않는 번호입니다.",
+          });
     }
 
-    if(clicked === "인증번호확인"){
+    if (clicked === "인증번호확인") {
       checkCertifiNum();
     }
-  }
+  };
 
   const checkCertifiNum = () => {
     fetch(`/data/certifiNum.json`)
-    .then(res => res.json())
-    .then(res => {
-      if(res.message === "ok"){
-        employeeStore.addResult({ userNumber : "인증에 성공하였습니다.", certifiNum : null })
-      } else {
-        employeeStore.addResult({ certifiNum : "인증번호가 불일치합니다." })
-      }
-    })
-  }
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.message === "ok") {
+          employeeStore.addResult({
+            userNumber: "인증에 성공하였습니다.",
+            certifiNum: null,
+          });
+        } else {
+          employeeStore.addResult({ certifiNum: "인증번호가 불일치합니다." });
+        }
+      });
+  };
 
   const checkIdIsAvailable = () => {
-    fetch(`${API}/api/v1/users/check?user_type_id=2&login_id=${employeeStore.registerInfo.userId}`)
-    .then((res) => res.json())
-    .then((res) => {
-      console.log("========== 아이디 중복 확인 =========")
-      console.log(res.message);
-      if(res.message === "available id"){
-        employeeStore.addResult({userId : "사용가능한 아이디 입니다."})
-      } else if(res.description === "duplicate id") {
-        employeeStore.addResult({userId : "중복된 아이디 입니다."})
-      }
-    })
-  }
+    fetch(
+      `${API}/api/v1/users/check?user_type_id=2&login_id=${employeeStore.registerInfo.userId}`
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        console.log("========== 아이디 중복 확인 =========");
+        console.log(res.message);
+        if (res.message === "available id") {
+          employeeStore.addResult({ userId: "사용가능한 아이디 입니다." });
+        } else if (res.description === "duplicate id") {
+          employeeStore.addResult({ userId: "중복된 아이디 입니다." });
+        }
+      });
+  };
 
   const formEmployeeRegister = () => {
     fetch(`${API}/api/v1/users`, {
@@ -105,7 +114,7 @@ const Employee = () => {
         user_detail_type_id: 2,
         name: employeeStore.registerInfo.userName,
         contact: employeeStore.registerInfo.userNumber,
-        rental_company_id : employeeStore.company.id,
+        rental_company_id: employeeStore.company.id,
         rental_company_user_position_id: 2,
       }),
     })
@@ -119,11 +128,11 @@ const Employee = () => {
       });
   };
 
-  return useObserver (() => (
+  return useObserver(() => (
     <div className={cx("employee")}>
       <div className={cx("header")}>
         <div></div>
-        <button>
+        <button onClick={() => Router.push("/user/register")}>
           <img src="/images/blue_arrow_left.svg" className={cx("arrow")} />
         </button>
       </div>
@@ -151,19 +160,21 @@ const Employee = () => {
                   name="companyName"
                   value={employeeStore.company.companyName}
                   onChange={getEmployeeInfo}
-                  subOnClick={() => Router.push("/user/register/employee/search")}
+                  subOnClick={() =>
+                    Router.push("/user/register/employee/search")
+                  }
                   placeholder="Company name *"
                 />
               </div>
             </div>
           </section>
-              <button
-                onClick={handleClick}
-                value="createEmployee"
-                className={cx("createBtn", { active: createBtnIsActive })}
-              >
-                Create
-              </button>
+          <button
+            onClick={handleClick}
+            value="createEmployee"
+            className={cx("createBtn", { active: createBtnIsActive })}
+          >
+            Create
+          </button>
         </form>
       </div>
     </div>
