@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+    <defs>
+        <style>
+            .cls-3,.cls-4,.cls-5{fill:none}.cls-4,.cls-5{stroke:#1877f2;stroke-width:1.3px}.cls-4{stroke-linecap:round;stroke-linejoin:round}.cls-6{stroke:none}
+        </style>
+    </defs>
+    <g id="그룹_1344" transform="translate(-2795 -596)">
+        <rect id="사각형_1621" width="64" height="64" fill="#1877f2" opacity="0.08" rx="15" transform="translate(2795 596)"/>
+        <text id="My_call" fill="#1877f2" font-family="NotoSansCJKkr-Medium, Noto Sans CJK KR" font-size="10px" font-weight="500" transform="translate(2811 647)">
+            <tspan x="0" y="0">My call</tspan>
+        </text>
+        <g id="그룹_930" transform="translate(2722 -148)">
+            <path id="사각형_1222" d="M0 0H60V60H0z" class="cls-3" transform="translate(75 746)"/>
+            <g id="그룹_925" transform="translate(-82.624 389.5)">
+                <path id="사각형_1212" d="M0 0H23V23H0z" class="cls-3" transform="translate(176.844 370)"/>
+                <path id="합치기_6" d="M1.6 10.264a1.6 1.6 0 0 1-1.6-1.6V3.836a1.6 1.6 0 0 1 1.6-1.6h1.106L1.463 0l4.031 2.234h6.781a1.6 1.6 0 0 1 1.6 1.6v4.83a1.6 1.6 0 0 1-1.6 1.6z" class="cls-4" transform="rotate(180 93.567 190.132)"/>
+                <g id="그룹_57" transform="translate(179.961 379.903)">
+                    <path id="패스_87" d="M63.848 872.377h-2.217s-1.275.166-1.33-.831a4.144 4.144 0 0 1 .333-2.827c.628-1.062 2.716-1.109 2.716-1.109a13.466 13.466 0 0 0 3.99-1.238 23.88 23.88 0 0 1 5.1-2.032 7.857 7.857 0 0 1 5.044.332c1.386.739 4.488 2.522 5.265 3.621.031.044 0 4.36 0 4.36h-2.66" class="cls-4" transform="translate(-60.21 -864.075)"/>
+                    <g id="타원_37" class="cls-5" transform="translate(15.776 5.875)">
+                        <circle cx="2.217" cy="2.217" r="2.217" class="cls-6"/>
+                        <circle cx="2.217" cy="2.217" r="1.567" class="cls-3"/>
+                    </g>
+                    <g id="타원_36" class="cls-5" transform="translate(3.361 5.875)">
+                        <circle cx="2.217" cy="2.217" r="2.217" class="cls-6"/>
+                        <circle cx="2.217" cy="2.217" r="1.567" class="cls-3"/>
+                    </g>
+                    <path id="패스_86" d="M68.5 873.313h9.089" class="cls-5" transform="translate(-61.259 -864.955)"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

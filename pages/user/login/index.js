@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { useObserver } from "mobx-react";
 import { useCookies } from "react-cookie";
-import classNames from "classnames/bind";
+import classNames from "classNames/bind";
 
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -10,11 +10,11 @@ import Link from "next/link";
 import useStore from "../../../stores/useStore";
 import UserLogin from "../../api/login";
 
-import styles from "./Login.scss";
+import styles from "./login.scss";
 
 const cx = classNames.bind(styles);
 
-const login = (props) => {
+const Login = (props) => {
   const { tokenStore } = useStore();
 
   const router = useRouter();
@@ -28,7 +28,7 @@ const login = (props) => {
   };
 
   const goToSignup = () => {
-    router.push("/user/register");
+    router.push("/user/login/loginSelect");
   };
 
   const goToMain = () => {
@@ -102,4 +102,4 @@ const login = (props) => {
   ));
 };
 
-export default login;
+export default Login;

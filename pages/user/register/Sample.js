@@ -1,10 +1,10 @@
-import React, { Component, Fragment } from 'react';
-import Input from '../../../compnents/Input';
-import { NAME, TEL } from '../../../constants/Label';
-import Head from 'next/head';
-import { APP_NAME } from '../../../constants/App';
-import { REGISTER_USER } from '../../../constants/PageTitle';
-import styles from './RegisterUser.scss';
+import React, { Component, Fragment } from "react";
+import Input from "../../../components/Input";
+import { NAME, TEL } from "../../../constants/Label";
+import Head from "next/head";
+import { APP_NAME } from "../../../constants/App";
+import { REGISTER_USER } from "../../../constants/PageTitle";
+import styles from "./RegisterUser.scss";
 
 class RegisterUserSample extends Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class RegisterUserSample extends Component {
     this.state = {
       name: null,
       tel: null,
-    }
+    };
   }
 
   submit = () => {
@@ -20,13 +20,15 @@ class RegisterUserSample extends Component {
     const result = { name, tel };
 
     console.log(result);
-  }
+  };
 
   render() {
     return (
       <Fragment>
         <Head>
-          <title>{ APP_NAME } - {REGISTER_USER} </title>
+          <title>
+            {APP_NAME} - {REGISTER_USER}{" "}
+          </title>
         </Head>
         <div className={styles.register_user_container}>
           <div className={styles.title_area}>
@@ -36,23 +38,23 @@ class RegisterUserSample extends Component {
             <Input
               id="name"
               label={NAME}
-              onChange={value => this.setState({ name: value ? value : null })}
+              onChange={(value) =>
+                this.setState({ name: value ? value : null })
+              }
               value={this.state.name}
             />
             <Input
               id="tel"
               label={TEL}
               type="tel"
-              onChange={value => this.setState({ tel: value ? value : null })}
+              onChange={(value) => this.setState({ tel: value ? value : null })}
               value={this.state.tel}
             />
           </div>
-          <button onClick={this.submit}>
-            저장
-          </button>
+          <button onClick={this.submit}>저장</button>
         </div>
       </Fragment>
-    )
+    );
   }
 }
 

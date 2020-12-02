@@ -7,7 +7,6 @@ import styles from "./viewId.scss";
 const cx = classNames.bind(styles);
 
 const ViewId = ({ searchId }) => {
-  console.log(searchId);
   return (
     <section className={cx("viewId")}>
       <span>조회하신 아이디입니다.</span>
