@@ -6,12 +6,12 @@ import Detailinfo from "../../../../../components/molecules/detailInfo/DetailInf
 
 const cx = classNames.bind(styles);
 
-const Proposed = () => {
+const Proposed = ({ detailInfo }) => {
   return (
     <div className={cx("proposed")}>
-      <Detailinfo title="제안차량 1" content="제네시스 G90" />
-      <Detailinfo title="제안차량 2" content="01가1234" />
-      <Detailinfo title="추가 요청사항" content="-" />
+      <Detailinfo title="제안차량 1" content={detailInfo.offer_car1} />
+      <Detailinfo title="제안차량 2" content={detailInfo.offer_car2} />
+      <Detailinfo title="추가 요청사항" content={detailInfo.offer_extra} />
     </div>
   );
 };

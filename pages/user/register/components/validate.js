@@ -1,15 +1,18 @@
 const validate = (values = {}, name) => {
-  const pwdRegex = /^(?=.*\d)(?=.*[A-Za-z])[A-Za-z\d]{8,}$/;
-  const emailRegex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-  const userNumRegex = /^\d{3}-\d{3,4}-\d{4}$/;
+  const reg = {
+    pwd: /^(?=.*\d)(?=.*[A-Za-z])[A-Za-z\d]{8,}$/,
+    email: /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i,
+    userNum: /^\d{3}-\d{3,4}-\d{4}$/,
+  };
+
   const validationTable = {
     userId: (id) => id,
-    password: (password) => pwdRegex.test(password),
+    password: (password) => reg.pwd.test(password),
     checkPassword: (checkPassword) => checkPassword === values.password,
     userName: (userName) => userName,
-    userNumber: (number) => userNumRegex.test(number),
+    userNumber: (number) => reg.userNum.test(number),
     position: (position) => position,
-    email: (email) => emailRegex.test(email),
+    email: (email) => reg.email.test(email),
     companyName: (companyName) => companyName,
     intro: (intro) => intro,
     certifiNum: (certifiNum) => certifiNum,
@@ -31,23 +34,23 @@ const validate = (values = {}, name) => {
     email: null,
   };
 
-  const isNoError = Object.entries(values).every(([key, value]) =>
+  const isValid = Object.entries(values).every(([key, value]) =>
     validationTable[key](value)
   );
 
   const validator = (name) => {
-    if (name !== ("userId" || "userNumber")) {
-      const resultText =
-        name && validationTable[name](values[name])
-          ? validMsg[name]
-          : errorMsg[name];
-      return { [name]: resultText };
-    }
+    const isNeedToCheck = name !== ("userId" || "userNumber");
+    if (!name || !isNeedToCheck) return;
+
+    const resultText = validationTable[name](values[name])
+      ? validMsg[name]
+      : errorMsg[name];
+    return { [name]: resultText };
   };
 
   const totalResults = validator(name);
 
-  return { isNoError, totalResults };
+  return { isValid, totalResults };
 };
 
 export default validate;

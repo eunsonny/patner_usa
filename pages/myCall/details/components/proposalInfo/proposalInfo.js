@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import classNames from "classNames/bind";
-import useStore from "../../../../../stores/useStore";
+import classNames from "classnames/bind";
 import styles from "./proposalInfo.scss";
-import InputWrapper from "../../../../../components/molecules/inputWrapper/inputWrapper";
+
+import useStore from "../../../../../stores/useStore";
 import { useObserver } from "mobx-react";
+import InputWrapper from "../../../../../components/molecules/inputWrapper/InputWrapper";
 
 const cx = classNames.bind(styles);
 
 const ProposalInfo = () => {
-  const [totalByte, setTotalByte] = useState(0);
+  const [textByte, setTextByte] = useState(0);
 
   const { proposalStore } = useStore();
 
@@ -22,23 +23,25 @@ const ProposalInfo = () => {
     const message = e.target.value;
     const msgLength = message.length;
     const maxByte = 45;
-    let total_Byte = 0;
-    let limitLength = 0;
-    let limitText = "";
+    let totalByte = 0;
+    let currentLength = 0;
+    let newMessage = "";
+    console.log(msgLength === 0);
 
     for (let i = 0; i < msgLength; i++) {
       let currentByte = message.charCodeAt(i);
-      currentByte > 128 ? (total_Byte += 2) : total_Byte++;
+      currentByte > 128 ? (totalByte += 2) : totalByte++;
 
-      if (total_Byte <= maxByte) {
-        limitLength = i;
-        proposalStore.addInfo(name, message);
-        setTotalByte(total_Byte);
-      } else {
-        limitText = message.substr(0, limitLength);
-        proposalStore.addInfo(name, limitText);
-        setTotalByte(total_Byte);
+      if (totalByte <= maxByte) {
+        currentLength = i;
       }
+    }
+    proposalStore.addInfo(name, message);
+    setTextByte(totalByte);
+
+    if (totalByte > maxByte) {
+      newMessage = message.substr(0, currentLength);
+      proposalStore.addInfo(name, newMessage);
     }
   };
 
@@ -47,23 +50,24 @@ const ProposalInfo = () => {
       <span className={cx("subTitle")}>1. 제안차량</span>
       <InputWrapper
         placeholder="제안차량 1 *"
-        name="firstCar"
-        value={proposalStore.proposalInfo.firstCar}
+        name="offerCar1"
+        value={proposalStore.proposalInfo.offerCar1}
         onChange={getProposalInfo}
       />
       <InputWrapper
-        placeholder="제안차량 2"
-        name="secondCar"
-        value={proposalStore.proposalInfo.secondCar}
+        placeholder="제안차량 2 *"
+        name="offerCar2"
+        value={proposalStore.proposalInfo.offerCar2}
         onChange={getProposalInfo}
       />
       <span className={cx("subTitle")}>2. 추가 제안 사항</span>
       <textarea
+        // onKeyUp ={(e) => checkByte(e)}
         onChange={checkByte}
-        name="additional"
-        value={proposalStore.proposalInfo.additional}
+        name="offerExtra"
+        value={proposalStore.proposalInfo.offerExtra}
       ></textarea>
-      <span className={cx("byteCounter")}>{`(${totalByte}/45byte)`}</span>
+      <span className={cx("byteCounter")}>{`(${textByte}/45byte)`}</span>
     </div>
   ));
 };

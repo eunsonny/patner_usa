@@ -1,18 +1,16 @@
 import axios from "axios";
-
 class GetMyCallLists {
-  constructor() {
+  constructor(TOKEN) {
     this.getMyCallLists = axios.create({
       baseURL: "http://wecode-dev.rencar.co.kr/api/v1",
+      headers: { Authorization: TOKEN },
     });
   }
-
-  async GET_CALL_CARDS(menu, userToken) {
+  async GET_CALL_CARDS(menu) {
     try {
       const response = await this.getMyCallLists.get("requests", {
-        headers: { Authorization: userToken },
         params: {
-          menutab: menu,
+          status: menu,
         },
       });
       return response.data;
@@ -20,13 +18,11 @@ class GetMyCallLists {
       console.log(error);
     }
   }
-
-  async GET_CDM_CARDS(menu, userToken) {
+  async GET_CDM_CARDS(menu) {
     try {
       const response = await this.getMyCallLists.get("requests", {
-        headers: { Authorization: userToken },
         params: {
-          menutab: Number(menu || 0) + 1,
+          status: Number(menu || 0) + 1,
         },
       });
       return response.data;
@@ -35,5 +31,4 @@ class GetMyCallLists {
     }
   }
 }
-
 export default GetMyCallLists;

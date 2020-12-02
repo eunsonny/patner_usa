@@ -24,13 +24,13 @@ const Company = () => {
   const { companyStore } = useStore();
 
   useEffect(() => {
-    validate(companyStore.registerInfo).isNoError && isTermAllChecked
+    validate(companyStore.registerInfo).isValid && isTermAllChecked
       ? setIsActive(true)
       : setIsActive(false);
 
     if (
       isSubmitting &&
-      validate(companyStore.regitsterInfo).isNoError &&
+      validate(companyStore.regitsterInfo).isValid &&
       isTermAllChecked
     ) {
       formCompanyRegister();
@@ -129,7 +129,7 @@ const Company = () => {
         name: companyStore.registerInfo.userName,
         contact: companyStore.registerInfo.userNumber,
         company_name: companyStore.registerInfo.companyName,
-        company_contact: "239879879",
+        company_contact: "010-2398-3234",
         address: totalAddress,
         rental_company_user_position_id: 1,
       }),

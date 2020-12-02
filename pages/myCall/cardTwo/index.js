@@ -9,7 +9,7 @@ const cx = classNames.bind(styles);
 
 const CardTwo = ({ menuOnOff, info, menuNum, id }) => {
   return (
-    <Link href={"/details"} as={`myCall/details?pageTab=${menuNum}&id=${id}`}>
+    <Link href="/details" as={`myCall/details?pageTab=${menuNum}&id=${id}`}>
       <div className={cx("cardTwo")}>
         <div className={cx("container")}>
           <div className={cx("request")}>
@@ -55,7 +55,7 @@ const CardTwo = ({ menuOnOff, info, menuNum, id }) => {
 export default CardTwo;
 
 function timeCacl(time) {
-  if (time !== "None") {
+  if (time) {
     const timeArr = time.split(" ");
 
     const YMD = timeArr[0];
