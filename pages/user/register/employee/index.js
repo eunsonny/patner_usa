@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import Router from "next/router";
-import classNames from "classnames/bind";
+import classNames from "classNames/bind";
 import { useObserver } from "mobx-react";
 import useStore from "../../../../stores/useStore";
 import validate from "../components/validate";

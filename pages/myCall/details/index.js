@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import classNames from "classnames/bind";
+import classNames from "classNames/bind";
 
 import RequestInfo from "./components/requestInfo/RequestInfo";
 import Proposal from "./components/proposal/Proposal";
@@ -11,7 +11,8 @@ const cx = classNames.bind(styles);
 const Details = () => {
   const [menuTab, setMenuTab] = useState(0);
   const [pageTab, setPageTab] = useState("");
-  const queryString = "http://wecode-dev.rencar.co.kr/myCall/details?pageTab=0&id=23987"
+  const queryString =
+    "http://wecode-dev.rencar.co.kr/myCall/details?pageTab=0&id=23987";
 
   useEffect(() => {
     // const queryString = location.pathname;
@@ -19,11 +20,14 @@ const Details = () => {
   });
 
   const stringToQuery = (query) => {
-    const [_, params] = query.split("?"); 
-    return params && params.split("&").reduce((acc, cur) => {
-      const [k, v] = cur.split("="); 
-      return { ...acc, [k]: v };
-    }, {});
+    const [_, params] = query.split("?");
+    return (
+      params &&
+      params.split("&").reduce((acc, cur) => {
+        const [k, v] = cur.split("=");
+        return { ...acc, [k]: v };
+      }, {})
+    );
   };
 
   const showMenuTab = () => {

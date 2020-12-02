@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import classNames from "classnames/bind";
+import classNames from "classNames/bind";
 import useStore from "../../../../../stores/useStore";
 import styles from "./proposalInfo.scss";
 import InputWrapper from "../../../../../components/molecules/inputWrapper/inputWrapper";

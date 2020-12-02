@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Router from "next/router";
-import classNames from "classnames/bind";
+import classNames from "classNames/bind";
 import Input from "../../../../../components/atoms/Input/Input";
 import styles from "./BusinessInfo.scss";
 import { useObserver } from "mobx-react";

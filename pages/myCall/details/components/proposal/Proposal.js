@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import classNames from "classnames/bind";
+import classNames from "classNames/bind";
 import styles from "./proposal.scss";
 import useStore from "../../../../../stores/useStore";
 
@@ -19,12 +19,17 @@ const Proposal = ({ pageTab }) => {
 
   const { proposalStore } = useStore();
 
-  useEffect(() => autorun(() => {
-    proposalStore.proposalInfo.firstCar?.length > 0 && isTermAllChecked 
-    ? setIsActive(true) : setIsActive(false);
-  }),[isTermAllChecked]);
+  useEffect(
+    () =>
+      autorun(() => {
+        proposalStore.proposalInfo.firstCar?.length > 0 && isTermAllChecked
+          ? setIsActive(true)
+          : setIsActive(false);
+      }),
+    [isTermAllChecked]
+  );
 
-  return useObserver (() => (
+  return useObserver(() => (
     <div className={cx("proposal")}>
       <span className={cx("title")}>Proposal</span>
       {pageTab === 0 ? <ProposalInfo /> : null}
@@ -38,9 +43,11 @@ const Proposal = ({ pageTab }) => {
       {pageTab === 1 ? (
         <HalfButton title1="제안 취소" title2="제안 수정" />
       ) : null}
-      {pageTab === 2 ? <Proposed/> : null}
-      {pageTab === 2 ? <HalfButton title1="배차 포기" title2="배차 완료"/> : null}
-      {pageTab === 3 ? <Proposed/> : null}
+      {pageTab === 2 ? <Proposed /> : null}
+      {pageTab === 2 ? (
+        <HalfButton title1="배차 포기" title2="배차 완료" />
+      ) : null}
+      {pageTab === 3 ? <Proposed /> : null}
       {pageTab === 3 ? <MainButton title="반납 완료" condition={true} /> : null}
       {pageTab === 4 ? <Proposed /> : null}
     </div>

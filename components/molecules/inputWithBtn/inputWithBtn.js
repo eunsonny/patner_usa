@@ -1,5 +1,5 @@
 import React from "react";
-import classNames from "classnames/bind";
+import classNames from "classNames/bind";
 import Input from "../../atoms/Input";
 import Button from "../../atoms/Button";
 import styles from "./inputWithBtn.scss";
@@ -18,27 +18,27 @@ const inputWithBtn = ({
   buttonType,
   disabled,
   buttonTitle,
-  activeCondition
+  activeCondition,
 }) => {
   return (
-      <div className={cx("inputWithBtn")}>
-        <Input
-          id={id}
-          name={name}
-          type={inputType}
-          placeholder={placeholder}
-          onChange={onChange}
-          value={inputValue}
-        />
-        <Button
-          value={buttonValue}
-          type={buttonType}
-          title={buttonTitle}
-          onClick={onClick}
-          disabled={disabled}
-          activeCondition={activeCondition}
-        />
-      </div>
+    <div className={cx("inputWithBtn")}>
+      <Input
+        id={id}
+        name={name}
+        type={inputType}
+        placeholder={placeholder}
+        onChange={onChange}
+        value={inputValue}
+      />
+      <Button
+        value={buttonValue}
+        type={buttonType}
+        title={buttonTitle}
+        onClick={onClick}
+        disabled={disabled}
+        activeCondition={activeCondition}
+      />
+    </div>
   );
 };
 

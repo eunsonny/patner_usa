@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 
 import styles from "./myCall.scss";
 
+import { useCookies } from "react-cookie";
 import classNames from "classNames/bind";
+
+import GetMyCallLists from "../../api/getMyCallLists";
 
 import Top from "../../components/atoms/top";
 import Logo from "./logo";
@@ -11,15 +14,19 @@ import CardOne from "./cardOne";
 import CardTwo from "./cardTwo";
 
 import Bottom from "../../components/atoms/bottom";
-import Link from "next/link";
 
 const cx = classNames.bind(styles);
 
 const MyCall = (props) => {
+  const [cookies] = useCookies();
+
+  const userToken = cookies.TOKEN;
+
   const [menuOnOff, setMenu] = useState({ 0: true });
   const [callData, setCallData] = useState([]);
 
   const handleMenu = (e) => {
+    const response = new GetMyCallLists();
     window.scrollTo(0, 0);
     setMenu({ [e.currentTarget.id]: true });
     fetch(
@@ -27,6 +34,10 @@ const MyCall = (props) => {
     )
       .then((res) => res.json())
       .then((res) => setCallData(res.data));
+
+    // response
+    //   .GET_CALL_CARDS(e.currentTarget.id, userToken)
+    //   .then((res) => setCallData(res));
   };
 
   useEffect(() => {
@@ -45,20 +56,42 @@ const MyCall = (props) => {
       <section className={cx("myCall")}>
         <div className={cx("container")}>
           {menuOnOff[0] &&
-            callData.map((item, idx) => <CardOne key={idx} info={item} />)}
+            callData.map((item, idx) => (
+              <CardOne key={idx} id={item.id} info={item} menuNum={0} />
+            ))}
           {menuOnOff[1] &&
-            callData.map((item, idx) => <CardOne key={idx} info={item} />)}
+            callData.map((item, idx) => (
+              <CardOne key={idx} id={item.id} info={item} menuNum={1} />
+            ))}
           {menuOnOff[2] &&
             callData.map((item, idx) => (
-              <CardTwo key={idx} info={item} menuOnOff={menuOnOff} />
+              <CardTwo
+                key={idx}
+                info={item}
+                menuOnOff={menuOnOff}
+                id={item.id}
+                menuNum={1}
+              />
             ))}
           {menuOnOff[3] &&
             callData.map((item, idx) => (
-              <CardTwo key={idx} info={item} menuOnOff={menuOnOff} />
+              <CardTwo
+                key={idx}
+                info={item}
+                menuOnOff={menuOnOff}
+                id={item.id}
+                menuNum={1}
+              />
             ))}
           {menuOnOff[4] &&
             callData.map((item, idx) => (
-              <CardTwo key={idx} info={item} menuOnOff={menuOnOff} />
+              <CardTwo
+                key={idx}
+                info={item}
+                menuOnOff={menuOnOff}
+                id={item.id}
+                menuNum={1}
+              />
             ))}
         </div>
         <Bottom />
