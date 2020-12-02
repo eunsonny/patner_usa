@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Router from "next/router";
-import classNames from "classnames/bind";
+import classNames from "classNames/bind";
 import useStore from "../../../../stores/useStore";
 import styles from "./search.scss";
 import SearchedCompany from "../components/SearchedCompany/SearchedCompany";
@@ -30,12 +30,12 @@ const Search = () => {
   };
 
   useEffect(() => {
-    if(searchResult.length > 0) {
+    if (searchResult.length > 0) {
       setIsVisible(false);
     } else {
-      setIsVisible(true)
+      setIsVisible(true);
     }
-  }, [searchResult])
+  }, [searchResult]);
 
   const handleSearchValue = (e) => {
     const { value } = e.target;
@@ -44,11 +44,13 @@ const Search = () => {
   };
 
   const getTarget = (e) => {
-    employeeStore.addCompany({ companyName : e.currentTarget.firstChild.innerText});
+    employeeStore.addCompany({
+      companyName: e.currentTarget.firstChild.innerText,
+    });
     setSearchValue(e.currentTarget.firstChild.innerText);
-    employeeStore.addCompany({ id : e.currentTarget.id });
-    setIsVisible(true)
-  }
+    employeeStore.addCompany({ id: e.currentTarget.id });
+    setIsVisible(true);
+  };
 
   return (
     <div className={cx("search")}>
@@ -68,7 +70,7 @@ const Search = () => {
             onChange={handleSearchValue}
             placeholder="please enter the company name"
           />
-          <ul className={cx("searchResultCon", { visibility : isVisible })}>
+          <ul className={cx("searchResultCon", { visibility: isVisible })}>
             {searchResult.map((result, idx) => (
               <SearchedCompany
                 key={idx}

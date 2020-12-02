@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Router from "next/router";
-import classNames from "classnames/bind";
+import classNames from "classNames/bind";
 import { useObserver } from "mobx-react";
 import useStore from "../../../../stores/useStore";
 import validate from "../components/validate";
@@ -147,7 +147,7 @@ const Company = () => {
     <div className={cx("company")}>
       <div className={cx("header")}>
         <div></div>
-        <button onClick={()=> Router.push("/user/register")}>
+        <button onClick={() => Router.push("/user/register")}>
           <img src="/images/blue_arrow_left.svg" className={cx("arrow")} />
         </button>
       </div>

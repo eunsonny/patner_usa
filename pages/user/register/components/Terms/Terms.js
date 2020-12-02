@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import classNames from "classnames/bind";
+import classNames from "classNames/bind";
 import styles from "./Terms.scss";
 
 import Term from "../Term/Term";
@@ -20,7 +20,7 @@ const Terms = ({ setIsTermAllChecked }) => {
   const handleAllCheck = () => {
     allCheck
       ? setCheckItems([false, false, false])
-      : setCheckItems([true, true, true])
+      : setCheckItems([true, true, true]);
   };
 
   const handleSingleCheck = (e) => {

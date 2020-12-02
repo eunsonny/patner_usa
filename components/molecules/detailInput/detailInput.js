@@ -1,5 +1,5 @@
 import React from "react";
-import classNames from "classnames/bind";
+import classNames from "classNames/bind";
 import styles from "./detailInput.scss";
 import Input from "../../atoms/Input/Input";
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Router from "next/Router";
-import classNames from "classnames/bind";
+import classNames from "classNames/bind";
 import { useObserver } from "mobx-react";
 import useStore from "../../../../stores/useStore";
 import styles from "./address.scss";
@@ -15,9 +15,9 @@ const Address = () => {
   const getAddress = (e) => {
     const { name, value } = e.target;
     companyStore.getAddress(name, value);
-  }
+  };
 
-  return useObserver (() => (
+  return useObserver(() => (
     <div className={cx("companyAddress")}>
       <div className={cx("header")}>
         <div className={cx("headerBox")}></div>

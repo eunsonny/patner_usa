@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./ValidationMessage.scss";
-import classNames from "classnames/bind";
+import classNames from "classNames/bind";
 
 const cx = classNames.bind(styles);
 

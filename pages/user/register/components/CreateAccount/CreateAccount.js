@@ -1,5 +1,5 @@
 import React from "react";
-import classNames from "classnames/bind";
+import classNames from "classNames/bind";
 import styles from "./createAccount.scss";
 
 import Input from "../../../../../components/atoms/Input/Input";

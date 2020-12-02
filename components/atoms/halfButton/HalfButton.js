@@ -1,10 +1,10 @@
-import React from 'react';
-import classNames from "classnames/bind";
+import React from "react";
+import classNames from "classNames/bind";
 import styles from "./halfButton.scss";
 
 const cx = classNames.bind(styles);
 
-const HalfButton = ({title1, title2}) => {
+const HalfButton = ({ title1, title2 }) => {
   return (
     <div className={cx("halfButton")}>
       <button className={cx("button1")}>{title1}</button>
