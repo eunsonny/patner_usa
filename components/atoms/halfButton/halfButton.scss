@@ -1,0 +1,29 @@
+.halfButton {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 35px;
+  padding: 0 15px;
+
+  button {
+    width: 167px;
+    height: 46px;
+    border: 1px solid var(--main-color);
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 300;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .button1{
+    background-color: white;
+    color: var(--main-color);
+  }
+
+  .button2{
+    background-color: var(--main-color);
+    color: white;
+  }
+}
