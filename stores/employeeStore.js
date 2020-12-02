@@ -1,5 +1,4 @@
 import { observable } from "mobx";
-import { Router } from "next/router";
 
 const employeeStore = observable({
   registerInfo: {},

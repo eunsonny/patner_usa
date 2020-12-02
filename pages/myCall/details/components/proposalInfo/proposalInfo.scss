@@ -1,0 +1,37 @@
+.proposalInfo {
+  padding-bottom: 20px;
+
+  .subTitle {
+    display: block;
+    padding: 0 15px;
+    margin-top: 38px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 20px;
+  }
+
+  textarea {
+    display: block;
+    width: 344px;
+    height: 152px;
+    padding: 10px;
+    margin: 10px 15px 0 15px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--light-gray-color);
+    resize: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .byteCounter {
+    display: inline-block;
+    position: relative;
+    left: 285px;
+    bottom: 25px;
+    font-size: 13px;
+    color: #bebdbd;
+  }
+}

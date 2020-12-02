@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
 import Router from "next/router";
 import classNames from "classnames/bind";
 import { useObserver } from "mobx-react";
