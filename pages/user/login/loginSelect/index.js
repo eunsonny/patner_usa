@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 
-import styles from "./LoginSelect.scss";
+import styles from "./loginSelect.scss";
 
-const login = (props) => {
+const LoginSelect = (props) => {
   const router = useRouter();
 
   const [status, setStatus] = useState({
@@ -76,4 +76,4 @@ const login = (props) => {
   );
 };
 
-export default login;
+export default LoginSelect;

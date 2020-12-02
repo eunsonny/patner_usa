@@ -1,0 +1,13 @@
+.logo {
+  img {
+    &:hover {
+      cursor: pointer;
+    }
+    &:first-child {
+      margin: 15px 0 15px 15px;
+    }
+    &:last-child {
+      margin: 15px 0;
+    }
+  }
+}

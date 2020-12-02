@@ -1,0 +1,108 @@
+@mixin firstChild {
+  width: 45px;
+  color: var(--dark-gray-color);
+  font-size: 12px;
+}
+
+@mixin lastChild {
+  margin-left: 14px;
+  color: var(--dark-color);
+  font-size: 13px;
+}
+
+.cardOne {
+  display: flex;
+  align-items: center;
+  width: 345px;
+  height: 134px;
+  margin: 0 auto 15px auto;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.08);
+
+  .left {
+    width: 78px;
+    height: 102px;
+    margin: 0 16px;
+    background-color: var(--light-gray-color);
+    border-radius: 15px;
+    span {
+      display: block;
+      text-align: center;
+      &:first-child {
+        margin-top: 15px;
+        color: var(--dark-color);
+        font-size: 12px;
+      }
+      &:last-child {
+        margin-top: 18px;
+        font-size: 30px;
+        color: var(--dark-color);
+        font-weight: 600;
+      }
+    }
+  }
+
+  .right {
+    height: 102px;
+
+    .optionLists {
+      display: flex;
+
+      span {
+        display: block;
+        width: 87px;
+        height: 24px;
+        font-size: 13px;
+        line-height: 24px;
+        border-radius: 15px;
+        text-align: center;
+
+        &:first-child {
+          background-color: var(--main-color);
+          color: white;
+        }
+      }
+
+      .option {
+        margin-left: 5px;
+        background-color: white;
+        border: 1px solid #f84b4b;
+        color: #f84b4b;
+      }
+    }
+
+    span {
+      display: inline-block;
+    }
+
+    .car {
+      margin-top: 12px;
+      span {
+        &:first-child {
+          @include firstChild;
+        }
+        &:last-child {
+          @include lastChild;
+          font-weight: 600;
+        }
+      }
+    }
+
+    .addInfo {
+      margin-top: 6px;
+      span {
+        &:first-child {
+          @include firstChild;
+        }
+        &:last-child {
+          @include lastChild;
+        }
+      }
+    }
+  }
+
+  &:last-child {
+    margin: 0 auto;
+  }
+}

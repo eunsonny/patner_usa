@@ -19,11 +19,10 @@ import ViewPwd from "./viewPwd";
 import MenuTab from "./menuTab";
 
 import SearchButton from "../../../components/atoms/searchButton/index";
-import { REQUEST_NUMBER } from "./validation";
+import { VERIFY_REQUEST, PWD_VALIDATION } from "./validation";
 import UserSearch from "../../api/searchUserInfo";
 
 const cx = classNames.bind(styles);
-const validation = /^(?=.*\d)(?=.*[A-Za-z])[A-Za-z\d]{8,}$/;
 
 const Search = (props) => {
   const router = useRouter();
@@ -60,22 +59,20 @@ const Search = (props) => {
   const handleClickNext = (e) => {
     const tapName = e.target.dataset.name;
 
-    if (tab.userId) {
-      console.log("클릭");
-      const response = new UserSearch();
-      response
-        .SEARCH_USER_ID(value) //
-        .then((res) => {
-          setSearchId(res);
-          setTap({ [tapName]: true });
-        })
-        .catch((err) => {
-          alert("회원 정보가 존재하지 않습니다.");
-          setTap({ userId: true });
-        });
-    }
-
-    tab.password && setTap({ [tapName]: true });
+    const response = new UserSearch();
+    response
+      .SEARCH_USER_ID(value) //
+      .then((res) => {
+        setSearchId(res);
+        setTap({ [tapName]: true });
+      })
+      .catch((err) => {
+        alert("회원 정보가 존재하지 않습니다.");
+        setValue({});
+        setRequest(null);
+        setVerifyCheck(false);
+        setTap({ userId: true });
+      });
   };
 
   const onChangeInput = (e) => {
@@ -83,7 +80,7 @@ const Search = (props) => {
   };
 
   const onClickRequest = () => {
-    if (REQUEST_NUMBER(value)) {
+    if (VERIFY_REQUEST(value)) {
       setRequest(true);
       setCounter(180);
     } else {
@@ -125,7 +122,7 @@ const Search = (props) => {
 
   const { firstPwd, secondPwd } = value;
 
-  const firstCondition = `${firstPwd}`.match(validation) && true;
+  const firstCondition = `${firstPwd}`.match(PWD_VALIDATION) && true;
 
   const secondCondition = firstPwd === secondPwd;
 

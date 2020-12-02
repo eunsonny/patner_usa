@@ -1,6 +1,8 @@
 import React from "react";
+
 import classNames from "classNames/bind";
 import styles from "./Input.scss";
+
 const cx = classNames.bind(styles);
 
 export const SearchInput = ({
