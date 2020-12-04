@@ -1,0 +1,46 @@
+.myInfo {
+  // border: 1px solid pink;
+  width: 375px;
+  height: 1201px;
+  padding-bottom: 30px;
+
+  .header {
+    height: 75px;
+    background-color: #ffffff;
+
+    .headLine {
+      height: 24px;
+      margin: 0 0 10px;
+      background-color: #f1f4f6;
+    }
+
+    button {
+      padding: 10px;
+      margin-left: 10px;
+      border: none;
+      background-color: white;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    span {
+      font-size: 15px;
+      font-weight: 500;
+    }
+  }
+
+  .container {
+    // border: 1px solid orange;
+    height: calc(100% - 75px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .middleLine {
+      height: 8px;
+      background-color: var(--light-gray-color);
+    }
+  }
+}

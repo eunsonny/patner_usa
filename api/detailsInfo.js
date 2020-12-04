@@ -24,7 +24,7 @@ class DetailsInfo {
       );
       return response.data;
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   }
 
@@ -38,7 +38,7 @@ class DetailsInfo {
       });
       return response.data;
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   }
 
@@ -60,7 +60,7 @@ class DetailsInfo {
       const response = await this.DetailsInfo.post(`api/v1/offers/${proposalStore.offerId}/cancel`)
       return response.data;
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   }
 
@@ -69,7 +69,7 @@ class DetailsInfo {
       const response = await this.DetailsInfo.post(`api/v1/offers/${proposalStore.offerId}/dispatch`)
       return response.data;
     } catch(error) {
-      console.error(error);
+      console.log(error);
     }
   }
 
@@ -78,7 +78,7 @@ class DetailsInfo {
       const response = await this.DetailsInfo.post(`api/v1/offers/${proposalStore.offerId}/dispatch/cancel`)
       return response.data;
     } catch(error){
-      console.error(error);
+      console.log(error);
     }
   }
 
@@ -87,7 +87,7 @@ class DetailsInfo {
       const response = await this.DetailsInfo.post(`api/v1/offers/${proposalStore.offerId}/return`)
       return response.data;
     } catch(error) {
-      console.error(error);
+      console.log(error);
     }
   }
 }

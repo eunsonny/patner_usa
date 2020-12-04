@@ -10,7 +10,6 @@ import RequestInfo from "./components/requestInfo/RequestInfo";
 import Proposal from "./components/proposal/Proposal";
 import styles from "./details.scss";
 import DetailsInfo from "../../../api/detailsInfo";
-import DetailInfo from "../../../components/molecules/detailInfo/DetailInfo";
 
 const cx = classNames.bind(styles);
 
