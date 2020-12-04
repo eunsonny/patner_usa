@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./myCall.scss";
 
 import { useCookies } from "react-cookie";
+import { useRouter } from "next/router";
 import classNames from "classNames/bind";
 
 import GetMyCallLists from "../../api/getMyCallLists";
@@ -18,32 +19,33 @@ import Bottom from "../../components/atoms/bottom";
 const cx = classNames.bind(styles);
 
 const MyCall = (props) => {
+  const router = useRouter();
   const [cookies] = useCookies();
 
   const userToken = cookies.TOKEN;
 
-  const [menuOnOff, setMenu] = useState({ 0: true });
+  const [menuOnOff, setMenu] = useState({});
   const [callData, setCallData] = useState([]);
 
   const handleMenu = (e) => {
     const response = new GetMyCallLists();
+    const { id } = e.currentTarget;
     window.scrollTo(0, 0);
-    setMenu({ [e.currentTarget.id]: true });
-    fetch(
-      `http://localhost:3000/data/data${Number(e.currentTarget.id) + 1}.json`
-    )
-      .then((res) => res.json())
-      .then((res) => setCallData(res.data));
+    setMenu({ [id]: true });
 
-    // response
-    //   .GET_CALL_CARDS(e.currentTarget.id, userToken)
-    //   .then((res) => setCallData(res));
+    response //
+      .GET_CALL_CARDS(id, userToken)
+      .then((res) => setCallData(res.message));
   };
 
   useEffect(() => {
-    fetch("http://localhost:3000/data/data1.json")
-      .then((res) => res.json())
-      .then((res) => setCallData(res.data));
+    const response = new GetMyCallLists();
+    const menu = router.asPath.split("=")[1];
+    menu ? setMenu({ [menu]: true }) : setMenu({ 0: true });
+
+    response //
+      .GET_CDM_CARDS(menu, userToken)
+      .then((res) => setCallData(res.message));
   }, []);
 
   return (
@@ -56,41 +58,51 @@ const MyCall = (props) => {
       <section className={cx("myCall")}>
         <div className={cx("container")}>
           {menuOnOff[0] &&
-            callData.map((item, idx) => (
-              <CardOne key={idx} id={item.id} info={item} menuNum={0} />
+            callData.map((item) => (
+              <CardOne
+                key={item.request_id}
+                id={item.request_id}
+                info={item}
+                menuNum={0}
+              />
             ))}
           {menuOnOff[1] &&
-            callData.map((item, idx) => (
-              <CardOne key={idx} id={item.id} info={item} menuNum={1} />
+            callData.map((item) => (
+              <CardOne
+                key={item.request_id}
+                id={item.request_id}
+                info={item}
+                menuNum={1}
+              />
             ))}
           {menuOnOff[2] &&
-            callData.map((item, idx) => (
+            callData.map((item) => (
               <CardTwo
-                key={idx}
+                key={item.request_id}
                 info={item}
                 menuOnOff={menuOnOff}
-                id={item.id}
-                menuNum={1}
+                id={item.request_id}
+                menuNum={2}
               />
             ))}
           {menuOnOff[3] &&
             callData.map((item, idx) => (
               <CardTwo
-                key={idx}
+                key={item.request_id}
                 info={item}
                 menuOnOff={menuOnOff}
-                id={item.id}
-                menuNum={1}
+                id={item.request_id}
+                menuNum={3}
               />
             ))}
           {menuOnOff[4] &&
             callData.map((item, idx) => (
               <CardTwo
-                key={idx}
+                key={item.request_id}
                 info={item}
                 menuOnOff={menuOnOff}
-                id={item.id}
-                menuNum={1}
+                id={item.request_id}
+                menuNum={4}
               />
             ))}
         </div>

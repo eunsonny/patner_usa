@@ -8,14 +8,31 @@ class GetMyCallLists {
   }
 
   async GET_CALL_CARDS(menu, userToken) {
-    const response = await this.getMyCallLists.get(API, {
-      headers: { Authorization: userToken },
-      params: {
-        menutab: menu,
-      },
-    });
+    try {
+      const response = await this.getMyCallLists.get("requests", {
+        headers: { Authorization: userToken },
+        params: {
+          menutab: menu,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
-    return response.data;
+  async GET_CDM_CARDS(menu, userToken) {
+    try {
+      const response = await this.getMyCallLists.get("requests", {
+        headers: { Authorization: userToken },
+        params: {
+          menutab: Number(menu || 0) + 1,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
 
