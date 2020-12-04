@@ -1,0 +1,58 @@
+.start {
+  position: absolute;
+  top:0;
+  width: 375px;
+  height: 667px;
+  background-image: url("/images/loginBackground.png");
+  color: white;
+
+  .container {
+    margin: 90px 37px 49px 25px;
+
+    .firstLine {
+      font-size: 16px;
+      line-height: 1.88;
+    }
+
+    h5 {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    p {
+      display: block;
+      margin-top: 25px;
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.43;
+    }
+
+    .letsStart {
+      margin-top: 15px;
+      display: flex;
+      align-items: center;
+      font-size: 22px;
+      font-weight: bold;
+      line-height: 2;
+      color: var(--main-color);
+
+      span {
+        display: block;
+        margin-bottom: 8px;
+      }
+    }
+
+    .bottomP {
+      margin-top: 220px;
+      display: block;
+      color: rgba(255, 255, 255, 0.45);
+
+      .login {
+        color: white;
+        font-weight: bold;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+  }
+}

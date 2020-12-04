@@ -1,0 +1,24 @@
+.myInfoInfo {
+  // border: 1px solid green;
+  padding: 15px;
+  margin-bottom: 10px;
+
+ .content {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 5px 8px;
+   border-bottom: 1px solid var(--light-gray-color);
+
+   span:first-child {
+     font-size: 13px;
+     color: var(--dark-gray-color);
+   }
+
+   span:last-child {
+     font-size: 14px;
+     font-weight: 500;
+     color: var(--dark-gray-color);
+   }
+ }
+}
