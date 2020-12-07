@@ -33,7 +33,7 @@ const Login = (props) => {
 
   const goToMain = () => {
     alert("이미 로그인이 되어있습니다.");
-    router.push("/");
+    router.push("/myCall");
   };
 
   const handleLogin = () => {
@@ -48,7 +48,7 @@ const Login = (props) => {
             maxAge: 1000000,
           });
           alert("로그인이 완료되었습니다.");
-          router.push("/");
+          router.push("/myCall");
         }
       })
       .catch((err) => alert("아이디 비밀번호를 다시 확인해주세요"));
