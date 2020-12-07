@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
+
 import styles from "./myCall.scss";
+
 import { useCookies } from "react-cookie";
 import { useRouter } from "next/router";
 import classNames from "classNames/bind";
+
 import GetMyCallLists from "../../api/getMyCallLists";
 import Top from "../../components/atoms/top";
 import MenuTab from "./menuTab";
@@ -12,12 +15,16 @@ import Bottom from "../../components/atoms/bottom";
 import Logo from "../../components/atoms/logo";
 
 const cx = classNames.bind(styles);
+
 const MyCall = (props) => {
   const router = useRouter();
   const [cookies] = useCookies();
+
   const { TOKEN } = cookies;
+
   const [menuOnOff, setMenu] = useState({});
   const [callData, setCallData] = useState([]);
+
   const handleMenu = (e) => {
     const response = new GetMyCallLists(TOKEN);
     const { id } = e.currentTarget;
@@ -27,6 +34,7 @@ const MyCall = (props) => {
       .GET_CALL_CARDS(id)
       .then((res) => setCallData(res.message));
   };
+
   useEffect(() => {
     const response = new GetMyCallLists(TOKEN);
     const menu = router.asPath.split("=")[1];
@@ -35,15 +43,16 @@ const MyCall = (props) => {
       .GET_CDM_CARDS(menu)
       .then((res) => setCallData(res.message));
   }, []);
+
   return (
-    <>
+    <section className={cx("myCall")}>
       <div className={cx("topContainer")}>
         <Top />
         <Logo />
         <MenuTab onMenuClick={handleMenu} menuOnOff={menuOnOff} />
       </div>
-      <section className={cx("myCall")}>
-        <div className={cx("container")}>
+      <div className={cx("container")}>
+        <div className={cx("cards")}>
           {menuOnOff[0] &&
             callData.map((item) => (
               <CardOne
@@ -93,9 +102,10 @@ const MyCall = (props) => {
               />
             ))}
         </div>
-        <Bottom />
-      </section>
-    </>
+      </div>
+      <Bottom />
+    </section>
   );
 };
+
 export default MyCall;
