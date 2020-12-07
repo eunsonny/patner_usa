@@ -10,6 +10,7 @@ import RequestInfo from "./components/requestInfo/RequestInfo";
 import Proposal from "./components/proposal/Proposal";
 import styles from "./details.scss";
 import DetailsInfo from "../../../api/detailsInfo";
+import DetailInfo from "../../../components/molecules/detailInfo/DetailInfo";
 
 const cx = classNames.bind(styles);
 
@@ -38,6 +39,9 @@ const Details = () => {
     response.GET_REQUEST_INFO().then((res) => {
       setDetailInfo(res.message);
       proposalStore.getOfferId(res.message.offer_id);
+      proposalStore.addModifyInfo("offerCar1", res.message.offer_car1);
+      proposalStore.addModifyInfo("offerCar2", res.message.offer_car2);
+      proposalStore.addModifyInfo("offerExtra", res.message.offer_extra);
     });
   }, []);
 
@@ -109,7 +113,15 @@ const Details = () => {
     }
 
     if (clicked === "제안수정") {
-      console.log("ㅇㅇㅇ");
+      const response = new DetailsInfo(TOKEN);
+      response
+      .MODIFY_PROPOSAL()
+      .then((res) => {
+        if(res.message === "success") {
+          alert("제안이 수정되었습니다.")
+        }
+      })
+      .then(Router.push("/myCall", "/myCall?pageTab=1"))
     }
 
     if (clicked === "배차완료") {
@@ -121,7 +133,7 @@ const Details = () => {
             alert("배차가 완료 되었습니다.");
           }
         })
-        .then(Router.push("/myCall", "myCall?pageTab=2"));
+        .then(Router.push("/myCall", "/myCall?pageTab=2"));
     }
 
     if (clicked === "배차포기") {
@@ -133,7 +145,7 @@ const Details = () => {
             alert("배차가 취소 되었습니다.");
           }
         })
-        .then(Router.push("/myCall", "myCall?pageTab=3"));
+        .then(Router.push("/myCall", "/myCall?pageTab=3"));
     }
 
     if (clicked === "반납완료") {
@@ -145,7 +157,7 @@ const Details = () => {
             alert("반납이 완료되었습니다.");
           }
         })
-        .then(Router.push("/myCall", "myCall?pagaTab=4"));
+        .then(Router.push("/myCall", "/myCall?pagaTab=4"));
     }
   };
 

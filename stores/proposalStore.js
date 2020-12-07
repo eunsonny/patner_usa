@@ -17,6 +17,10 @@ const proposalStore = observable({
   getPageTab (value) {
     this.pageTab = value;
   },
+  modifyInfo: {},
+  addModifyInfo (name, value) {
+    this.modifyInfo = {...this.modifyInfo, [name] : value};
+  }
 });
 
 export { proposalStore };
