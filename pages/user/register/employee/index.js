@@ -159,7 +159,6 @@ const Employee = () => {
                 <Input
                   name="companyName"
                   value={employeeStore.company.companyName}
-                  onChange={getEmployeeInfo}
                   subOnClick={() =>
                     Router.push("/user/register/employee/search")
                   }

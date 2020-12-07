@@ -32,7 +32,6 @@ const BusinessInfo = ({ values, handleChange }) => {
           <Input
             name="companyAddress"
             value={totalAddress}
-            onChange={handleChange}
             subOnClick={() => Router.push("/user/register/company/address")}
             placeholder="Company Address *"
           />
