@@ -4,11 +4,23 @@ import styles from "./halfButton.scss";
 
 const cx = classNames.bind(styles);
 
-const HalfButton = ({ title1, title2 }) => {
+const HalfButton = ({ title1, title2, value1, value2, onClick }) => {
   return (
     <div className={cx("halfButton")}>
-      <button className={cx("button1")}>{title1}</button>
-      <button className={cx("button2")}>{title2}</button>
+      <button
+        value={value1}
+        className={cx("button1")}
+        onClick={onClick || null}
+      >
+        {title1}
+      </button>
+      <button
+        value={value2}
+        className={cx("button2")}
+        onClick={onClick || null}
+      >
+        {title2}
+      </button>
     </div>
   );
 };

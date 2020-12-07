@@ -22,7 +22,7 @@ const Employee = () => {
   const { employeeStore } = useStore();
 
   useEffect(() => {
-    if (isSubmitting && validate(employeeStore.registerInfo).isNoError) {
+    if (isSubmitting && validate(employeeStore.registerInfo).isValid) {
       formEmployeeRegister();
     }
   }, [isSubmitting]);

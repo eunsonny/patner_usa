@@ -5,7 +5,7 @@ import styles from "./inputWrapper.scss";
 
 const cx = classNames.bind(styles);
 
-const inputWrapper = ({
+const InputWrapper = ({
   id,
   name,
   placeholder,
@@ -29,4 +29,4 @@ const inputWrapper = ({
   );
 };
 
-export default inputWrapper;
+export default InputWrapper;

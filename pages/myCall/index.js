@@ -1,58 +1,45 @@
 import React, { useEffect, useState } from "react";
-
 import styles from "./myCall.scss";
-
 import { useCookies } from "react-cookie";
 import { useRouter } from "next/router";
 import classNames from "classNames/bind";
-
 import GetMyCallLists from "../../api/getMyCallLists";
-
 import Top from "../../components/atoms/top";
 import MenuTab from "./menuTab";
 import CardOne from "./cardOne";
 import CardTwo from "./cardTwo";
-
 import Bottom from "../../components/atoms/bottom";
 import Logo from "../../components/atoms/logo";
 
 const cx = classNames.bind(styles);
-
 const MyCall = (props) => {
   const router = useRouter();
   const [cookies] = useCookies();
-
-  const userToken = cookies.TOKEN;
-
+  const { TOKEN } = cookies;
   const [menuOnOff, setMenu] = useState({});
   const [callData, setCallData] = useState([]);
-
   const handleMenu = (e) => {
-    const response = new GetMyCallLists();
+    const response = new GetMyCallLists(TOKEN);
     const { id } = e.currentTarget;
     window.scrollTo(0, 0);
     setMenu({ [id]: true });
-
     response //
-      .GET_CALL_CARDS(id, userToken)
+      .GET_CALL_CARDS(id)
       .then((res) => setCallData(res.message));
   };
-
   useEffect(() => {
-    const response = new GetMyCallLists();
+    const response = new GetMyCallLists(TOKEN);
     const menu = router.asPath.split("=")[1];
     menu ? setMenu({ [menu]: true }) : setMenu({ 0: true });
-
     response //
-      .GET_CDM_CARDS(menu, userToken)
+      .GET_CDM_CARDS(menu)
       .then((res) => setCallData(res.message));
   }, []);
-
   return (
     <>
       <div className={cx("topContainer")}>
         <Top />
-        <Logo />
+        {/* <Logo /> */}
         <MenuTab onMenuClick={handleMenu} menuOnOff={menuOnOff} />
       </div>
       <section className={cx("myCall")}>
@@ -111,5 +98,4 @@ const MyCall = (props) => {
     </>
   );
 };
-
 export default MyCall;
