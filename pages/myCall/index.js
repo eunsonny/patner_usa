@@ -39,7 +39,7 @@ const MyCall = (props) => {
     <>
       <div className={cx("topContainer")}>
         <Top />
-        {/* <Logo /> */}
+        <Logo />
         <MenuTab onMenuClick={handleMenu} menuOnOff={menuOnOff} />
       </div>
       <section className={cx("myCall")}>

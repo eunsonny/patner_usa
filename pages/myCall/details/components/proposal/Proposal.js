@@ -6,6 +6,7 @@ import useStore from "../../../../../stores/useStore";
 import ProposalInfo from "../proposalInfo/ProposalInfo";
 import Terms from "../../../../user/register/components/Terms/Terms";
 import Proposed from "../proposed/Proposed";
+import ProposalModify from "../proposalModify/ProposalModify";
 import MainButton from "../../../../../components/atoms/mainButton/MainButton";
 import HalfButton from "../../../../../components/atoms/halfButton/HalfButton";
 import { useObserver } from "mobx-react";
@@ -49,6 +50,7 @@ const Proposal = ({ pageTab, detailInfo, setClicked }) => {
         />
       ) : null}
       {pageTab === 1 ? <Proposed detailInfo={detailInfo} /> : null}
+      {/* {pageTab === 1 ? <ProposalModify detailInfo={detailInfo} /> : null} */}
       {pageTab === 1 ? (
         <HalfButton
           title1="제안 취소"

@@ -5,11 +5,17 @@ import Input from "../../atoms/Input/Input";
 
 const cx = classNames.bind(styles);
 
-const DetailInput = () => {
+const DetailInput = ({ title, name, value, onChange, onClick }) => {
   return (
     <div className={cx("detailInput")}>
-      <div>
-        <Input />
+      <div className={cx("content")}>
+        <span>{title}</span>
+        <Input
+          name={name}
+          onChange={onChange}
+          value={value}
+          onClick={onClick}
+        />
       </div>
     </div>
   );
