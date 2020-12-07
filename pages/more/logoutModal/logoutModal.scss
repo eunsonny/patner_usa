@@ -1,0 +1,40 @@
+.logoutModal {
+  position: absolute;
+  background-color: white;
+  top: 252px;
+  left: 53px;
+  width: 270px;
+  height: 164px;
+  border-radius: 8px;
+  z-index: 1000;
+
+  .mainMessage {
+    height: 116px;
+    line-height: 116px;
+    text-align: center;
+    font-size: 15px;
+    border-bottom: 1px solid var(--light-gray-color);
+  }
+
+  .check {
+    display: flex;
+    align-items: center;
+    height: 47px;
+
+    span {
+      font-size: 15px;
+      text-align: center;
+      display: block;
+      flex: 1;
+
+      &:first-child {
+        color: var(--dark-gray-color);
+      }
+
+      &:last-child {
+        color: var(--main-color);
+        border-left: 1px solid var(--light-gray-color);
+      }
+    }
+  }
+}
