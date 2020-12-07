@@ -5,6 +5,7 @@ import Top from "../../components/atoms/top";
 import classNames from "classNames/bind";
 import { useCookies } from "react-cookie";
 import { useRouter } from "next/router";
+import GetUserInfo from "../../api/getUserInfo";
 
 import Bottom from "../../components/atoms/bottom";
 import LogoutModal from "./logoutModal/logoutModal";
@@ -16,9 +17,12 @@ const cx = classNames.bind(styles);
 const More = (props) => {
   const router = useRouter();
 
-  const [isOpenLogout, setIsOpenLogout] = useState(false);
-
   const [cookies, setCookie, removeCookie] = useCookies(["TOKEN"]);
+
+  const { TOKEN } = cookies;
+
+  const [isOpenLogout, setIsOpenLogout] = useState(false);
+  const [userInfo, setUserInfo] = useState({});
 
   const openLogoutModal = () => {
     setIsOpenLogout(!isOpenLogout);
@@ -30,7 +34,12 @@ const More = (props) => {
   };
 
   useEffect(() => {
-    const { TOKEN } = cookies;
+    const response = new GetUserInfo(TOKEN);
+
+    response
+      .GET_USER_INFO() //
+      .then((res) => setUserInfo(res));
+
     if (!TOKEN || TOKEN === "undefined") {
       alert("로그인이 되어있지 않습니다.");
       router.push("/user/login");
@@ -45,8 +54,8 @@ const More = (props) => {
         <div className={cx("userId")}>
           <span className={cx("mainTitle")}>imsUSA2020</span>
           <div className={cx("userInfo")}>
-            <span>Heo Deok Hyeong</span>
-            <button onClick={() => router.push("/")}>내정보</button>
+            <span>{userInfo.name}</span>
+            <button onClick={() => router.push("/more/myInfo")}>내정보</button>
           </div>
         </div>
         <ul className={cx("lists")}>
