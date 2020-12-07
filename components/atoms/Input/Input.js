@@ -15,7 +15,7 @@ const Input = ({
       name={name || null}
       type={type || "text"}
       placeholder={placeholder}
-      onChange={onChange || null}
+      onChange={(e) => onChange(e)}
       value={value || ""}
       onClick={subOnClick || null}
     />

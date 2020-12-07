@@ -8,7 +8,7 @@ import styles from "./BasicInfo.scss";
 const cx = classNames.bind(styles);
 
 const BasicInfo = ({ values, results, clicked, handleChange, handleClick }) => {
-  const [minutes, setMinutes] = useState(0);
+  const [minutes, setMinutes] = useState(3);
   const [seconds, setSeconds] = useState(0);
   const [btnValue, setBtnValue] = useState("인증요청");
   const [certifiNum, setCertifiNum] = useState("");
