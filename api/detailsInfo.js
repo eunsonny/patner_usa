@@ -12,8 +12,6 @@ class DetailsInfo {
     this.offerId = proposalStore.offerId;
   }
 
-  
-
   async GET_REQUEST_INFO() {
     try {
       const response = await this.DetailsInfo.get(
@@ -34,7 +32,7 @@ class DetailsInfo {
   async POST_PROPOSAL_INFO() {
     try {
       const response = await this.DetailsInfo.post("api/v1/offers", {
-        request_id: 19,
+        request_id: proposalStore.requestId,
         offer_car1: proposalStore.proposalInfo.offerCar1,
         offer_car2: proposalStore.proposalInfo.offerCar2,
         offer_extra: proposalStore.proposalInfo.offerExtra,
@@ -52,6 +50,33 @@ class DetailsInfo {
       console.log(response);
       return response.data;
     } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async DISPATCH_CAR () {
+    try {
+      const response = await this.DetailsInfo.post(`api/v1/offers/${proposalStore.offerId}/dispatch`)
+      return response.data;
+    } catch(error) {
+      console.error(error);
+    }
+  }
+
+  async CANCEL_DISPATCH () {
+    try{
+      const response = await this.DetailsInfo.post(`api/v1/offers/${proposalStore.offerId}/dispatch/cancel`)
+      return response.data;
+    } catch(error){
+      console.error(error);
+    }
+  }
+
+  async RETURN_CAR () {
+    try {
+      const response = await this.DetailsInfo.post(`api/v1/offers/${proposalStore.offerId}/return`)
+      return response.data;
+    } catch(error) {
       console.error(error);
     }
   }

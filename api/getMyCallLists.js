@@ -22,7 +22,7 @@ class GetMyCallLists {
     try {
       const response = await this.getMyCallLists.get("requests", {
         params: {
-          status: Number(menu || 0) + 1,
+          status: menu || 0,
         },
       });
       return response.data;
