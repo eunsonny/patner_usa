@@ -22,7 +22,6 @@ class DetailsInfo {
           },
         }
       );
-      console.log(response);
       return response.data;
     } catch (error) {
       console.error(error);
@@ -37,17 +36,28 @@ class DetailsInfo {
         offer_car2: proposalStore.proposalInfo.offerCar2,
         offer_extra: proposalStore.proposalInfo.offerExtra,
       });
-      console.log(response)
       return response.data;
     } catch (error) {
       console.error(error);
     }
   }
 
+  async MODIFY_PROPOSAL () {
+    try {
+      const response = await this.DetailsInfo.post(`api/v1/offers/${proposalStore.offerId}`, {
+        offer_car1 : proposalStore.modifyInfo.offerCar1,
+        offer_car2 : proposalStore.modifyInfo.offerCar2,
+        offer_extra : proposalStore.modifyInfo.offerExtra
+      })
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async CANCEL_PROPOSAL () {
     try {
       const response = await this.DetailsInfo.post(`api/v1/offers/${proposalStore.offerId}/cancel`)
-      console.log(response);
       return response.data;
     } catch (error) {
       console.error(error);

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import classNames from "classNames/bind";
 import styles from "./proposalModify.scss";
+import useStore from "../../../../../stores/useStore";
+import { useObserver } from "mobx-react";
 
 import DetailInput from "../../../../../components/molecules/detailInput/detailInput";
 
@@ -11,22 +13,41 @@ const ProposalModify = ({ detailInfo }) => {
   const [offerCar2, setOfferCar2] = useState(detailInfo.offer_car2);
   const [offerExtra, setOfferExtra] = useState(detailInfo.offer_extra);
 
-  useEffect(( ) => {
-    setOfferCar1(detailInfo.offer_car1)
-  }, [])
+  const { proposalStore } = useStore();
+
+  useEffect(() => {
+    setOfferCar1(detailInfo.offer_car1);
+  }, []);
 
   const handleChange = (e) => {
-    setOfferCar1(e.target.value);
-  }
+    const { name, value } = e.target;
+    proposalStore.addModifyInfo(name, value);
+    // setOfferCar1(e.target.value);
+  };
 
-  console.log(detailInfo.offer_car1)
-  return (
+  console.log(detailInfo.offer_car1);
+  return useObserver(() => (
     <div className={cx("proposalModify")}>
-      <DetailInput title="제안차량 1" value={offerCar1} onChange={handleChange}/>
-      <DetailInput title="제안차량 2" value={offerCar2} />
-      <DetailInput title="추가 요청사항" value={offerExtra}/>
+      <DetailInput
+        title="제안차량 1"
+        name="offerCar1"
+        value={proposalStore.modifyInfo.offerCar1}
+        onChange={handleChange}
+      />
+      <DetailInput
+        title="제안차량 2"
+        name="offerCar2"
+        value={proposalStore.modifyInfo.offerCar2}
+        onChange={handleChange}
+      />
+      <DetailInput
+        title="추가 요청사항"
+        name="offerExtra"
+        value={proposalStore.modifyInfo.offerExtra}
+        onChange={handleChange}
+      />
     </div>
-  );
+  ));
 };
 
 export default ProposalModify;

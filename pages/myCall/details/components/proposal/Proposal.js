@@ -49,8 +49,8 @@ const Proposal = ({ pageTab, detailInfo, setClicked }) => {
           condition={isActive}
         />
       ) : null}
-      {pageTab === 1 ? <Proposed detailInfo={detailInfo} /> : null}
-      {/* {pageTab === 1 ? <ProposalModify detailInfo={detailInfo} /> : null} */}
+      {/* {pageTab === 1 ? <Proposed detailInfo={detailInfo} /> : null} */}
+      {pageTab === 1 ? <ProposalModify detailInfo={detailInfo} /> : null}
       {pageTab === 1 ? (
         <HalfButton
           title1="제안 취소"
