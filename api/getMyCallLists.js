@@ -6,6 +6,7 @@ class GetMyCallLists {
       headers: { Authorization: TOKEN },
     });
   }
+
   async GET_CALL_CARDS(menu) {
     try {
       const response = await this.getMyCallLists.get("requests", {
@@ -18,6 +19,7 @@ class GetMyCallLists {
       console.log(error);
     }
   }
+
   async GET_CDM_CARDS(menu) {
     try {
       const response = await this.getMyCallLists.get("requests", {
