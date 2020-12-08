@@ -1,0 +1,75 @@
+.landingMiddle {
+  position: relative;
+  width: 375px;
+
+  .title {
+    margin-top: 72px;
+    color: #282828;
+    text-align: center;
+    line-height: 38px;
+    font-size: 28px;
+    font-weight: 500;
+  }
+
+  .phone {
+    display: flex;
+    margin-top: 82px;
+
+    img {
+      position: relative;
+      top: -12px;
+      width: 253px;
+      height: 451px;
+      margin: 0 auto;
+      border-radius: 20px;
+      box-shadow: 0 5px 30px 0 rgba(0, 0, 0, 0.16);
+    }
+
+    .on {
+      animation-name: on;
+      animation-duration: 2s;
+    }
+
+    .off {
+      opacity: 0;
+    }
+  }
+
+  .detail {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 27px;
+    background-color: white;
+    z-index: 5;
+    div {
+      &:first-child {
+        margin: 0 auto;
+        color: #282828;
+        font-size: 18px;
+        font-weight: 500;
+      }
+
+      &:last-child {
+        margin: 0 auto;
+        padding: 20px 0 59px 0;
+        color: #282828;
+        text-align: center;
+        line-height: 24px;
+        font-size: 16px;
+        font-weight: 200;
+      }
+    }
+  }
+}
+
+@keyframes on {
+  from {
+    top: 60px;
+    opacity: 0;
+  }
+  to {
+    top: -12px;
+  }
+}

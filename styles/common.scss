@@ -1,13 +1,13 @@
 :root {
-  --main-color: #1877F2;
-  --dark-gray-color: #BDBDBD;
-  --gray-color: #E5E5E5;
-  --light-gray-color: #F6F6F6;
-  --paleblue-color: #F1F4F6;
-  --success-color: #01B856;
-  --error-color: #FF2929;
-  --notice-color: #FF6328;
-  --chat-color: #ECF4FF;
+  --main-color: #1877f2;
+  --dark-gray-color: #bdbdbd;
+  --gray-color: #e5e5e5;
+  --light-gray-color: #f6f6f6;
+  --paleblue-color: #f1f4f6;
+  --success-color: #01b856;
+  --error-color: #ff2929;
+  --notice-color: #ff6328;
+  --chat-color: #ecf4ff;
 }
 
 @mixin inputCon {
@@ -19,16 +19,16 @@
   input {
     width: 340px;
     height: 28px;
-    border: none;
     padding-left: 5px;
+    border: none;
     font-size: 14px;
     font-weight: 400;
 
     &::placeholder {
-      font-size: 13px;
-      line-height: 1.85;
-      text-align: left;
       color: #bdbdbd;
+      text-align: left;
+      line-height: 1.85;
+      font-size: 13px;
     }
 
     &:focus {
@@ -45,11 +45,11 @@
     width: 200px;
     height: 29px;
     margin: 10px 90px 20px 15px;
+    color: #000000;
+    text-align: left;
+    line-height: 2.2;
     font-size: 20px;
     font-weight: bold;
-    line-height: 2.2;
-    text-align: left;
-    color: #000000;
   }
 
   .mainInputCon {
@@ -70,12 +70,12 @@
         height: 28px;
         margin: 0px 15px 5px 10px;
         padding: 0 10px;
-        border-radius: 14px;
-        border: none;
         background-color: #bdbdbd;
-        font-size: 13px;
-        line-height: 28px;
         color: #ffffff;
+        border: none;
+        border-radius: 14px;
+        line-height: 28px;
+        font-size: 13px;
 
         &:focus {
           outline: none;
@@ -92,20 +92,20 @@
     }
 
     .valid {
-      border-bottom: 1px solid #01b856;
       color: #01b856;
+      border-bottom: 1px solid #01b856;
     }
 
     .inValid {
-      border-bottom: 1px solid #ff2929;
       color: #ff2929;
+      border-bottom: 1px solid #ff2929;
     }
 
     .message {
       margin: 0 20px;
-      font-size: 12px;
-      line-height: 2;
       border: none;
+      line-height: 2;
+      font-size: 12px;
     }
   }
 }
