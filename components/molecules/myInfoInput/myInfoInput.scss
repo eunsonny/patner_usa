@@ -1,0 +1,30 @@
+.myInfoInput {
+  padding: 10px;
+  margin-bottom: 10px;
+
+ .content {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 5px 8px;
+   border-bottom: 1px solid var(--light-gray-color);
+
+   span {
+     font-size: 13px;
+     color: var(--dark-gray-color);
+   }
+
+   input {
+     border: none;
+     width: 200px;
+     font-size: 14px;
+     font-weight: 300;
+     color: black;
+     text-align: right;
+
+     &:focus {
+       outline: none;
+     }
+   }
+ }
+}

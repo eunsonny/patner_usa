@@ -5,7 +5,7 @@ import Top from "../../components/atoms/top";
 import classNames from "classNames/bind";
 import { useCookies } from "react-cookie";
 import { useRouter } from "next/router";
-import GetUserInfo from "../../api/getUserInfo";
+import UserInfo from "../../api/userInfo";
 
 import Bottom from "../../components/atoms/bottom";
 import LogoutModal from "./logoutModal/logoutModal";
@@ -34,7 +34,7 @@ const More = (props) => {
   };
 
   useEffect(() => {
-    const response = new GetUserInfo(TOKEN);
+    const response = new UserInfo(TOKEN);
 
     response
       .GET_USER_INFO() //
