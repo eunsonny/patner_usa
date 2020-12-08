@@ -31,6 +31,7 @@ const BusinessInfo = ({ values, handleChange }) => {
         <div className={cx("basicInput")}>
           <Input
             name="companyAddress"
+            onChange={() => Router.push("/user/register/company/address")}
             value={totalAddress}
             subOnClick={() => Router.push("/user/register/company/address")}
             placeholder="Company Address *"
