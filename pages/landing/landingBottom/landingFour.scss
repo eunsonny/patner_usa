@@ -1,0 +1,65 @@
+@import url("https://cdn.rawgit.com/openhiun/hangul/14c0f6faa2941116bb53001d6a7dcd5e82300c3f/nanumbarungothic.css");
+
+.landingFour {
+ position: absolute;
+ top:0;
+ width: 375px;
+ height: 430px;
+ background-image: url("/images/landingFourImg.png");
+ background-position: left bottom;
+ color: white;
+
+ .container {
+   margin: 57px 33px 0 45px;
+
+   .title {
+     font-size: 34px;
+     font-weight: bold;
+     line-height: 45px;
+   }
+
+   .desc {
+     display: block;
+     margin-top: 25px;
+     font-size: 20px;
+     line-height: 30px;
+     text-align: left;
+   }
+
+   .logoCon {
+     display: flex;
+     margin-top: 30px;
+
+     .google, .appStore {
+       display: flex;
+       align-items: center;
+       width: 138px;
+       height: 43px;
+       margin-right: 10px;
+       padding-left: 20px;
+       border: 1px solid white;
+       border-radius: 12px;
+       font-size: 12px;
+       font-family: 'Nanum Barun Gothic', sans-serif !important;
+
+       img { 
+         margin-right: 10px;
+       }
+     }
+
+     .google >img {
+       width: 19px;
+       height: 21px;
+     }
+
+     .appStore {
+       padding-left: 25px;
+
+       img {
+         width: 18px;
+         height: 21.6px;
+       }
+     }
+   }
+ }
+}
