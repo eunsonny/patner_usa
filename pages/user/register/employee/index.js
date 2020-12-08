@@ -1,10 +1,10 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Router from "next/router";
 import classNames from "classNames/bind";
 import { useObserver } from "mobx-react";
 import useStore from "../../../../stores/useStore";
 import validate from "../components/validate";
-import { API } from "../../../../config";
+import EmployeeRegister from "../../../../api/employeeRegister";
 
 import CreateAccount from "../components/CreateAccount/CreateAccount";
 import BasicInfo from "../components/BasicInfo/BasicInfo";
@@ -23,13 +23,29 @@ const Employee = () => {
 
   useEffect(() => {
     if (isSubmitting && validate(employeeStore.registerInfo).isValid) {
-      formEmployeeRegister();
+      const response = new EmployeeRegister();
+      response.POST_EMPLOYEE_REGISTER_INFO()
+      .then((res) => {
+        if(res.post === "ok") {
+          alert("회원가입이 완료 되었습니다");
+          Router.push("/user/login");
+        }
+      })
     }
+    return setIsSubmitting(false);
   }, [isSubmitting]);
 
   useEffect(() => {
     if (isIdAvailable) {
-      checkIdIsAvailable();
+      const response = new EmployeeRegister();
+      response.CHECK_ID_AVAILABLE()
+      .then((res) => {
+        if (res.message === "available id") {
+          employeeStore.addResult({ userId: "사용가능한 아이디 입니다." });
+        } else if (res.description === "duplicate id") {
+          employeeStore.addResult({ userId: "중복된 아이디 입니다." });
+        }
+      })
     }
     return setIsIdAvailable(false);
   }, [isIdAvailable]);
@@ -88,46 +104,6 @@ const Employee = () => {
       });
   };
 
-  const checkIdIsAvailable = () => {
-    fetch(
-      `${API}/api/v1/users/check?user_type_id=2&login_id=${employeeStore.registerInfo.userId}`
-    )
-      .then((res) => res.json())
-      .then((res) => {
-        console.log("========== 아이디 중복 확인 =========");
-        console.log(res.message);
-        if (res.message === "available id") {
-          employeeStore.addResult({ userId: "사용가능한 아이디 입니다." });
-        } else if (res.description === "duplicate id") {
-          employeeStore.addResult({ userId: "중복된 아이디 입니다." });
-        }
-      });
-  };
-
-  const formEmployeeRegister = () => {
-    fetch(`${API}/api/v1/users`, {
-      method: "POST",
-      body: JSON.stringify({
-        login_id: employeeStore.registerInfo.userId,
-        password: employeeStore.registerInfo.password,
-        user_type_id: 2,
-        user_detail_type_id: 2,
-        name: employeeStore.registerInfo.userName,
-        contact: employeeStore.registerInfo.userNumber,
-        rental_company_id: employeeStore.company.id,
-        rental_company_user_position_id: 2,
-      }),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        console.log("========== employee 회원가입 ===========");
-        console.log(res.post);
-        if (res.post === "ok") {
-          Router.push("/user/login");
-        }
-      });
-  };
-
   return useObserver(() => (
     <div className={cx("employee")}>
       <div className={cx("header")}>
@@ -159,6 +135,7 @@ const Employee = () => {
                 <Input
                   name="companyName"
                   value={employeeStore.company.companyName}
+                  onChange={() => Router.push("/user/register/employee/search")}
                   subOnClick={() =>
                     Router.push("/user/register/employee/search")
                   }

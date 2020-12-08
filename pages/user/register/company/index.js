@@ -4,7 +4,7 @@ import classNames from "classNames/bind";
 import { useObserver } from "mobx-react";
 import useStore from "../../../../stores/useStore";
 import validate from "../components/validate";
-import { API } from "../../../../config";
+import CompanyRegister from "../../../../api/companyRegister";
 
 import CreateAccount from "../components/CreateAccount/CreateAccount";
 import BusinessInfo from "../components/BusinessInfo/BusinessInfo";
@@ -33,14 +33,29 @@ const Company = () => {
       validate(companyStore.regitsterInfo).isValid &&
       isTermAllChecked
     ) {
-      formCompanyRegister();
+      const response = new CompanyRegister();
+      response.POST_COMPANY_REGISTER_INFO()
+      .then((res) => {
+        if(res.post === "ok") {
+          alert("회원가입이 완료 되었습니다");
+          Router.push("/user/login");
+        }
+      })
     }
     return setIsSubmitting(false);
   }, [isSubmitting, isTermAllChecked]);
 
   useEffect(() => {
     if (isIdAvailable) {
-      checkIdIsAvailable();
+      const response = new CompanyRegister();
+      response.CHECK_ID_AVAILABLE()
+      .then((res) => {
+        if (res.message === "available id") {
+          companyStore.addResult({ userId: "사용가능한 아이디 입니다." });
+        } else if (res.description === "duplicate id") {
+          companyStore.addResult({ userId: "중복된 아이디 입니다." });
+        }
+      })
     }
     return setIsIdAvailable(false);
   }, [isIdAvailable]);
@@ -98,47 +113,6 @@ const Company = () => {
           });
         } else {
           companyStore.addResult({ certifiNum: "인증번호가 불일치합니다." });
-        }
-      });
-  };
-
-  const checkIdIsAvailable = () => {
-    fetch(
-      `${API}/api/v1/users/check?user_type_id=2&login_id=${companyStore.registerInfo.userId}`
-    )
-      .then((res) => res.json())
-      .then((res) => {
-        console.log("========== 아이디 중복 확인 =========");
-        console.log(res.message);
-        if (res.message === "available id") {
-          companyStore.addResult({ userId: "사용가능한 아이디 입니다." });
-        } else if (res.description === "duplicate id") {
-          companyStore.addResult({ userId: "중복된 아이디 입니다." });
-        }
-      });
-  };
-
-  const formCompanyRegister = () => {
-    fetch(`${API}/api/v1/users`, {
-      method: "POST",
-      body: JSON.stringify({
-        login_id: companyStore.registerInfo.userId,
-        password: companyStore.registerInfo.password,
-        user_type_id: 2,
-        user_detail_type_id: 2,
-        name: companyStore.registerInfo.userName,
-        contact: companyStore.registerInfo.userNumber,
-        company_name: companyStore.registerInfo.companyName,
-        company_contact: "010-2398-3234",
-        address: totalAddress,
-        rental_company_user_position_id: 1,
-      }),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        console.log("========== company 회원가입 ===========");
-        if (res.post === "ok") {
-          Router.push("/user/login");
         }
       });
   };
