@@ -3,21 +3,27 @@
   padding: 15px;
   margin-bottom: 10px;
 
- .content {
+ .infoContainer {
    display: flex;
    justify-content: space-between;
    align-items: center;
    padding: 5px 8px;
    border-bottom: 1px solid var(--light-gray-color);
 
-   span:first-child {
+   .title {
      font-size: 13px;
      color: var(--dark-gray-color);
    }
 
-   span:last-child {
+   .content {
      font-size: 14px;
      font-weight: 500;
+     width: 200px;
+     text-align: right;
+     text-overflow:ellipsis;
+     white-space:nowrap;
+     word-wrap:normal;
+     overflow:hidden;
      color: var(--dark-gray-color);
    }
  }

@@ -5,6 +5,7 @@ import useStore from "../../../stores/useStore";
 import { useObserver } from "mobx-react";
 import { useCookies } from "react-cookie";
 import Router from "next/router";
+import jwt from "jsonwebtoken";
 
 import Account from "./components/account/Account";
 import MyBasicInfo from "./components/myBasicInfo/MyBasicInfo";
@@ -20,6 +21,8 @@ const MyInfo = () => {
 
   const { myInfoStore } = useStore();
   const { TOKEN } = cookies;
+  // const decode = jwt.verify(token, "secretkey");
+  const decoded = jwt.decode(TOKEN)
 
   useEffect(() => {
     const response = new UserInfo(TOKEN);
@@ -69,6 +72,7 @@ const MyInfo = () => {
     }
   };
 
+  console.log(decoded)
   return useObserver(() => (
     <div className={cx("myInfo")}>
       <div className={cx("header")}>
@@ -81,11 +85,12 @@ const MyInfo = () => {
       <div className={cx("container")}>
         <Account myInfo={myInfoStore.myInfo} handleChange={handleChange} />
         <div className={cx("middleLine")}></div>
-        <MyBasicInfo myInfo={myInfoStore.myInfo} handleChange={handleChange} />
+        <MyBasicInfo myInfo={myInfoStore.myInfo} handleChange={handleChange} position={decoded?.position}/>
         <div className={cx("middleLine")}></div>
         <MyBusinessInfo
           myInfo={myInfoStore.myInfo}
           handleChange={handleChange}
+          position={decoded?.position}
         />
         <HalfButton
           title1="Cancel"

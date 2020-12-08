@@ -9,8 +9,8 @@ const cx = classNames.bind(styles);
 const MyInfoInput = ({ title, name, value, onChange, type }) => {
   return (
     <div className={cx("myInfoInput")}>
-      <div className={cx("content")}>
-        <span>{title}</span>
+      <div className={cx("inputContainer")}>
+        <span className={cx("title")}>{title}</span>
         <Input name={name} value={value} onChange={onChange} type={type} />
       </div>
     </div>

@@ -55,7 +55,7 @@ const ProposalInfo = () => {
         onChange={getProposalInfo}
       />
       <InputWrapper
-        placeholder="제안차량 2 *"
+        placeholder="제안차량 2"
         name="offerCar2"
         value={proposalStore.proposalInfo.offerCar2}
         onChange={getProposalInfo}

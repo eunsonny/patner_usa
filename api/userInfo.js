@@ -24,9 +24,9 @@ class UserInfo {
     try {
       const response = await this.UserInfo.post("users/info" , {
         contact: myInfoStore.myInfo.userNumber,
-        password: myInfoStore.myInfo.password,
         company_name: myInfoStore.myInfo.companyName,
-        company_address: myInfoStore.myInfo.companyAddress
+        company_address: myInfoStore.myInfo.companyAddress,
+        introduction: myInfoStore.myInfo.intro
       });
       return response.data;
     } catch (error) {
