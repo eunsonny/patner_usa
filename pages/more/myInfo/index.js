@@ -26,6 +26,7 @@ const MyInfo = () => {
     response
       .GET_USER_INFO()
       .then((res) => {
+      console.log(res);
       myInfoStore.addMyInfo("userId", res.login_id);
       myInfoStore.addMyInfo("userName", res.name);
       myInfoStore.addMyInfo("userNumber", res.contact);
@@ -62,7 +63,7 @@ const MyInfo = () => {
       response
        .MODIFY_USER_INFO()
        .then((res) => {
-        if (res.message === "contact changed") {
+        if (res.message === "info changed") {
           alert("정보가 수정되었습니다.")
         }
       })

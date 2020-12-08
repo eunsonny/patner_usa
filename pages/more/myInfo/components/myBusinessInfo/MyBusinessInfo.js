@@ -7,7 +7,6 @@ import MyInfoInput from "../../../../../components/molecules/myInfoInput/MyInfoI
 const cx = classNames.bind(styles);
 
 const MyBusinessInfo = ({ myInfo, handleChange }) => {
-  console.log(myInfo);
   return (
     <div className={cx("myBusinessInfo")}>
       <span className={cx("title")}>Business Info.</span>
