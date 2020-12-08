@@ -8,12 +8,16 @@ class UserLogin {
   }
 
   async USER_LOGIN(user) {
-    const response = await this.userLogin.post("users/login", {
-      user_type_id: 2,
-      login_id: user.loginId,
-      password: user.password,
-    });
-    return response.data;
+    try {
+      const response = await this.userLogin.post("users/login", {
+        user_type_id: 2,
+        login_id: user.loginId,
+        password: user.password,
+      });
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
 
