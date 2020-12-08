@@ -1,0 +1,62 @@
+.footer {
+  width: 375px;
+  height: 424px;
+  background-color: var(--light-gray--color);
+
+  .container {
+    padding: 50px 20px;
+
+    .top {
+      ul {
+        display: flex;
+        justify-content: space-between;
+
+        li {
+          font-size: 15px;
+          font-weight: 600;
+        }
+
+        &:last-child {
+          border-bottom: 1px solid var(--gray-color);
+          padding: 20px 0;
+        }
+      }
+    }
+    .bottom {
+      font-size: 13px;
+      color: #282828;
+      .rencar {
+        padding: 16px 0 11px 0;
+      }
+
+      .address {
+        line-height: 22px;
+      }
+      .copyright {
+        padding-top: 28px;
+      }
+
+      .linkImage {
+        padding-top: 20px;
+
+        img {
+          &:last-child {
+            margin-left: 20px;
+          }
+        }
+      }
+    }
+  }
+
+  button {
+    display: block;
+    outline: none;
+    border: none;
+    height: 60px;
+    background-color: var(--main-color);
+    color: white;
+    font-size: 18px;
+    font-weight: 300;
+    width: 100%;
+  }
+}

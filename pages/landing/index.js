@@ -6,6 +6,7 @@ import classNames from "classNames/bind";
 import LandingTop from "./landingTop";
 import LandingMiddleTop from "./landingMiddleTop";
 import LandingMiddle from "./landingMiddle";
+import Footer from "./footer";
 
 const cx = classNames.bind(styles);
 
@@ -32,6 +33,7 @@ const Landing = (props) => {
       <LandingTop />
       <LandingMiddleTop position={position} />
       <LandingMiddle position={position} />
+      <Footer />
     </section>
   );
 };
