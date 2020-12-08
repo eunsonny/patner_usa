@@ -7,9 +7,9 @@ const cx = classNames.bind(styles);
 const MyInfoInfo = ({ title, content }) => {
   return (
     <div className={cx("myInfoInfo")}>
-      <div className={cx("content")}>
-        <span>{title}</span>
-        <span>{content}</span>
+      <div className={cx("infoContainer")}>
+        <span className={cx("title")}>{title}</span>
+        <span className={cx("content")}>{content}</span>
       </div>
     </div>
   );

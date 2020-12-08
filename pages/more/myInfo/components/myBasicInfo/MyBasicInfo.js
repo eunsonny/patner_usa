@@ -3,18 +3,17 @@ import classNames from "classNames/bind";
 import styles from "./myBasicInfo.scss";
 
 import MyInfoInput from "../../../../../components/molecules/myInfoInput/MyInfoInput";
+import MyInfoInfo from "../../../../../components/molecules/myInfoInfo/MyInfoInfo";
 
 const cx = classNames.bind(styles);
 
-const MyBasicInfo = ({ myInfo, handleChange }) => {
+const MyBasicInfo = ({ myInfo, handleChange, position }) => {
   return (
     <section className={cx("myBasicInfo")}>
       <span className={cx("title")}>Basic Info.</span>
-      <MyInfoInput
+      <MyInfoInfo
         title="User name"
-        name="userName"
-        value={myInfo.userName}
-        onChange={handleChange}
+        content={myInfo.userName}
       />
       <MyInfoInput
         title="User number"
@@ -22,11 +21,9 @@ const MyBasicInfo = ({ myInfo, handleChange }) => {
         value={myInfo.userNumber}
         onChange={handleChange}
       />
-      <MyInfoInput
+      <MyInfoInfo
         title="Position"
-        name="position"
-        value={myInfo.position}
-        onChange={handleChange}
+        content={myInfo.position}
       />
       <MyInfoInput
         title="e-mail"

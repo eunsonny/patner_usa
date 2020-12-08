@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "^0.21.0",
     "classnames": "^2.2.6",
+    "jsonwebtoken": "^8.5.1",
     "markdown-with-front-matter-loader": "^0.1.0",
     "mobx": "^4.15.7",
     "mobx-react": "^6.3.1",
