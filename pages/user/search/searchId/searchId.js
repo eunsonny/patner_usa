@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import classNames from "classNames/bind";
 import styles from "./searchId.scss";
 
-import { SearchInput } from "../../../../components/atoms/SearchInput/Index";
+import { SearchInput } from "../../../../components/atoms/SearchInput/searchInput";
 
 const cx = classNames.bind(styles);
 

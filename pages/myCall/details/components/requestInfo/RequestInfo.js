@@ -15,12 +15,12 @@ const RequestInfo = ({ detailInfo, requestId }) => {
           <span>{`요청번호 ${requestId}`}</span>
         </div>
       </div>
-      <DetailInfo title="고객차종" content={detailInfo.customer_car}/>
-      <DetailInfo title="차량번호" content={detailInfo.customer_car_number}/>
-      <DetailInfo title="고객 연락처" content={detailInfo.customer_contact}/>
-      <DetailInfo title="이용지역" content={detailInfo.location}/>
-      <DetailInfo title="요청일" content={detailInfo.request_time}/>
-      <DetailInfo title="추가 요청사항" content={detailInfo.request_extra}/>
+      <DetailInfo title="고객차종" content={detailInfo.customer_car} />
+      <DetailInfo title="차량번호" content={detailInfo.customer_car_number} />
+      <DetailInfo title="고객 연락처" content={detailInfo.customer_contact} />
+      <DetailInfo title="이용지역" content={detailInfo.location} />
+      <DetailInfo title="요청일" content={detailInfo.request_time} />
+      <DetailInfo title="추가 요청사항" content={detailInfo.request_extra} />
     </div>
   );
 };

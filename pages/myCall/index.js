@@ -6,13 +6,15 @@ import { useCookies } from "react-cookie";
 import { useRouter } from "next/router";
 import classNames from "classNames/bind";
 
+import Top from "../../components/atoms/top/top";
+import Bottom from "../../components/atoms/bottom/bottom";
+import Logo from "../../components/atoms/logo/logo";
+
+import MenuTab from "./menuTab/menuTab";
+import CardOne from "./cardOne/cardOne";
+import CardTwo from "./cardTwo/cardTwo";
+
 import GetMyCallLists from "../../api/getMyCallLists";
-import Top from "../../components/atoms/top";
-import MenuTab from "./menuTab";
-import CardOne from "./cardOne";
-import CardTwo from "./cardTwo";
-import Bottom from "../../components/atoms/bottom";
-import Logo from "../../components/atoms/logo";
 
 const cx = classNames.bind(styles);
 
@@ -29,10 +31,10 @@ const MyCall = (props) => {
     const response = new GetMyCallLists(TOKEN);
     const { id } = e.currentTarget;
     window.scrollTo(0, 0);
-    setMenu({ [id]: true });
     response //
       .GET_CALL_CARDS(id)
-      .then((res) => setCallData(res.message));
+      .then((res) => setCallData(res.message))
+      .then(() => setMenu({ [id]: true }));
   };
 
   useEffect(() => {

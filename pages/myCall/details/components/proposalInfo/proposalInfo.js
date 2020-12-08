@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import classNames from "classnames/bind";
+import classNames from "classNames/bind";
 import styles from "./proposalInfo.scss";
 
 import useStore from "../../../../../stores/useStore";
@@ -65,7 +65,7 @@ const ProposalInfo = () => {
         // onKeyUp ={(e) => checkByte(e)}
         onChange={checkByte}
         name="offerExtra"
-        value={proposalStore.proposalInfo.offerExtra}
+        value={proposalStore.proposalInfo.offerExtra || ""}
       ></textarea>
       <span className={cx("byteCounter")}>{`(${textByte}/45byte)`}</span>
     </div>

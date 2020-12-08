@@ -3,9 +3,13 @@ import React from "react";
 import styles from "./landingTop.scss";
 import classNames from "classNames/bind";
 
+import { useRouter } from "next/router";
+
 const cx = classNames.bind(styles);
 
 const LandingTop = (props) => {
+  const router = useRouter();
+
   return (
     <main className={cx("landingTop")}>
       <header>
@@ -17,7 +21,7 @@ const LandingTop = (props) => {
         <img className={cx("mainTextTwo")} src="/images/landingText2.png" />
       </div>
       <div className={cx("buttonContainer")}>
-        <button>START</button>
+        <button onClick={() => router.push("/landing/start")}>START</button>
       </div>
     </main>
   );

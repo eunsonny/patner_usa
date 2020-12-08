@@ -6,7 +6,7 @@ import Input from "../../atoms/Input/Input";
 
 const cx = classNames.bind(styles);
 
-const MyInfoInput = ({ title, name, value, onChange, type  }) => {
+const MyInfoInput = ({ title, name, value, onChange, type }) => {
   return (
     <div className={cx("myInfoInput")}>
       <div className={cx("content")}>

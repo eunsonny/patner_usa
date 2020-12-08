@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 
 import useStore from "../../../stores/useStore";
-import UserLogin from "../../api/login";
+import UserLogin from "../../../api/login";
 
 import styles from "./login.scss";
 

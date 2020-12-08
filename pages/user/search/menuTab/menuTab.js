@@ -2,7 +2,7 @@ import React, { useReducer } from "react";
 
 import classNames from "classNames/bind";
 
-import styles from "./menuTap.scss";
+import styles from "./menuTab.scss";
 import { useRouter } from "next/router";
 
 const cx = classNames.bind(styles);

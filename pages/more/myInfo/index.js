@@ -23,9 +23,7 @@ const MyInfo = () => {
 
   useEffect(() => {
     const response = new UserInfo(TOKEN);
-    response
-      .GET_USER_INFO()
-      .then((res) => {
+    response.GET_USER_INFO().then((res) => {
       console.log(res);
       myInfoStore.addMyInfo("userId", res.login_id);
       myInfoStore.addMyInfo("userName", res.name);
@@ -38,10 +36,10 @@ const MyInfo = () => {
     });
   }, []);
 
-  useEffect (() => {
+  useEffect(() => {
     handleSubmit();
     return setClicked("");
-  }, [clicked])
+  }, [clicked]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -51,25 +49,25 @@ const MyInfo = () => {
   const handleClick = (e) => {
     console.log(e.target.value);
     setClicked(e.target.value);
-  }
+  };
 
   const handleSubmit = () => {
-    if(clicked === "취소") {
-      Router.push("/more")
+    if (clicked === "취소") {
+      Router.push("/more");
     }
 
-    if(clicked === "정보수정"){
+    if (clicked === "정보수정") {
       const response = new UserInfo(TOKEN);
       response
-       .MODIFY_USER_INFO()
-       .then((res) => {
-        if (res.message === "info changed") {
-          alert("정보가 수정되었습니다.")
-        }
-      })
-      .then(Router.push("/more"));
+        .MODIFY_USER_INFO()
+        .then((res) => {
+          if (res.message === "info changed") {
+            alert("정보가 수정되었습니다.");
+          }
+        })
+        .then(Router.push("/more"));
     }
-  }
+  };
 
   return useObserver(() => (
     <div className={cx("myInfo")}>
@@ -85,8 +83,17 @@ const MyInfo = () => {
         <div className={cx("middleLine")}></div>
         <MyBasicInfo myInfo={myInfoStore.myInfo} handleChange={handleChange} />
         <div className={cx("middleLine")}></div>
-        <MyBusinessInfo myInfo={myInfoStore.myInfo} handleChange={handleChange} />
-        <HalfButton title1="Cancel" value1="취소" title2="Save" value2="정보수정" onClick={handleClick} />
+        <MyBusinessInfo
+          myInfo={myInfoStore.myInfo}
+          handleChange={handleChange}
+        />
+        <HalfButton
+          title1="Cancel"
+          value1="취소"
+          title2="Save"
+          value2="정보수정"
+          onClick={handleClick}
+        />
       </div>
     </div>
   ));

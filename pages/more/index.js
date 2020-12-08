@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
-import Logo from "../../components/atoms/logo";
-import Top from "../../components/atoms/top";
-
-import classNames from "classNames/bind";
-import { useCookies } from "react-cookie";
-import { useRouter } from "next/router";
-import UserInfo from "../../api/userInfo";
-
-import Bottom from "../../components/atoms/bottom";
-import LogoutModal from "./logoutModal/logoutModal";
 
 import styles from "./more.scss";
+
+import { useCookies } from "react-cookie";
+import { useRouter } from "next/router";
+import classNames from "classNames/bind";
+
+import Top from "../../components/atoms/top/top";
+import Bottom from "../../components/atoms/bottom/bottom";
+import Logo from "../../components/atoms/logo/logo";
+
+import LogoutModal from "./logoutModal/logoutModal";
+
+import UserInfo from "../../api/userInfo";
 
 const cx = classNames.bind(styles);
 
@@ -54,7 +56,7 @@ const More = (props) => {
         <div className={cx("userId")}>
           <span className={cx("mainTitle")}>imsUSA2020</span>
           <div className={cx("userInfo")}>
-            <span>{userInfo.name}</span>
+            <span>{userInfo?.name}</span>
             <button onClick={() => router.push("/more/myInfo")}>내정보</button>
           </div>
         </div>

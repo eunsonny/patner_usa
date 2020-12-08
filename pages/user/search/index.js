@@ -12,15 +12,16 @@ import {
   GO_TO_LOGIN,
 } from "../../../constants/Label";
 
-import SearchId from "./searchId";
-import SearchPwd from "./searchPwd";
-import ViewId from "./viewId";
-import ViewPwd from "./viewPwd";
-import MenuTab from "./menuTab";
+import SearchButton from "../../../components/atoms/searchButton/searchButton";
+import SearchId from "./searchId/searchId";
+import SearchPwd from "./searchPwd/searchPwd";
+import ViewId from "./viewId/viewId";
+import ViewPwd from "./viewPwd/viewPwd";
+import MenuTab from "./menuTab/menuTab";
 
-import SearchButton from "../../../components/atoms/searchButton/index";
+import UserSearch from "../../../api/searchUserInfo";
+
 import { VERIFY_REQUEST, PWD_VALIDATION } from "./validation";
-import UserSearch from "../../api/searchUserInfo";
 
 const cx = classNames.bind(styles);
 

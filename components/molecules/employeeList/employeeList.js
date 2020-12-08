@@ -2,6 +2,7 @@ import React from "react";
 
 import styles from "./employeeList.scss";
 import classNames from "classNames/bind";
+
 import Switch from "../../atoms/switch/switch";
 
 const cx = classNames.bind(styles);

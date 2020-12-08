@@ -17,11 +17,11 @@ const Bottom = (props) => {
   return (
     <section className={cx("bottom")}>
       {path.includes("myCall") ? (
-        <Link href="/">
+        <Link href="/myCall">
           <img src="images/myCallOn.svg" />
         </Link>
       ) : (
-        <Link href="/">
+        <Link href="/myCall">
           <img src="images/myCallOff.svg" />
         </Link>
       )}
@@ -35,11 +35,11 @@ const Bottom = (props) => {
         </Link>
       )}
       {path.includes("more") ? (
-        <Link href="/">
+        <Link href="/more">
           <img src="images/menuOn.svg" />
         </Link>
       ) : (
-        <Link href="/">
+        <Link href="/more">
           <img src="images/menuOff.svg" />
         </Link>
       )}

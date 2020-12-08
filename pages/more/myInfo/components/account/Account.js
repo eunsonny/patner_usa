@@ -10,9 +10,14 @@ const Account = ({ myInfo, handleChange }) => {
   return (
     <section className={cx("account")}>
       <span className={cx("title")}>Account.</span>
-      <MyInfoInfo title="User ID" name="userId" content={myInfo.userId} onChange={handleChange}/>
+      <MyInfoInfo
+        title="User ID"
+        name="userId"
+        content={myInfo.userId}
+        onChange={handleChange}
+      />
       <MyInfoInfo title="password" />
-      <MyInfoInfo title="password Check"/>
+      <MyInfoInfo title="password Check" />
     </section>
   );
 };

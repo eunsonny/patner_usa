@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import styles from "./switch.scss";
 import classNames from "classNames/bind";
@@ -12,9 +12,9 @@ const Switch = ({ id, handleActive, actived }) => {
         className={cx("switchInput")}
         id={`${id}`}
         type="checkbox"
-        checked={actived[id]}
+        checked={actived[id] || false}
         onChange={(e) => handleActive(e)}
-        value={`${actived[id]}`}
+        value={actived[id] || false}
       />
       <label className={cx("switchLabel")} htmlFor={`${id}`}>
         <span className={cx("switchButton")} />

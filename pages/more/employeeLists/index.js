@@ -4,28 +4,26 @@ import classNames from "classNames/bind";
 import Link from "next/link";
 
 import styles from "./employeeLists.scss";
-import Top from "../../../components/atoms/top";
-import EmployeeList from "../../../components/molecules/employeeList";
+import Top from "../../../components/atoms/top/top";
+import EmployeeList from "../../../components/molecules/employeeList/employeeList";
 
 const cx = classNames.bind(styles);
 
 const EmployeeLists = (props) => {
   const [employees, setEmployee] = useState([
-    "창모",
-    "도끼",
-    "수퍼비",
-    "스윙스",
-    "창모",
-    "도끼",
-    "수퍼비",
-    "스윙스",
-    "창모",
-    "도끼",
-    "수퍼비",
-    "스윙스",
+    "철수",
+    "영희",
+    "지영",
+    "동원",
+    "수연",
+    "민승",
+    "예진",
+    "성태",
+    "정현",
+    "채영",
   ]);
 
-  const [actived, setActived] = useState({});
+  const [actived, setActived] = useState({ value: " " });
 
   const handleDelete = (e) => {
     setEmployee(
