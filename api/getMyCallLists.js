@@ -7,11 +7,13 @@ class GetMyCallLists {
     });
   }
 
-  async GET_CALL_CARDS(menu) {
+  async GET_CALL_CARDS(menu, offset) {
     try {
       const response = await this.getMyCallLists.get("requests", {
         params: {
           status: menu,
+          limit: 4,
+          offset: offset || 0,
         },
       });
       return response.data;
@@ -25,6 +27,8 @@ class GetMyCallLists {
       const response = await this.getMyCallLists.get("requests", {
         params: {
           status: menu || 0,
+          limit: 4,
+          offset: 0,
         },
       });
       return response.data;
