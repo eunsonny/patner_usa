@@ -17,10 +17,20 @@
     font-size: 14px;
     color: #282828;
     margin-right: 8px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+    width: 100px;
+    overflow: hidden;
   }
 
   span:last-child {
     font-size: 12px;
     color: #bdbdbd;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+    width: 200px;
+    overflow: hidden;
   }
 }

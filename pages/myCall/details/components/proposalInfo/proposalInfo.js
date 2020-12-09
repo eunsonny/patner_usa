@@ -26,7 +26,6 @@ const ProposalInfo = () => {
     let totalByte = 0;
     let currentLength = 0;
     let newMessage = "";
-    console.log(msgLength === 0);
 
     for (let i = 0; i < msgLength; i++) {
       let currentByte = message.charCodeAt(i);

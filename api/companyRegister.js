@@ -21,7 +21,7 @@ class CompanyRegister {
       });
       return response.data;
     } catch (error) {
-     return error.response.data;
+      return error.response.data;
     }
   }
 
@@ -34,6 +34,7 @@ class CompanyRegister {
         user_detail_type_id: 2,
         name: companyStore.registerInfo.userName,
         contact: companyStore.registerInfo.userNumber,
+        email: companyStore.registerInfo.email,
         company_name: companyStore.registerInfo.companyName,
         company_contact: "010-2398-3234",
         address: Object.values(companyStore.address).join(", "),

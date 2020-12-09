@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useObserver } from "mobx-react";
 import { useCookies } from "react-cookie";
 import classNames from "classNames/bind";
+import Swal from "sweetalert2";
 
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -32,8 +33,13 @@ const Login = (props) => {
   };
 
   const goToMain = () => {
-    alert("이미 로그인이 되어있습니다.");
-    router.push("/myCall");
+    Swal.fire({
+      title: "로그인<br/>되어있습니다.",
+      icon: "info",
+      showCloseButton: true,
+      focusConfirm: false,
+    }) //
+      .then(() => router.push("/myCall"));
   };
 
   const handleLogin = () => {
@@ -47,11 +53,20 @@ const Login = (props) => {
             path: "/",
             maxAge: 1000000,
           });
-          alert("로그인이 완료되었습니다.");
-          router.push("/myCall");
+          Swal.fire({
+            icon: "success",
+            title: "로그인이<br/>완료되었습니다.",
+            showConfirmButton: false,
+            timer: 1500,
+          }).then(() => router.push("/myCall"));
         }
       })
-      .catch((err) => alert("아이디 비밀번호를 다시 확인해주세요"));
+      .catch((err) =>
+        Swal.fire({
+          icon: "error",
+          title: "아이디, 비밀번호를<br/>다시 확인해주세요",
+        })
+      );
   };
 
   useEffect(
@@ -65,8 +80,9 @@ const Login = (props) => {
     <section className={cx("login")}>
       <div className={cx("title")}>
         <p>Welcome to</p>
-        <span>IMS</span>
-        <span>.</span>
+        <span>
+          IMS<span>.</span>
+        </span>
       </div>
       <div className={cx("inputArea")}>
         <input

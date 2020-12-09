@@ -1,0 +1,32 @@
+.alarm {
+  .topContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-bottom: 1px solid var(--light-gray-color);
+    background-color: white;
+    z-index: 1;
+  }
+
+  .container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--paleblue-color);
+    min-width: 375px;
+    min-height: 100vh;
+    // padding: 123px 0 15px 0;
+
+    .cards {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      img {
+        display: block;
+      }
+    }
+  }
+}

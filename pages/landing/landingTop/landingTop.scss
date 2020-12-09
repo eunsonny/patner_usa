@@ -1,11 +1,11 @@
 .landingTop {
-  width: 375px;
   height: 597px;
   background-image: url("/images/landing.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 
   header {
     padding: 20px 0 0 20px;
-
     img {
       display: block;
       width: 50.3px;

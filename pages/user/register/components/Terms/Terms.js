@@ -3,7 +3,7 @@ import classNames from "classNames/bind";
 import styles from "./Terms.scss";
 
 import Term from "../Term/Term";
-import TERM_LISTS from "./termLists";
+import { TERM_LISTS } from "../../../../../constants/termLists";
 
 const cx = classNames.bind(styles);
 

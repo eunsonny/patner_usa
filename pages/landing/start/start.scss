@@ -1,13 +1,12 @@
 .start {
-  position: absolute;
-  top:0;
-  width: 375px;
-  height: 667px;
+  height: 100vh;
   background-image: url("/images/loginBackground.png");
+  background-repeat: no-repeat;
+  background-size: cover;
   color: white;
 
   .container {
-    margin: 90px 37px 49px 25px;
+    padding: 90px 37px 49px 25px;
 
     .firstLine {
       font-size: 16px;

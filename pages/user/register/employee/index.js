@@ -6,6 +6,7 @@ import useStore from "../../../../stores/useStore";
 import validate from "../components/validate";
 import EmployeeRegister from "../../../../api/employeeRegister";
 import { autorun } from "mobx";
+import Swal from "sweetalert2";
 
 import CreateAccount from "../components/CreateAccount/CreateAccount";
 import BasicInfo from "../components/BasicInfo/BasicInfo";
@@ -31,42 +32,44 @@ const Employee = () => {
       : setIsIdCheckBtn(false);
   }, [userId]);
 
-  useEffect (() => {
-    autorun (() => {
+  useEffect(() => {
+    autorun(() => {
       console.log(validate(employeeStore.registerInfo).isValid);
-      validate(employeeStore.registerInfo).isValid
-      && Object.keys(employeeStore.registerInfo).length === 7 
-      && Object.values(employeeStore.registerInfo).every((value) => value)
-      && employeeStore.company.companyName
-      ?setIsActive(true) : setIsActive(false);
-      
+      validate(employeeStore.registerInfo).isValid &&
+      Object.keys(employeeStore.registerInfo).length === 7 &&
+      Object.values(employeeStore.registerInfo).every((value) => value) &&
+      employeeStore.company.companyName
+        ? setIsActive(true)
+        : setIsActive(false);
 
       if (isSubmitting && validate(employeeStore.registerInfo).isValid) {
         const response = new EmployeeRegister();
-        response.POST_EMPLOYEE_REGISTER_INFO()
-        .then((res) => {
-          if(res.post === "ok") {
-            alert("회원가입이 완료 되었습니다");
-            Router.push("/user/login");
-            clearInfo();
+        response.POST_EMPLOYEE_REGISTER_INFO().then((res) => {
+          if (res.post === "ok") {
+            Swal.fire({
+              icon: "success",
+              title: "회원가입이<br/>완료 되었습니다.",
+              showConfirmButton: false,
+              timer: 1500,
+            }) //
+              .then(() => Router.push("/user/login"));
           }
-        })
+        });
       }
       return setIsSubmitting(false);
-    })
+    });
   }, [isSubmitting]);
 
   useEffect(() => {
     if (isIdAvailable) {
       const response = new EmployeeRegister();
-      response.CHECK_ID_AVAILABLE()
-      .then((res) => {
+      response.CHECK_ID_AVAILABLE().then((res) => {
         if (res.message === "available id") {
           employeeStore.addResult({ userId: "사용가능한 아이디 입니다." });
         } else if (res.description === "duplicate id") {
           employeeStore.addResult({ userId: "중복된 아이디 입니다." });
         }
-      })
+      });
     }
     return setIsIdAvailable(false);
   }, [isIdAvailable]);
@@ -103,6 +106,12 @@ const Employee = () => {
       value !== employeeStore.registerInfo.checkPassword
     ) {
       employeeStore.addResult({ checkPassword: "비밀번호가 불일치 합니다." });
+    } else if (
+      name === "password" &&
+      employeeStore.registerInfo.checkPassword &&
+      value === employeeStore.registerInfo.checkPassword
+    ) {
+      employeeStore.addResult({ checkPassword: "비밀번호가 일치합니다." });
     }
   };
 
@@ -176,7 +185,6 @@ const Employee = () => {
     clearInfo();
   };
 
-  console.log(employeeStore.registerInfo)
   return useObserver(() => (
     <div className={cx("employee")}>
       <div className={cx("header")}>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { useRouter } from "next/router";
 import classNames from "classNames/bind";
+import Swal from "sweetalert2";
 
 import styles from "./search.scss";
 
@@ -21,7 +22,7 @@ import MenuTab from "./menuTab/menuTab";
 
 import UserSearch from "../../../api/searchUserInfo";
 
-import { VERIFY_REQUEST, PWD_VALIDATION } from "./validation";
+import { VERIFY_REQUEST, PWD_VALIDATION } from "../../../constants/validation";
 
 const cx = classNames.bind(styles);
 
@@ -68,7 +69,10 @@ const Search = (props) => {
         setTap({ [tapName]: true });
       })
       .catch((err) => {
-        alert("회원 정보가 존재하지 않습니다.");
+        Swal.fire({
+          icon: "error",
+          title: "회원정보가<br/>존재하지 않습니다.",
+        });
         setValue({});
         setRequest(null);
         setVerifyCheck(false);
@@ -87,7 +91,10 @@ const Search = (props) => {
     } else {
       setRequest(false);
       setCounter(0);
-      alert("올바를 정보를 입력해주세요.");
+      Swal.fire({
+        icon: "error",
+        title: "올바른 정보를<br/>입력해주세요.",
+      });
     }
   };
 
@@ -106,8 +113,14 @@ const Search = (props) => {
     tab.searchPwd &&
       response
         .SEARCH_USER_PASSWORD(value) //
-        .then((res) => alert(`${res}`));
-    router.push("/user/login");
+        .then((res) =>
+          Swal.fire({
+            icon: "success",
+            title: "비밀번호가<br/>바뀌었습니다.",
+            showConfirmButton: false,
+            timer: 1500,
+          }).then(() => router.push("/user/login"))
+        );
   };
 
   const searchInfo = {

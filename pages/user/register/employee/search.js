@@ -23,8 +23,6 @@ const Search = () => {
     )
       .then((res) => res.json())
       .then((res) => {
-        console.log("============ 통신확인 ===========");
-        console.log(res.result);
         setSearchResult(res.result);
       });
   };

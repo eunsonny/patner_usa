@@ -26,11 +26,11 @@ const Bottom = (props) => {
         </Link>
       )}
       {path.includes("alarm") ? (
-        <Link href="/">
+        <Link href="/alarm">
           <img className={cx("center")} src="images/bellOn.svg" />
         </Link>
       ) : (
-        <Link href="/">
+        <Link href="/alarm">
           <img className={cx("center")} src="images/bellOff.svg" />
         </Link>
       )}
