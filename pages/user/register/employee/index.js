@@ -5,6 +5,7 @@ import { useObserver } from "mobx-react";
 import useStore from "../../../../stores/useStore";
 import validate from "../components/validate";
 import EmployeeRegister from "../../../../api/employeeRegister";
+import { autorun } from "mobx";
 
 import CreateAccount from "../components/CreateAccount/CreateAccount";
 import BasicInfo from "../components/BasicInfo/BasicInfo";
@@ -14,25 +15,45 @@ import styles from "./employee.scss";
 const cx = classNames.bind(styles);
 
 const Employee = () => {
-  const [createBtnIsActive, setIsActive] = useState(true);
+  const [createBtnIsActive, setIsActive] = useState(false);
   const [clicked, setClicked] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isIdAvailable, setIsIdAvailable] = useState(false);
+  const [userId, setUserId] = useState("");
+  const [isIdCheckBtn, setIsIdCheckBtn] = useState(false);
 
   const { employeeStore } = useStore();
 
   useEffect(() => {
-    if (isSubmitting && validate(employeeStore.registerInfo).isValid) {
-      const response = new EmployeeRegister();
-      response.POST_EMPLOYEE_REGISTER_INFO()
-      .then((res) => {
-        if(res.post === "ok") {
-          alert("회원가입이 완료 되었습니다");
-          Router.push("/user/login");
-        }
-      })
-    }
-    return setIsSubmitting(false);
+    const idReg = /[\s]/g;
+    userId.length > 4 && !idReg.test(userId)
+      ? setIsIdCheckBtn(true)
+      : setIsIdCheckBtn(false);
+  }, [userId]);
+
+  useEffect (() => {
+    autorun (() => {
+      console.log(validate(employeeStore.registerInfo).isValid);
+      validate(employeeStore.registerInfo).isValid
+      && Object.keys(employeeStore.registerInfo).length === 7 
+      && Object.values(employeeStore.registerInfo).every((value) => value)
+      && employeeStore.company.companyName
+      ?setIsActive(true) : setIsActive(false);
+      
+
+      if (isSubmitting && validate(employeeStore.registerInfo).isValid) {
+        const response = new EmployeeRegister();
+        response.POST_EMPLOYEE_REGISTER_INFO()
+        .then((res) => {
+          if(res.post === "ok") {
+            alert("회원가입이 완료 되었습니다");
+            Router.push("/user/login");
+            clearInfo();
+          }
+        })
+      }
+      return setIsSubmitting(false);
+    })
   }, [isSubmitting]);
 
   useEffect(() => {
@@ -53,10 +74,36 @@ const Employee = () => {
   //employee 회원가입 page의 input 값을 store에 저장하는 함수
   const getEmployeeInfo = (e) => {
     const { name, value } = e.target;
+    const idReg = /[\s]/g;
+
     employeeStore.addInfo(name, value);
     employeeStore.addResult(
       validate(employeeStore.registerInfo, name).totalResults
     );
+
+    if (value === "") {
+      employeeStore.addResult({ [name]: "" });
+    }
+
+    if (name === "userId") {
+      setUserId(value);
+    }
+
+    if (name === "userId" && employeeStore.results.userId) {
+      employeeStore.addResult({ userId: "중복 확인이 필요합니다." });
+    }
+
+    if (name === "userId" && idReg.test(value)) {
+      employeeStore.addResult({ userId: "공백은 사용할 수 없습니다." });
+    }
+
+    if (
+      name === "password" &&
+      employeeStore.registerInfo.checkPassword &&
+      value !== employeeStore.registerInfo.checkPassword
+    ) {
+      employeeStore.addResult({ checkPassword: "비밀번호가 불일치 합니다." });
+    }
   };
 
   // 어떤 버튼이 클릭 됐는지 확인하는 함수
@@ -104,11 +151,37 @@ const Employee = () => {
       });
   };
 
+  const clearInfo = () => {
+    employeeStore.addInfo("userId", null);
+    employeeStore.addInfo("password", null);
+    employeeStore.addInfo("checkPassword", null);
+    employeeStore.addInfo("userName", null);
+    employeeStore.addInfo("userNumber", null);
+    employeeStore.addInfo("position", null);
+    employeeStore.addInfo("email", null);
+    employeeStore.addInfo("companyName", null);
+    employeeStore.addInfo("intro", null);
+    employeeStore.addCompany("companyName", null);
+    employeeStore.addCompany("id", null);
+    employeeStore.addResult({ userId: null });
+    employeeStore.addResult({ password: null });
+    employeeStore.addResult({ checkPassword: null });
+    employeeStore.addResult({ userName: null });
+    employeeStore.addResult({ userNumber: null });
+    employeeStore.addResult({ email: null });
+  };
+
+  const handlePrevBtn = () => {
+    Router.push("/user/register");
+    clearInfo();
+  };
+
+  console.log(employeeStore.registerInfo)
   return useObserver(() => (
     <div className={cx("employee")}>
       <div className={cx("header")}>
         <div></div>
-        <button onClick={() => Router.push("/user/register")}>
+        <button onClick={handlePrevBtn}>
           <img src="/images/blue_arrow_left.svg" className={cx("arrow")} />
         </button>
       </div>
@@ -119,6 +192,7 @@ const Employee = () => {
             handleChange={getEmployeeInfo}
             handleClick={handleClick}
             results={employeeStore.results}
+            isIdCheckBtn={isIdCheckBtn}
           />
           <BasicInfo
             values={employeeStore.registerInfo}

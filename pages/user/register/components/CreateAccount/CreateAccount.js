@@ -7,7 +7,7 @@ import ValidationMessage from "../../../../../components/atoms/ValidationMessage
 
 const cx = classNames.bind(styles);
 
-const CreateAccount = ({ values, handleChange, handleClick, results }) => {
+const CreateAccount = ({ values, handleChange, handleClick, results, isIdCheckBtn }) => {
   return (
     <section className={cx("CreateAccount")}>
       <span className={cx("title")}>Creat an account.</span>
@@ -18,6 +18,7 @@ const CreateAccount = ({ values, handleChange, handleClick, results }) => {
             active: values.userId?.length > 5,
             valid: results?.userId?.includes("가능"),
             inValid: results?.userId?.includes("중복"),
+            warning: results?.userId?.includes("공백")
           })}
         >
           <Input
@@ -28,8 +29,8 @@ const CreateAccount = ({ values, handleChange, handleClick, results }) => {
           />
           <button
             type="submit"
-            className={cx({ active: values.userId?.length > 5 })}
-            disabled={values.userId?.length <= 5}
+            className={cx({ active: isIdCheckBtn})}
+            disabled={!isIdCheckBtn}
             onClick={handleClick}
             value="ID중복체크"
           >
@@ -39,8 +40,9 @@ const CreateAccount = ({ values, handleChange, handleClick, results }) => {
         {results.userId && (
           <ValidationMessage
             message={results.userId}
-            valid={"가능"}
-            inValid={"중복"}
+            valid="가능"
+            inValid="중복"
+            warning="공백"
           />
         )}
       </div>
