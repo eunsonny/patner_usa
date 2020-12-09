@@ -6,9 +6,13 @@
 }
 
 .valid {
-  color: #01b856;
+  color: var(--success-color);
 }
 
 .inValid {
-  color: #ff2929;
+  color: var(--error-color);
+}
+
+.warning {
+  color: var(--error-color);
 }

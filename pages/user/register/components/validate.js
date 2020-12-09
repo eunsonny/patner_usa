@@ -1,7 +1,7 @@
 const validate = (values = {}, name) => {
   const reg = {
     pwd: /^(?=.*\d)(?=.*[A-Za-z])[A-Za-z\d]{8,}$/,
-    email: /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i,
+    email: /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i,
     userNum: /^\d{3}-\d{3,4}-\d{4}$/,
   };
 

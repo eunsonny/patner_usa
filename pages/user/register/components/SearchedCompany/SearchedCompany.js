@@ -9,7 +9,7 @@ const SearchedCompany = ({ companyName, companyAddress, onClick, id }) => {
     <li className={cx("searchedCompany")} onClick={onClick || null} id={id}>
       <span>{companyName}</span>
       <span>
-        {companyAddress.length > 25
+        {companyAddress?.length > 25
           ? `${companyAddress.substring(0, 25)}...`
           : companyAddress}
       </span>

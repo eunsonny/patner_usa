@@ -21,7 +21,6 @@ const MyInfo = () => {
 
   const { myInfoStore } = useStore();
   const { TOKEN } = cookies;
-  // const decode = jwt.verify(token, "secretkey");
   const decoded = jwt.decode(TOKEN)
 
   useEffect(() => {
@@ -72,7 +71,6 @@ const MyInfo = () => {
     }
   };
 
-  console.log(decoded)
   return useObserver(() => (
     <div className={cx("myInfo")}>
       <div className={cx("header")}>
