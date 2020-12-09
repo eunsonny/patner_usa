@@ -26,8 +26,10 @@ const MyCall = (props) => {
 
   const [menuOnOff, setMenu] = useState({});
   const [callData, setCallData] = useState([]);
+  const [offset, setOffset] = useState(0);
 
   const handleMenu = (e) => {
+    setOffset(0);
     const response = new GetMyCallLists(TOKEN);
     const { id } = e.currentTarget;
     window.scrollTo(0, 0);
@@ -38,6 +40,7 @@ const MyCall = (props) => {
   };
 
   useEffect(() => {
+    setOffset(0);
     const response = new GetMyCallLists(TOKEN);
     const menu = router.asPath.split("=")[1];
     menu ? setMenu({ [menu]: true }) : setMenu({ 0: true });
@@ -45,6 +48,29 @@ const MyCall = (props) => {
       .GET_CDM_CARDS(menu)
       .then((res) => setCallData(res.message));
   }, []);
+
+  // console.log(document.documentElement.scrollTop);
+  // console.log(document.documentElement.clientHeight);
+  // console.log(document.documentElement.scrollHeight);
+
+  const onScroll = () => {
+    const a = document.documentElement.scrollTop;
+    const b = document.documentElement.clientHeight;
+    const c = document.documentElement.scrollHeight;
+    a + b === c && setOffset(offset + 4);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", onScroll);
+    if (menuOnOff[0] && offset !== 0) {
+      const response = new GetMyCallLists(TOKEN);
+      const id = Object.keys(menuOnOff)[0];
+      response //
+        .GET_CALL_CARDS(id, offset)
+        .then((res) => setCallData([...callData, ...res.message]));
+    }
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [offset]);
 
   return (
     <section className={cx("myCall")}>
