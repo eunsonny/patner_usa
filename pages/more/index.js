@@ -5,6 +5,7 @@ import styles from "./more.scss";
 import { useCookies } from "react-cookie";
 import { useRouter } from "next/router";
 import classNames from "classNames/bind";
+import Swal from "sweetalert2";
 
 import Top from "../../components/atoms/top/top";
 import Bottom from "../../components/atoms/bottom/bottom";
@@ -12,11 +13,14 @@ import Logo from "../../components/atoms/logo/logo";
 
 import LogoutModal from "./logoutModal/logoutModal";
 
+import useStore from "../../stores/useStore";
 import UserInfo from "../../api/userInfo";
 
 const cx = classNames.bind(styles);
 
 const More = (props) => {
+  const { tokenStore } = useStore();
+
   const router = useRouter();
 
   const [cookies, setCookie, removeCookie] = useCookies(["TOKEN"]);
@@ -31,8 +35,18 @@ const More = (props) => {
   };
 
   const handleLogout = (e) => {
-    router.push("/");
-    e.target.dataset.name = "okay" && removeCookie("TOKEN");
+    e.target.dataset.name =
+      "okay" &&
+      setCookie("TOKEN", tokenStore["userToken"], {
+        path: "/",
+        maxAge: 0,
+      });
+    Swal.fire({
+      icon: "success",
+      title: "로그아웃이<br/>완료 되었습니다.",
+      showConfirmButton: false,
+      timer: 1500,
+    }).then(() => router.push("/"));
   };
 
   useEffect(() => {
@@ -43,8 +57,11 @@ const More = (props) => {
       .then((res) => setUserInfo(res));
 
     if (!TOKEN || TOKEN === "undefined") {
-      alert("로그인이 되어있지 않습니다.");
-      router.push("/user/login");
+      Swal.fire({
+        icon: "error",
+        title: "로그인<br/>되어있지 않습니다.",
+      }); //
+      then(() => router.push("/user/login"));
     }
   }, []);
 

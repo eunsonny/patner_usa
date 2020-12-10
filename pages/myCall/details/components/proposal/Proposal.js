@@ -9,6 +9,7 @@ import Proposed from "../proposed/Proposed";
 import ProposalModify from "../proposalModify/ProposalModify";
 import MainButton from "../../../../../components/atoms/mainButton/MainButton";
 import HalfButton from "../../../../../components/atoms/halfButton/HalfButton";
+
 import { useObserver } from "mobx-react";
 import { autorun } from "mobx";
 
@@ -47,6 +48,7 @@ const Proposal = ({ pageTab, detailInfo, setClicked }) => {
           value="제안하기"
           onClick={handleClick}
           condition={isActive}
+          disabled={!isActive}
         />
       ) : null}
       {/* {pageTab === 1 ? <Proposed detailInfo={detailInfo} /> : null} */}

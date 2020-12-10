@@ -1,6 +1,5 @@
 .search {
   position: relative;
-  width: 375px;
   height: 667px;
   .top {
     height: 24px;
@@ -18,10 +17,10 @@
 
     div {
       padding-bottom: 7px;
-      border-bottom: 1px solid var(--dark-gray-color);
-      text-align: center;
-      flex: 1;
       color: var(--dark-gray-color);
+      text-align: center;
+      border-bottom: 1px solid var(--dark-gray-color);
+      flex: 1;
     }
 
     .on {
@@ -32,6 +31,10 @@
   }
 
   .inputContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 592px;
     padding-top: 31px;
   }
 }

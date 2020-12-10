@@ -25,7 +25,6 @@ const ProposalModify = ({ detailInfo }) => {
     // setOfferCar1(e.target.value);
   };
 
-  console.log(detailInfo.offer_car1);
   return useObserver(() => (
     <div className={cx("proposalModify")}>
       <DetailInput

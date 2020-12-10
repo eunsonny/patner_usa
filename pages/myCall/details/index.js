@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { useCookies } from "react-cookie";
 import useStore from "../../../stores/useStore";
 import Router from "next/router";
+import Swal from "sweetalert2";
 
 import RequestInfo from "./components/requestInfo/RequestInfo";
 import Proposal from "./components/proposal/Proposal";
@@ -88,10 +89,15 @@ const Details = () => {
         .POST_PROPOSAL_INFO()
         .then((res) => {
           if (res.message === "success") {
-            alert("제안이 완료 되었습니다.");
+            Swal.fire({
+              icon: "success",
+              title: "제안이<br/>완료 되었습니다.",
+              showConfirmButton: false,
+              timer: 1500,
+            }) //
+              .then(Router.push("/myCall", "/myCall?pageTab=1"));
           }
         })
-        .then(Router.push("/myCall", "/myCall?pageTab=1"))
         .then(
           proposalStore.addInfo("offerCar1", null),
           proposalStore.addInfo("offerCar2", null),
@@ -101,62 +107,77 @@ const Details = () => {
 
     if (clicked === "제안취소") {
       const response = new DetailsInfo(TOKEN);
-      response
-        .CANCEL_PROPOSAL()
-        .then((res) => {
-          if (res.message === "offer canceled") {
-            alert("제안이 취소 되었습니다.");
-          }
-        })
-        .then(Router.push("/myCall", "/myCall?pageTab=1"));
+      response.CANCEL_PROPOSAL().then((res) => {
+        if (res.message === "offer canceled") {
+          Swal.fire({
+            icon: "success",
+            title: "제안이<br/>취소 되었습니다.",
+            showConfirmButton: false,
+            timer: 1500,
+          }) //
+            .then(Router.push("/myCall", "/myCall?pageTab=1"));
+        }
+      });
     }
 
     if (clicked === "제안수정") {
       const response = new DetailsInfo(TOKEN);
-      response
-        .MODIFY_PROPOSAL()
-        .then((res) => {
-          if (res.message === "success") {
-            alert("제안이 수정되었습니다.");
-          }
-        })
-        .then(Router.push("/myCall", "/myCall?pageTab=1"));
+      response.MODIFY_PROPOSAL().then((res) => {
+        if (res.message === "success") {
+          Swal.fire({
+            icon: "success",
+            title: "제안이<br/>수정 되었습니다.",
+            showConfirmButton: false,
+            timer: 1500,
+          }) //
+            .then(Router.push("/myCall", "/myCall?pageTab=1"));
+        }
+      });
     }
 
     if (clicked === "배차완료") {
       const response = new DetailsInfo(TOKEN);
-      response
-        .DISPATCH_CAR()
-        .then((res) => {
-          if (res.message === "confirm dispatch") {
-            alert("배차가 완료 되었습니다.");
-          }
-        })
-        .then(Router.push("/myCall", "/myCall?pageTab=3"));
+      response.DISPATCH_CAR().then((res) => {
+        if (res.message === "confirm dispatch") {
+          Swal.fire({
+            icon: "success",
+            title: "배차가<br/>완료 되었습니다.",
+            showConfirmButton: false,
+            timer: 1500,
+          }) //
+            .then(Router.push("/myCall", "/myCall?pageTab=3"));
+        }
+      });
     }
 
     if (clicked === "배차포기") {
       const response = new DetailsInfo(TOKEN);
-      response
-        .CANCEL_DISPATCH()
-        .then((res) => {
-          if (res.message === "cancel dispatch") {
-            alert("배차가 취소 되었습니다.");
-          }
-        })
-        .then(Router.push("/myCall", "/myCall?pageTab=3"));
+      response.CANCEL_DISPATCH().then((res) => {
+        if (res.message === "cancel dispatch") {
+          Swal.fire({
+            icon: "success",
+            title: "배차가<br/>취소 되었습니다.",
+            showConfirmButton: false,
+            timer: 1500,
+          }) //
+            .then(Router.push("/myCall", "/myCall?pageTab=3"));
+        }
+      });
     }
 
     if (clicked === "반납완료") {
       const response = new DetailsInfo(TOKEN);
-      response
-        .RETURN_CAR()
-        .then((res) => {
-          if (res.message === "complete return") {
-            alert("반납이 완료되었습니다.");
-          }
-        })
-        .then(Router.push("/myCall", "/myCall?pagaTab=4"));
+      response.RETURN_CAR().then((res) => {
+        if (res.message === "complete return") {
+          Swal.fire({
+            icon: "success",
+            title: "반납이<br/>완료 되었습니다.",
+            showConfirmButton: false,
+            timer: 1500,
+          }) //
+            .then(Router.push("/myCall", "/myCall?pagaTab=4"));
+        }
+      });
     }
   };
 

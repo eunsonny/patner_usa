@@ -6,6 +6,7 @@ import useStore from "../../../../stores/useStore";
 import validate from "../components/validate";
 import CompanyRegister from "../../../../api/companyRegister";
 import { autorun } from "mobx";
+import Swal from "sweetalert2";
 
 import CreateAccount from "../components/CreateAccount/CreateAccount";
 import BusinessInfo from "../components/BusinessInfo/BusinessInfo";
@@ -39,7 +40,7 @@ const Company = () => {
         ? setIsActive(true)
         : setIsActive(false);
     });
-  }, [isTermAllChecked]);
+  });
 
   useEffect(() => {
     if (
@@ -50,14 +51,19 @@ const Company = () => {
       const response = new CompanyRegister();
       response.POST_COMPANY_REGISTER_INFO().then((res) => {
         if (res.post === "ok") {
-          alert("회원가입이 완료 되었습니다");
-          Router.push("/user/login");
+          Swal.fire({
+            icon: "success",
+            title: "회원가입이<br/>완료 되었습니다.",
+            showConfirmButton: false,
+            timer: 1500,
+          }) //
+            .then(() => Router.push("/user/login"));
           clearInfo();
         }
       });
     }
     return setIsSubmitting(false);
-  }, [isSubmitting, isTermAllChecked]);
+  });
 
   useEffect(() => {
     if (isIdAvailable) {
@@ -107,6 +113,12 @@ const Company = () => {
       value !== companyStore.registerInfo.checkPassword
     ) {
       companyStore.addResult({ checkPassword: "비밀번호가 불일치 합니다." });
+    } else if (
+      name === "password" &&
+      companyStore.registerInfo.checkPassword &&
+      value === companyStore.registerInfo.checkPassword
+    ) {
+      companyStore.addResult({ checkPassword: "비밀번호가 일치합니다." });
     }
   };
 

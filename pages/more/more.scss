@@ -1,6 +1,5 @@
 .more {
-  width: 375px;
-  height: 667px;
+  height: 100vh;
   position: relative;
   .userId {
     height: 118px;
@@ -48,6 +47,8 @@
 
   section {
     position: absolute;
+    left: 0;
+    right: 0;
   }
 
   .modalBackground {

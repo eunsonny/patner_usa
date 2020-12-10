@@ -8,18 +8,14 @@ class UserSearch {
   }
 
   async SEARCH_USER_ID(value) {
-    try {
-      const response = await this.userSearch.get("users/login-id", {
-        params: {
-          user_type_id: 2,
-          name: value.userName,
-          contact: value.phone,
-        },
-      });
-      return response.data.result[0];
-    } catch (error) {
-      console.log(error);
-    }
+    const response = await this.userSearch.get("users/login-id", {
+      params: {
+        user_type_id: 2,
+        name: value.userName,
+        contact: value.phone,
+      },
+    });
+    return response.data.result[0];
   }
 
   async SEARCH_USER_PASSWORD(value) {

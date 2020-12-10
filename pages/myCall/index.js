@@ -49,14 +49,11 @@ const MyCall = (props) => {
       .then((res) => setCallData(res.message));
   }, []);
 
-  // console.log(document.documentElement.scrollTop);
-  // console.log(document.documentElement.clientHeight);
-  // console.log(document.documentElement.scrollHeight);
-
   const onScroll = () => {
     const a = document.documentElement.scrollTop;
     const b = document.documentElement.clientHeight;
     const c = document.documentElement.scrollHeight;
+
     a + b === c && setOffset(offset + 4);
   };
 

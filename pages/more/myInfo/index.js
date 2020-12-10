@@ -6,6 +6,7 @@ import { useObserver } from "mobx-react";
 import { useCookies } from "react-cookie";
 import Router from "next/router";
 import jwt from "jsonwebtoken";
+import Swal from "sweetalert2";
 
 import Account from "./components/account/Account";
 import MyBasicInfo from "./components/myBasicInfo/MyBasicInfo";
@@ -21,7 +22,7 @@ const MyInfo = () => {
 
   const { myInfoStore } = useStore();
   const { TOKEN } = cookies;
-  const decoded = jwt.decode(TOKEN)
+  const decoded = jwt.decode(TOKEN);
 
   useEffect(() => {
     const response = new UserInfo(TOKEN);
@@ -60,14 +61,17 @@ const MyInfo = () => {
 
     if (clicked === "정보수정") {
       const response = new UserInfo(TOKEN);
-      response
-        .MODIFY_USER_INFO()
-        .then((res) => {
-          if (res.message === "info changed") {
-            alert("정보가 수정되었습니다.");
-          }
-        })
-        .then(Router.push("/more"));
+      response.MODIFY_USER_INFO().then((res) => {
+        if (res.message === "info changed") {
+          Swal.fire({
+            icon: "success",
+            title: "정보가<br/>수정되었습니다.",
+            showConfirmButton: false,
+            timer: 1500,
+          }) //
+            .then(Router.push("/more"));
+        }
+      });
     }
   };
 
@@ -83,7 +87,11 @@ const MyInfo = () => {
       <div className={cx("container")}>
         <Account myInfo={myInfoStore.myInfo} handleChange={handleChange} />
         <div className={cx("middleLine")}></div>
-        <MyBasicInfo myInfo={myInfoStore.myInfo} handleChange={handleChange} position={decoded?.position}/>
+        <MyBasicInfo
+          myInfo={myInfoStore.myInfo}
+          handleChange={handleChange}
+          position={decoded?.position}
+        />
         <div className={cx("middleLine")}></div>
         <MyBusinessInfo
           myInfo={myInfoStore.myInfo}

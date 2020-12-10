@@ -8,16 +8,16 @@ class EmployeeRegister {
   constructor() {
     this.employeeRegister = axios.create({
       baseURL: API,
-    })
+    });
   }
 
-  async  CHECK_ID_AVAILABLE() {
+  async CHECK_ID_AVAILABLE() {
     try {
       const response = await this.employeeRegister.get(`/api/v1/users/check`, {
-        params : {
+        params: {
           user_type_id: 2,
-          login_id : employeeStore.registerInfo.userId
-        }
+          login_id: employeeStore.registerInfo.userId,
+        },
       });
       return response.data;
     } catch (error) {
@@ -34,6 +34,7 @@ class EmployeeRegister {
         user_detail_type_id: 2,
         name: employeeStore.registerInfo.userName,
         contact: employeeStore.registerInfo.userNumber,
+        email: employeeStore.registerInfo.email,
         rental_company_id: employeeStore.company.id,
         rental_company_user_position_id: 2,
       });
@@ -45,4 +46,3 @@ class EmployeeRegister {
 }
 
 export default EmployeeRegister;
-
