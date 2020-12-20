@@ -20,7 +20,7 @@ const LandingMiddleTop = ({ position }) => {
         함께하고 있습니다
       </p>
       <p>
-        IMS form은 렌터카 업체의 업무를
+        ABC form은 렌터카 업체의 업무를
         <br />좀 더 편리하고 정확하게 도와드립니다.
       </p>
       <div className={cx("countContainer")}>

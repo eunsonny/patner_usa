@@ -23,23 +23,23 @@ const Footer = (props) => {
           </ul>
         </div>
         <div className={cx("bottom")}>
-          <div className={cx("rencar")}>{`렌카(주)`}</div>
+          <div className={cx("company")}>{`회사(주)`}</div>
           <div className={cx("address")}>
             <p>
-              Address : 355, Achasan-ro, Gwangjin-gu, Seoul,
+              Address : 123, Dongil-ro, Nowon-gu, Seoul,
               <br />
               Republic of Korea
             </p>
             <div>
-              <span>CEO 곽권일</span>
+              <span>CEO 홍길동</span>
               <span> | </span>
-              <span>사업자 등록번호 : 280-86-00274</span>
+              <span>사업자 등록번호 : 000-00-00000</span>
             </div>
-            <div>통신판매업신고번호: 제2018-서울광진-0968호</div>
-            <div>{`CS 1600-8348 (10AM-6PM)`}</div>
+            <div>통신판매업신고번호: 제2000-서울-0000호</div>
+            <div>{`CS 1600-0000 (10AM-6PM)`}</div>
           </div>
           <div className={cx("copyright")}>
-            Copyright@2016 rencar.All rights reserved
+            Copyright@2016 .All rights reserved
           </div>
           <div className={cx("linkImage")}>
             <img src={"/images/blog.png"} />

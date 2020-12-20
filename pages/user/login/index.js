@@ -81,7 +81,7 @@ const Login = (props) => {
       <div className={cx("title")}>
         <p>Welcome to</p>
         <span>
-          IMS<span>.</span>
+          ABC<span>.</span>
         </span>
       </div>
       <div className={cx("inputArea")}>

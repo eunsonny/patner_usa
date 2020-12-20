@@ -17,7 +17,7 @@ const LandingFour = () => {
 
         <p className={cx("desc")}>
           당신의 사업을 더욱 쉽고 편리하게,<br></br>
-          지금 바로 IMS form을 만나보세요!
+          지금 바로 ABC form을 만나보세요!
         </p>
         <div className={cx("logoCon")}>
           <div className={cx("google")}>
