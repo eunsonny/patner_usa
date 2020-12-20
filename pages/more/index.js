@@ -71,7 +71,7 @@ const More = (props) => {
         <Top />
         <Logo />
         <div className={cx("userId")}>
-          <span className={cx("mainTitle")}>imsUSA2020</span>
+          <span className={cx("mainTitle")}>abcUSA2020</span>
           <div className={cx("userInfo")}>
             <span>{userInfo?.name}</span>
             <button onClick={() => router.push("/more/myInfo")}>내정보</button>

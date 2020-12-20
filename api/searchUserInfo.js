@@ -1,14 +1,15 @@
 import axios from "axios";
+import { API } from "../config";
 
 class UserSearch {
   constructor() {
     this.userSearch = axios.create({
-      baseURL: "http://wecode-dev.rencar.co.kr/api/v1",
+      baseURL: API,
     });
   }
 
   async SEARCH_USER_ID(value) {
-    const response = await this.userSearch.get("users/login-id", {
+    const response = await this.userSearch.get("api/v1/users/login-id", {
       params: {
         user_type_id: 2,
         name: value.userName,
@@ -20,7 +21,7 @@ class UserSearch {
 
   async SEARCH_USER_PASSWORD(value) {
     try {
-      const response = await this.userSearch.post("users/password", {
+      const response = await this.userSearch.post("api/v1/users/password", {
         user_type_id: 2,
         login_id: value.userId,
         contact: value.phone,

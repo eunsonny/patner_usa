@@ -1,1 +1,1 @@
-export const APP_NAME = 'IMS-USA';
+export const APP_NAME = 'ABC-USA';

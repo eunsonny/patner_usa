@@ -12,10 +12,10 @@ const Start = (props) => {
         <span className={cx("firstLine")}>
           Innovation rental car computing systems,
         </span>
-        <h5>Welcome to IMS.</h5>
+        <h5>Welcome to ABC.</h5>
 
         <p>
-          If you're new to IMS form, Please make it <br></br>
+          If you're new to ABC form, Please make it <br></br>
           your company account. <br></br>
           Regardless of the representative/employee, <br></br>
           the first subscribe has Manager access.
@@ -28,7 +28,7 @@ const Start = (props) => {
           <img alt="rightArrow" src="/images/right_arrow.png" />
         </div>
         <p className={cx("bottomP")}>
-          If you are already using IMS form, <br></br>
+          If you are already using ABC form, <br></br>
           Please log in to the company account and<br></br>
           add the user in the employee register of<br></br>
           the employee management.{" "}

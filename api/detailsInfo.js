@@ -1,12 +1,13 @@
 import axios from "axios";
 import useStore from "../stores/useStore";
+import { API } from "../config";
 
 const { proposalStore } = useStore();
 
 class DetailsInfo {
   constructor(TOKEN) {
     this.DetailsInfo = axios.create({
-      baseURL: "http://wecode-dev.rencar.co.kr",
+      baseURL: API,
       headers: { Authorization: TOKEN },
     });
     this.offerId = proposalStore.offerId;
